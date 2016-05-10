@@ -18,7 +18,7 @@
 		<table>
 			<tr>
 				<td>
-					<label>ID:</label>
+					<label>ID: </label>
 				</td>
 				<td>
 					<input readonly="readonly" type="text" name="id" value="" />
