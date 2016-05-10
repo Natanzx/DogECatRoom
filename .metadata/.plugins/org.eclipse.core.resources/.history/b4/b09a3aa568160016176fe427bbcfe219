@@ -37,7 +37,7 @@
 					<label>Serviço: </label>
 				</td>
 				<td>
-					<input type="text" name="servico" value="" />
+					<input readonly="readonly" type="text" name="servico" value="" />
 				</td>
 			</tr>
 			<tr>

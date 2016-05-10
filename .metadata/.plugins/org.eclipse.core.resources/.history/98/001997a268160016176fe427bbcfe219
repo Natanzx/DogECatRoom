@@ -21,7 +21,7 @@
 					<label>ID:</label>
 				</td>
 				<td>
-					<input type="text" name="id" value="" />
+					<input readonly="readonly" type="text" name="id" value="" />
 				</td>
 			</tr>
 			<tr>
@@ -29,7 +29,7 @@
 					<label>Cliente:	</label>
 				</td>
 				<td>
-					<input type="text" name="cliente" value="" />
+					<input readonly="readonly" type="text" name="cliente" value="" />
 				</td>
 			</tr>
 			<tr>
@@ -37,7 +37,7 @@
 					<label>Serviço: </label>
 				</td>
 				<td>
-					<input type="text" name="servico" value="" />
+					<input readonly="readonly" type="text" name="servico" value="" />
 				</td>
 			</tr>
 			<tr>

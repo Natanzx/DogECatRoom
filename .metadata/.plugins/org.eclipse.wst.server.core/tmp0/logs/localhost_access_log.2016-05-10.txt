@@ -1,0 +1,5 @@
+127.0.0.1 - - [10/May/2016:01:34:56 -0300] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [10/May/2016:01:34:58 -0300] "GET /DogECatRoom/realizarAtendimento.jsp HTTP/1.1" 200 972
+0:0:0:0:0:0:0:1 - - [10/May/2016:01:35:03 -0300] "POST /DogECatRoom/AtendimentoController HTTP/1.1" 500 1604
+0:0:0:0:0:0:0:1 - - [10/May/2016:01:35:41 -0300] "GET /DogECatRoom/realizarAtendimento.jsp HTTP/1.1" 200 912
+0:0:0:0:0:0:0:1 - - [10/May/2016:01:35:47 -0300] "POST /DogECatRoom/AtendimentoController HTTP/1.1" 500 1604
