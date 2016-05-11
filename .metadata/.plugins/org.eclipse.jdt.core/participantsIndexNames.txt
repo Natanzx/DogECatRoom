@@ -1,3 +1,0 @@
-INDEX VERSION 1.127
-C:\Users\Natan Silva\Documents\GitHub\DogECatRoom\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3214515397.index
-\DogECatRoom\src
