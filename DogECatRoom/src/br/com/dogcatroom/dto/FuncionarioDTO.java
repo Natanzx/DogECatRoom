@@ -1,0 +1,90 @@
+package br.com.dogcatroom.dto;
+
+public class FuncionarioDTO {
+
+	private int id;
+	private String nome;
+	private String cpf;
+	private String endereco;
+	private String telCelular;
+	private String telFixo;
+	private String bairro;
+	private String cidade;
+	private String estado;
+	private String escolaridade;
+	private String ocupacao;
+	private float salario;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	public String getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+	public String getTelCelular() {
+		return telCelular;
+	}
+	public void setTelCelular(String telCelular) {
+		this.telCelular = telCelular;
+	}
+	public String getTelFixo() {
+		return telFixo;
+	}
+	public void setTelFixo(String telFixo) {
+		this.telFixo = telFixo;
+	}
+	public String getBairro() {
+		return bairro;
+	}
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+	public String getCidade() {
+		return cidade;
+	}
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	public String getEscolaridade() {
+		return escolaridade;
+	}
+	public void setEscolaridade(String escolaridade) {
+		this.escolaridade = escolaridade;
+	}
+	public String getOcupacao() {
+		return ocupacao;
+	}
+	public void setOcupacao(String ocupacao) {
+		this.ocupacao = ocupacao;
+	}
+	public float getSalario() {
+		return salario;
+	}
+	public void setSalario(float salario) {
+		this.salario = salario;
+	}
+}

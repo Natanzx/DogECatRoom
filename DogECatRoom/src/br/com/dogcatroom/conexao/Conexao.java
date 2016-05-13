@@ -5,14 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexao {
-
+	public static String n ="teste";
 	public static Connection getConnection() {
-
+		
 		Connection con = null;
 
 		try {
-			Class.forName("org.postgresql.Driver");
-			con = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dogcatroom", "postgres", "admin");
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dogCatRoom", "root", "root");
 			System.out.println("Conectado com sucesso!");
 		} catch (SQLException e) {
 
@@ -22,7 +22,7 @@ public class Conexao {
 			System.out.println("Driver não encontrado");
 			e.printStackTrace();
 		}
-
+		
 		return con;
 
 	}
