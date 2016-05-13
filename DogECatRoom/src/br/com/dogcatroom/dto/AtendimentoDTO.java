@@ -2,9 +2,27 @@ package br.com.dogcatroom.dto;
 
 public class AtendimentoDTO {
 
-	private Long id;
+	private int id;
+	private String data;
+	private String hora;
 	private ClienteDTO cliente;
 	private ServicoDTO servico;
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
 
 	public ClienteDTO getCliente() {
 		return cliente;
@@ -22,11 +40,11 @@ public class AtendimentoDTO {
 		this.servico = servico;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

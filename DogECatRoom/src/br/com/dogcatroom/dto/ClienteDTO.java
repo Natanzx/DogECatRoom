@@ -2,17 +2,79 @@ package br.com.dogcatroom.dto;
 
 public class ClienteDTO {
 
-	private Long id;
-	private String nome;
+	private int id;
 	private String cpf;
-	private EnderecoDTO endereco;
-	private TelefoneDTO telefone;
+	private String nome;
+	private String cep;
+	private String endereco;
+	private int numero;
+	private String complemento;
+	private String bairro;
+	private String cidade;
+	private String estado;
+	private String telCelular;
+	private String telFixo;
 	private AnimalDTO animal;
+	
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public String getCep() {
+		return cep;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+	public int getNumero() {
+		return numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	public String getComplemento() {
+		return complemento;
+	}
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	public String getTelCelular() {
+		return telCelular;
+	}
+	public void setTelCelular(String telCelular) {
+		this.telCelular = telCelular;
+	}
+	public String getTelFixo() {
+		return telFixo;
+	}
+	public void setTelFixo(String telFixo) {
+		this.telFixo = telFixo;
+	}
+	public String getBairro() {
+		return bairro;
+	}
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+	public String getCidade() {
+		return cidade;
+	}
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 	public String getCpf() {
 		return cpf;
@@ -20,30 +82,16 @@ public class ClienteDTO {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public EnderecoDTO getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(EnderecoDTO endereco) {
-		this.endereco = endereco;
-	}
-	public TelefoneDTO getTelefone() {
-		return telefone;
-	}
-	public void setTelefone(TelefoneDTO telefone) {
-		this.telefone = telefone;
-	}
 	public AnimalDTO getAnimal() {
 		return animal;
 	}
 	public void setAnimal(AnimalDTO animal) {
 		this.animal = animal;
 	}
-	
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
+	public String getEndereco() {
+		return endereco;
 	}
 }

@@ -1,20 +1,30 @@
 package br.com.dogcatroom.dto;
 
-import java.math.BigDecimal;
-
 public class ServicoDTO {
 
-	private Long id;
-	private String nomeServico;
+	private int id;
+	private String nome;
 	private String descricao;
-	private BigDecimal valor;
+	private double valor;
 
-	public String getNomeServico() {
-		return nomeServico;
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void setNomeServico(String nomeServico) {
-		this.nomeServico = nomeServico;
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 
 	public String getDescricao() {
@@ -25,19 +35,7 @@ public class ServicoDTO {
 		this.descricao = descricao;
 	}
 
-	public BigDecimal getValor() {
+	public double getValor() {
 		return valor;
-	}
-
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 }
