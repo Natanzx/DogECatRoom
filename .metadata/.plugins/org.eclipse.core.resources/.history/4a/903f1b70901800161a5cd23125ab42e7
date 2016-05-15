@@ -1,0 +1,14 @@
+package br.com.dogcatroom.dto;
+
+public class AnimalDTO {
+
+	private int idAnimal;
+	private String nome;
+	private String tipo;
+	private String raca;
+	private String cor;
+	private String dataNasc;
+	private char sexo;
+	private boolean pedigre;
+	private int numPedigre;
+}

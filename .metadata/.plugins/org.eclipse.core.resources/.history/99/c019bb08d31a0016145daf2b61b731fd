@@ -1,0 +1,16 @@
+@CHARSET "ISO-8859-1";
+
+div {
+	
+	border				: 1px solid black;
+}
+
+.divMargin{
+	width				: 80%;
+	margin				: auto;
+	
+}
+
+.content{
+	min-height			: 300px;
+}

@@ -1,0 +1,2 @@
+127.0.0.1 - - [12/May/2016:20:07:16 -0300] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [12/May/2016:20:07:17 -0300] "GET /DogECatRoom/WEB-INF/classes/br/com/dogcatroom/conexao/Conexao.java HTTP/1.1" 404 992

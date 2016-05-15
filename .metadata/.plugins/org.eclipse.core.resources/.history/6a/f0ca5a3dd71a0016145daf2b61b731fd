@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>DogECatRoom</title>
+<jsp:include page="/template/head.jsp" />
+</head>
+<body>
+<div class="divMargin">
+
+	<jsp:include page="/template/cabecalho_padrao.jsp" />
+
+		<div class="content">
+		
+			<form class="form-horizontal" action="principal.jsp">
+				<fieldset>
+					<!-- Login -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">
+							Login:
+						</label>
+						<div class="col-md-4">
+							<input id="textinput" name="textinput" type="text"
+								class="form-control input-md">
+						</div>
+					</div>
+
+					<!-- Password -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="passwordinput">
+							Senha:
+						</label>
+						<div class="col-md-4">
+							<input id="passwordinput" name="passwordinput" type="password"
+								class="form-control input-md">
+						</div>
+					</div>
+
+					<!-- Botao logar -->
+					<div class="form-group"  style="text-align: center;">
+						<button id="singlebutton" name="singlebutton" class="btn btn-primary">Logar</button>
+						<button id="singlebutton" name="singlebutton" class="btn btn-warning">Esqueci a senha</button>
+					</div>
+
+				</fieldset>
+			</form>
+
+
+		</div>
+
+		<jsp:include page="/template/rodape_padrao.jsp" />
+		<div class="divRodape">
+			Dog e Cat Room 2016 - Todos os direitos reservados.
+		</div>
+	</div>
+</body>
+</html>

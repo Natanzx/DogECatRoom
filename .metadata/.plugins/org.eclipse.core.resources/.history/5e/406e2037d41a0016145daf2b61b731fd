@@ -1,0 +1,18 @@
+@CHARSET "ISO-8859-1";
+
+.divMargin{
+	width				: 80%;
+	margin				: auto;
+	
+}
+.divHead{
+	text-align			: center; 
+	font-size			: 25px; 
+	font-family			: Century Gothic;
+	border				: 1px solid black;
+}
+
+
+.content{
+	min-height			: 300px;
+}

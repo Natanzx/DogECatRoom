@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>DogECatRoom</title>
+<jsp:include page="/template/head.jsp" />
+</head>
+<body>
+<div class="divMargin">
+
+	<jsp:include page="/template/cabecalho_padrao.jsp" />
+
+		<div class="content">
+		
+			<div class="divMenuOpcoes">
+				<a href="/DogECatRoom/Cliente/listaCliente.jsp">
+					<div class="divMenu">Clientes</div>
+				</a>
+				
+				<a href="">
+					<div class="divMenu">Servicos</div>
+				</a>
+				
+				<a href="">
+					<div class="divMenu">Funcionarios</div>
+				</a>
+				
+				<a href="">	
+					<div class="divMenu">Relatorios</div>
+				</a>
+			</div>
+			
+		</div>
+
+		<jsp:include page="/template/rodape_padrao.jsp" />
+	</div>
+</body>
+</html>

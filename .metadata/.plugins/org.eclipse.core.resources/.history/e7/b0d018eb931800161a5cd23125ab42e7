@@ -1,0 +1,16 @@
+package br.com.dogcatroom.dto;
+
+public class FuncionarioDTO {
+
+	private int id;
+	private String nome;
+	private String telCel;
+	private String telFixo;
+	private String endereco;
+	private String bairro;
+	private String cidade;
+	private String estado;
+	private String escolaridade;
+	private String ocupacao;
+	private float salario;
+}

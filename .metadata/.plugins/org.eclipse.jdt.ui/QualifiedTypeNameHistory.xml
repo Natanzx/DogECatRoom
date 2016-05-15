@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="br.com.dogcatroom.dto.AnimalDTO"/>
+<fullyQualifiedTypeName name="br.com.dogcatroom.dto.ServicoDTO"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="br.com.dogcatroom.conexao.Conexao"/>
+</qualifiedTypeNameHistroy>

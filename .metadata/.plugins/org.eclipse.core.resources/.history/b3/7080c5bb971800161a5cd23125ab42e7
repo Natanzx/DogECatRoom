@@ -1,0 +1,15 @@
+package br.com.dogcatroom.teste;
+
+import java.sql.Connection;
+
+import br.com.dogcatroom.conexao.Conexao;
+
+public class TestaConexao {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection c = new Conexao().getConnection();
+
+	}
+
+}

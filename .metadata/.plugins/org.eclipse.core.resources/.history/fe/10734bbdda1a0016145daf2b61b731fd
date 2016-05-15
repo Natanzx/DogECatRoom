@@ -1,0 +1,44 @@
+@CHARSET "ISO-8859-1";
+
+.divMargin{
+	width				: 80%;
+	margin				: auto;
+	
+}
+.divHead{
+	text-align			: center; 
+	font-size			: 25px; 
+	font-family			: Century Gothic;
+	border				: 1px solid black;
+	padding				: 20px 0px;
+	background			: #ddd;
+}
+
+.divRodape{
+	text-align			: center;
+	padding				: 10px 0px;
+	border				: 1px solid black;
+}
+
+.content{
+	min-height			: 300px;
+	padding 			: 20px 0px;
+	border				: 1px solid black;
+}
+
+.divMenuOpcoes{
+	text-align			: center;
+	overflow			: auto;
+	position			: relative;
+	display				: table;
+	margin				: auto;  		
+}
+
+.divMenu{
+	border				: 1px solid black;
+	display				: table;
+	padding				: 20px 50px;
+	float				: left;
+	font-weight			: bold;
+	margin				: 0px 5px; 
+}

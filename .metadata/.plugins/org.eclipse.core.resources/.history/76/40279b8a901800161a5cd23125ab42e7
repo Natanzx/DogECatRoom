@@ -1,0 +1,33 @@
+package br.com.dogcatroom.dto;
+
+public class AtendimentoDTO {
+
+	private int id;
+	private ClienteDTO cliente;
+	private ServicoDTO servico;
+
+	public ClienteDTO getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(ClienteDTO cliente) {
+		this.cliente = cliente;
+	}
+
+	public ServicoDTO getServico() {
+		return servico;
+	}
+
+	public void setServico(ServicoDTO servico) {
+		this.servico = servico;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public int setId(Long id) {
+		this.id = id;
+	}
+
+}
