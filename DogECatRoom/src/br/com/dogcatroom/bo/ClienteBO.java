@@ -1,11 +1,11 @@
 package br.com.dogcatroom.bo;
 
-import br.com.dogcatroom.dao.impl.ClienteDAO;
+import br.com.dogcatroom.dao.impl.ClienteDAOImpl;
 import br.com.dogcatroom.dto.ClienteDTO;
 
 public class ClienteBO {
 
-	ClienteDAO cDAO = new ClienteDAO();
+	ClienteDAOImpl cDAO = new ClienteDAOImpl();
 	
 	public ClienteDTO BuscarCliente(ClienteDTO cDTO){
 		return cDAO.buscarCliente(cDTO);

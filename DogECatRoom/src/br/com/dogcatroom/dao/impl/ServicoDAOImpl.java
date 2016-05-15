@@ -5,7 +5,7 @@ import java.sql.Connection;
 import br.com.dogcatroom.conexao.Conexao;
 import br.com.dogcatroom.dto.ServicoDTO;
 
-public class ServicoDAO {
+public class ServicoDAOImpl {
 
 	
 	public ServicoDTO BuscarServico(ServicoDTO serDTO){

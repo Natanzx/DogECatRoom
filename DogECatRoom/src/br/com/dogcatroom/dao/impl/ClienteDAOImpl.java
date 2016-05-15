@@ -8,7 +8,7 @@ import br.com.dogcatroom.conexao.Conexao;
 import br.com.dogcatroom.dto.ClienteDTO;
 
 
-public class ClienteDAO {
+public class ClienteDAOImpl {
 
 	
 	private Connection con = Conexao.getConnection();
@@ -25,8 +25,6 @@ public class ClienteDAO {
 			PreparedStatement preparador = con.prepareStatement(sql);
 			preparador.setString(1, cliente.getNome());
 			preparador.setString(2, cliente.getCpf());
-			preparador.setLong(3, cliente.getEndereco().getId());
-			preparador.setLong(4, cliente.getTelefone().getId());
 			
 
 			preparador.execute();

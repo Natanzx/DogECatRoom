@@ -38,12 +38,10 @@ public class AtendimentoController extends HttpServlet {
 		AtendimentoDTO atendDTO = new AtendimentoDTO();
 
 		cliDTO.setNome(cliente);
-		servDTO.setNomeServico(servico);
 		
 		cliDTO = cliBO.BuscarCliente(cliDTO);
 		servDTO = servBO.BuscarServico(servDTO);
 		
-		atendDTO.setId(idAtendimento);
 		atendDTO.setCliente(cliDTO);
 		atendDTO.setServico(servDTO);
 
