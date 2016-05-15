@@ -1,4 +1,4 @@
-package br.com.dogcatroom.dao;
+package br.com.dogcatroom.dao.impl;
 
 import br.com.dogcatroom.dto.AtendimentoDTO;
 

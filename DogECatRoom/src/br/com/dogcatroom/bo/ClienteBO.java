@@ -1,6 +1,6 @@
 package br.com.dogcatroom.bo;
 
-import br.com.dogcatroom.dao.ClienteDAO;
+import br.com.dogcatroom.dao.impl.ClienteDAO;
 import br.com.dogcatroom.dto.ClienteDTO;
 
 public class ClienteBO {
