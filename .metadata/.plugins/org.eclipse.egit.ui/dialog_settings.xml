@@ -23,6 +23,13 @@
 			<item value="400"/>
 		</list>
 	</section>
+	<section name="org.eclipse.egit.ui.internal.pull.PullResultDialog.dialogBounds">
+		<item value="691" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="400" key="DIALOG_HEIGHT"/>
+		<item value="346" key="DIALOG_X_ORIGIN"/>
+		<item value="106" key="DIALOG_Y_ORIGIN"/>
+	</section>
 	<section name="org.eclipse.egit.ui.COMMIT_DIALOG_SECTION">
 		<item value="642" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
@@ -31,6 +38,20 @@
 		<item value="8" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="GitCommitMessageComponent">
+		<list key="C:\Users\Natan Silva\Documents\GitHub\DogECatRoom\.git">
+			<item value="false"/>
+			<item value="Natan Silva &lt;natanzx@gmail.com&gt;"/>
+			<item value="Merge branch &apos;master&apos; of https://github.com/Natanzx/DogECatRoom&#x0A;&#x0A;# Conflicts:&#x0A;#&#x09;DogECatRoom/src/br/com/dogcatroom/dao/AgendaDAO.java&#x0A;#&#x09;DogECatRoom/src/br/com/dogcatroom/dao/AnimalDAO.java&#x0A;#&#x09;DogECatRoom/src/br/com/dogcatroom/dao/FuncionarioDAO.java&#x0A;"/>
+			<item value="Natan Silva &lt;natanzx@gmail.com&gt;"/>
+			<item value="4f8f4c6e86f907b39a52b9a0da0617cdfaac185a"/>
+		</list>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.fetch.FetchResultDialog.dialogBounds">
+		<item value="616" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="458" key="DIALOG_HEIGHT"/>
+		<item value="383" key="DIALOG_X_ORIGIN"/>
+		<item value="67" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.egit.ui.internal.staging.StagingView">
 		<item value="500,500" key="STAGING_SASH_FORM_WEIGHT"/>
