@@ -1530,3 +1530,153 @@ java.lang.NullPointerException
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:669)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:608)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1515)
+
+!ENTRY org.eclipse.core.resources 4 4 2016-05-15 23:20:00.409
+!MESSAGE Exception loading preferences from: /DogECatRoom/.settings/org.eclipse.wst.ws.service.policy.prefs.
+!STACK 1
+org.eclipse.core.runtime.CoreException: File not found: C:\Users\Natan Silva\Documents\GitHub\DogECatRoom\DogECatRoom\.settings\org.eclipse.wst.ws.service.policy.prefs.
+	at org.eclipse.core.internal.filesystem.Policy.error(Policy.java:49)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:391)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:834)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:269)
+	at org.eclipse.core.internal.resources.ProjectPreferences.load(ProjectPreferences.java:507)
+	at org.eclipse.core.internal.resources.ProjectPreferences.load(ProjectPreferences.java:492)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.create(EclipsePreferences.java:409)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.getChild(EclipsePreferences.java:534)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalNode(EclipsePreferences.java:668)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.node(EclipsePreferences.java:812)
+	at org.eclipse.core.internal.resources.ProjectPreferences.deleted(ProjectPreferences.java:83)
+	at org.eclipse.core.internal.resources.ProjectPreferences.deleted(ProjectPreferences.java:134)
+	at org.eclipse.core.internal.resources.Resource.deleteResource(Resource.java:848)
+	at org.eclipse.core.internal.resources.ResourceTree.deletedFile(ResourceTree.java:125)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFile(ResourceTree.java:313)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFile(ResourceTree.java:796)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1827)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:744)
+	at org.eclipse.team.core.mapping.provider.MergeContext$5.run(MergeContext.java:351)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
+	at org.eclipse.team.core.mapping.provider.MergeContext.run(MergeContext.java:408)
+	at org.eclipse.team.core.mapping.provider.MergeContext.performReplace(MergeContext.java:345)
+	at org.eclipse.team.core.mapping.provider.MergeContext.performReplace(MergeContext.java:322)
+	at org.eclipse.team.core.mapping.provider.MergeContext.merge(MergeContext.java:168)
+	at org.eclipse.team.core.mapping.provider.MergeContext$3.run(MergeContext.java:87)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
+	at org.eclipse.team.core.mapping.provider.MergeContext.run(MergeContext.java:408)
+	at org.eclipse.team.core.mapping.provider.MergeContext.merge(MergeContext.java:81)
+	at org.eclipse.team.internal.ui.mapping.ResourceMergeHandler$1.execute(ResourceMergeHandler.java:58)
+	at org.eclipse.team.ui.mapping.SynchronizationOperation.run(SynchronizationOperation.java:121)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: java.io.FileNotFoundException: C:\Users\Natan Silva\Documents\GitHub\DogECatRoom\DogECatRoom\.settings\org.eclipse.wst.ws.service.policy.prefs (O sistema não pode encontrar o arquivo especificado)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:382)
+	... 33 more
+!SUBENTRY 1 org.eclipse.core.filesystem 4 271 2016-05-15 23:20:00.410
+!MESSAGE File not found: C:\Users\Natan Silva\Documents\GitHub\DogECatRoom\DogECatRoom\.settings\org.eclipse.wst.ws.service.policy.prefs.
+!STACK 0
+java.io.FileNotFoundException: C:\Users\Natan Silva\Documents\GitHub\DogECatRoom\DogECatRoom\.settings\org.eclipse.wst.ws.service.policy.prefs (O sistema não pode encontrar o arquivo especificado)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:382)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:834)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:269)
+	at org.eclipse.core.internal.resources.ProjectPreferences.load(ProjectPreferences.java:507)
+	at org.eclipse.core.internal.resources.ProjectPreferences.load(ProjectPreferences.java:492)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.create(EclipsePreferences.java:409)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.getChild(EclipsePreferences.java:534)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalNode(EclipsePreferences.java:668)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.node(EclipsePreferences.java:812)
+	at org.eclipse.core.internal.resources.ProjectPreferences.deleted(ProjectPreferences.java:83)
+	at org.eclipse.core.internal.resources.ProjectPreferences.deleted(ProjectPreferences.java:134)
+	at org.eclipse.core.internal.resources.Resource.deleteResource(Resource.java:848)
+	at org.eclipse.core.internal.resources.ResourceTree.deletedFile(ResourceTree.java:125)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFile(ResourceTree.java:313)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFile(ResourceTree.java:796)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1827)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:744)
+	at org.eclipse.team.core.mapping.provider.MergeContext$5.run(MergeContext.java:351)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
+	at org.eclipse.team.core.mapping.provider.MergeContext.run(MergeContext.java:408)
+	at org.eclipse.team.core.mapping.provider.MergeContext.performReplace(MergeContext.java:345)
+	at org.eclipse.team.core.mapping.provider.MergeContext.performReplace(MergeContext.java:322)
+	at org.eclipse.team.core.mapping.provider.MergeContext.merge(MergeContext.java:168)
+	at org.eclipse.team.core.mapping.provider.MergeContext$3.run(MergeContext.java:87)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
+	at org.eclipse.team.core.mapping.provider.MergeContext.run(MergeContext.java:408)
+	at org.eclipse.team.core.mapping.provider.MergeContext.merge(MergeContext.java:81)
+	at org.eclipse.team.internal.ui.mapping.ResourceMergeHandler$1.execute(ResourceMergeHandler.java:58)
+	at org.eclipse.team.ui.mapping.SynchronizationOperation.run(SynchronizationOperation.java:121)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.equinox.preferences 4 4 2016-05-15 23:20:00.418
+!MESSAGE Exception loading preferences from: C:/Users/Natan Silva/Documents/GitHub/DogECatRoom/DogECatRoom/.settings/org.eclipse.wst.ws.service.policy.prefs.
+!STACK 0
+org.osgi.service.prefs.BackingStoreException: Exception loading preferences from: /DogECatRoom/.settings/org.eclipse.wst.ws.service.policy.prefs.
+	at org.eclipse.core.internal.resources.ProjectPreferences.load(ProjectPreferences.java:515)
+	at org.eclipse.core.internal.resources.ProjectPreferences.load(ProjectPreferences.java:492)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.create(EclipsePreferences.java:409)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.getChild(EclipsePreferences.java:534)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalNode(EclipsePreferences.java:668)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.node(EclipsePreferences.java:812)
+	at org.eclipse.core.internal.resources.ProjectPreferences.deleted(ProjectPreferences.java:83)
+	at org.eclipse.core.internal.resources.ProjectPreferences.deleted(ProjectPreferences.java:134)
+	at org.eclipse.core.internal.resources.Resource.deleteResource(Resource.java:848)
+	at org.eclipse.core.internal.resources.ResourceTree.deletedFile(ResourceTree.java:125)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFile(ResourceTree.java:313)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFile(ResourceTree.java:796)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1827)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:744)
+	at org.eclipse.team.core.mapping.provider.MergeContext$5.run(MergeContext.java:351)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
+	at org.eclipse.team.core.mapping.provider.MergeContext.run(MergeContext.java:408)
+	at org.eclipse.team.core.mapping.provider.MergeContext.performReplace(MergeContext.java:345)
+	at org.eclipse.team.core.mapping.provider.MergeContext.performReplace(MergeContext.java:322)
+	at org.eclipse.team.core.mapping.provider.MergeContext.merge(MergeContext.java:168)
+	at org.eclipse.team.core.mapping.provider.MergeContext$3.run(MergeContext.java:87)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
+	at org.eclipse.team.core.mapping.provider.MergeContext.run(MergeContext.java:408)
+	at org.eclipse.team.core.mapping.provider.MergeContext.merge(MergeContext.java:81)
+	at org.eclipse.team.internal.ui.mapping.ResourceMergeHandler$1.execute(ResourceMergeHandler.java:58)
+	at org.eclipse.team.ui.mapping.SynchronizationOperation.run(SynchronizationOperation.java:121)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.egit.ui 4 0 2016-05-15 23:22:36.533
+!MESSAGE Cannot pull into a repository with state: MERGING_RESOLVED
+!STACK 0
+org.eclipse.jgit.api.errors.WrongRepositoryStateException: Cannot pull into a repository with state: MERGING_RESOLVED
+	at org.eclipse.jgit.api.PullCommand.call(PullCommand.java:211)
+	at org.eclipse.egit.core.op.PullOperation$1.run(PullOperation.java:106)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
+	at org.eclipse.egit.core.op.PullOperation.execute(PullOperation.java:137)
+	at org.eclipse.egit.ui.internal.pull.PullOperationUI.execute(PullOperationUI.java:140)
+	at org.eclipse.egit.ui.internal.pull.PullOperationUI$1.runInWorkspace(PullOperationUI.java:115)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2016-05-15 23:26:47.197 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pt_BR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-05-15 23:27:02.749
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Natan Silva'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
