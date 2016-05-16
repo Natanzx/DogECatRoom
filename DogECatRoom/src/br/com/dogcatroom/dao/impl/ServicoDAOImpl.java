@@ -10,6 +10,7 @@ public class ServicoDAOImpl implements ServicoDAO {
 
 	
 	public ServicoDTO BuscarServico(ServicoDTO serDTO){
+		//teste
 		return serDTO;
 	}
 }
