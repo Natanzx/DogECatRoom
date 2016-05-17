@@ -1,5 +1,7 @@
 package br.com.dogcatroom.dao.implementacao;
 
-public class FuncionarioDAOImpl {
+import br.com.dogcatroom.dao.IFuncionarioDAO;
+
+public class FuncionarioDAOImpl implements IFuncionarioDAO {
 
 }

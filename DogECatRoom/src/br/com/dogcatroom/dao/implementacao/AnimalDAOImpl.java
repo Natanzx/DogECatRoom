@@ -1,5 +1,7 @@
 package br.com.dogcatroom.dao.implementacao;
 
-public class AnimalDAOImpl {
+import br.com.dogcatroom.dao.IAnimalDAO;
+
+public class AnimalDAOImpl implements IAnimalDAO {
 
 }

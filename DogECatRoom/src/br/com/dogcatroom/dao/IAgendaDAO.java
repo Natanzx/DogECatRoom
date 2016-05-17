@@ -1,5 +1,5 @@
 package br.com.dogcatroom.dao;
 
-public interface FuncionarioDAO {
+public interface IAgendaDAO {
 
 }
