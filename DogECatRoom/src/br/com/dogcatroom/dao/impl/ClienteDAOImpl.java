@@ -5,12 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import br.com.dogcatroom.conexao.Conexao;
+import br.com.dogcatroom.dao.i.ClienteDAO;
 import br.com.dogcatroom.dto.ClienteDTO;
 
 
-public class ClienteDAOImpl {
+public class ClienteDAOImpl implements ClienteDAO {
 
-	
 	private Connection con = Conexao.getConnection();
 
 	public ClienteDTO buscarCliente(ClienteDTO cDTO){	
