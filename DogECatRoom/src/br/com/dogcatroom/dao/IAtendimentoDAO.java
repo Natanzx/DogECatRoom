@@ -8,4 +8,6 @@ public interface IAtendimentoDAO {
 	void RealizarAtendimento(AtendimentoDTO atendDTO);
 	
 	
+	
+	
 }

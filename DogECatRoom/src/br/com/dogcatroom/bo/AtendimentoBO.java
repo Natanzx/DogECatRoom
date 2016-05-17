@@ -1,11 +1,11 @@
 package br.com.dogcatroom.bo;
 
-import br.com.dogcatroom.dao.implementacao.AtendimentoDAOImpl;
+import br.com.dogcatroom.dao.implementacao.AtendimentoDAO;
 import br.com.dogcatroom.dto.AtendimentoDTO;
 
 public class AtendimentoBO {
 
-	AtendimentoDAOImpl atDAO = new AtendimentoDAOImpl();
+	AtendimentoDAO atDAO = new AtendimentoDAO();
 	
 	public void RealizarAtendimento(AtendimentoDTO atendDTO){
 		atDAO.RealizarAtendimento(atendDTO);

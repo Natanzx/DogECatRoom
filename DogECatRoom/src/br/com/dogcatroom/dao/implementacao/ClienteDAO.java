@@ -9,7 +9,7 @@ import br.com.dogcatroom.dao.IClienteDAO;
 import br.com.dogcatroom.dto.ClienteDTO;
 
 
-public class ClienteDAOImpl implements IClienteDAO {
+public class ClienteDAO implements IClienteDAO {
 
 	private Connection con = ConnectionFactory.getConnection();
 
