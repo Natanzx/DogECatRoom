@@ -1,8 +1,8 @@
-package br.com.dogcatroom.dao.i;
+package br.com.dogcatroom.dao;
 
 import br.com.dogcatroom.dto.ClienteDTO;
 
-public interface ClienteDAO {
+public interface IClienteDAO {
 
 	void cadastrar(ClienteDTO cliente);
 	

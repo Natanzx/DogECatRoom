@@ -1,6 +1,6 @@
 package br.com.dogcatroom.bo;
 
-import br.com.dogcatroom.dao.impl.AtendimentoDAOImpl;
+import br.com.dogcatroom.dao.implementacao.AtendimentoDAOImpl;
 import br.com.dogcatroom.dto.AtendimentoDTO;
 
 public class AtendimentoBO {

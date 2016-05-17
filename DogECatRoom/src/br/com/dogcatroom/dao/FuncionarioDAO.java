@@ -1,4 +1,4 @@
-package br.com.dogcatroom.dao.i;
+package br.com.dogcatroom.dao;
 
 public interface FuncionarioDAO {
 

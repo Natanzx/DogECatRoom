@@ -1,17 +1,17 @@
-package br.com.dogcatroom.dao.impl;
+package br.com.dogcatroom.dao.implementacao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import br.com.dogcatroom.conexao.Conexao;
-import br.com.dogcatroom.dao.i.ClienteDAO;
+import br.com.dogcatroom.conexao.ConnectionFactory;
+import br.com.dogcatroom.dao.IClienteDAO;
 import br.com.dogcatroom.dto.ClienteDTO;
 
 
-public class ClienteDAOImpl implements ClienteDAO {
+public class ClienteDAOImpl implements IClienteDAO {
 
-	private Connection con = Conexao.getConnection();
+	private Connection con = ConnectionFactory.getConnection();
 
 	public ClienteDTO buscarCliente(ClienteDTO cDTO){	
 		return cDTO;
