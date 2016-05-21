@@ -1,0 +1,54 @@
+@CHARSET "ISO-8859-1";
+
+.margin{
+	width: 			80%;
+	margin:			auto;
+	position:		relative;
+	border: 		1px solid #ececec;
+}
+
+.divHead{
+	background:		#666;
+	color:			white;
+	height:			100px;
+	text-align:		center;
+	padding:		25px 0px;
+}
+.divContent{
+	min-height:		450px;
+	padding:		40px 0px;
+}
+.divRodape{
+	background:		#666;
+	color:			white;
+	padding:		20px 0px;
+	text-align:		center;
+}
+
+.divMenu{
+	display:		table;
+	font-weight: 	bold;
+	color:			#666;
+	margin:			auto;
+}
+.divMenu div{
+	float:			left;
+	border:			1px solid #666;
+	padding:		15px 30px;
+	margin:			0px 10px;
+	font-size:		14px;
+	font-family: 	"Century Gothic";	
+}
+.divMenu div:hover{
+	background:		#666;
+	color:			white;
+}
+
+.clTblCliente{
+	border:			1px solid #ececec;
+	margin:			auto;
+}
+
+.clTblCliente th{
+	padding:		5px 10px;	
+}
