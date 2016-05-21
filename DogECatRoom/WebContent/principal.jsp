@@ -11,7 +11,7 @@
 	<jsp:include page="/template/cabecalho_padrao.jsp"/>
 	
 	<div class="divMenu">
-		<a href="/Agenda/consultaAgenda.jsp">
+		<a href="Agenda/consultaAgenda.jsp">
 			<div>Agenda</div>
 		</a>
 		
@@ -19,11 +19,11 @@
 			<div>Clientes</div>
 		</a>
 		
-		<a href="/Funcionario/consultaFuncionario.jsp">
+		<a href="Funcionario/consultaFuncionario.jsp">
 			<div>Funcionarios</div>
 		</a>
 		
-		<a href="#">
+		<a href="Servicos/consultaServico.jsp">
 			<div>Servicos</div>
 		</a>
 		
