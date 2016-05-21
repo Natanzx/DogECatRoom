@@ -5,30 +5,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<jsp:include page="/template/head.jsp"/>
-<title>DogECatRoom - Funcionario</title>
+<title>DogECatRoom - Serviços</title>
 </head>
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp"/>
-
+	
 	<div class="clOpcoesCrud">
-		<a href="cadastrarFuncionario.jsp">
+		<a href="cadastrarServicos.jsp">
 			<button class="btn btn-default">Cadastrar</button>
 		</a>
 	</div>
-	
+
 	<table class="clTblCliente">
 		<tr>
 			<th>Nome</th>
-			<th>CPF</th>
-			<th>Telefone</th>
-			<th>Endereço</th>
+			<th>Descrição</th>
+			<th>Valor</th>
 		</tr>
 
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
 		</tr>						
 	</table>
 

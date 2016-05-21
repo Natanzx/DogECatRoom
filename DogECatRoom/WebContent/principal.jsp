@@ -11,19 +11,19 @@
 	<jsp:include page="/template/cabecalho_padrao.jsp"/>
 	
 	<div class="divMenu">
-		<a href="Sistemas/Agenda/consultaAgenda.jsp">
+		<a href="Sistemas/Agenda/consultarAgenda.jsp">
 			<div>Agenda</div>
 		</a>
 		
-		<a href="Sistemas/Cliente/consultaCliente.jsp">
+		<a href="Sistemas/Clientes/consultarClientes.jsp">
 			<div>Clientes</div>
 		</a>
 		
-		<a href="Sistemas/Funcionario/consultaFuncionario.jsp">
+		<a href="Sistemas/Funcionarios/consultarFuncionarios.jsp">
 			<div>Funcionarios</div>
 		</a>
 		
-		<a href="Sistemas/Servicos/consultaServico.jsp">
+		<a href="Sistemas/Servicos/consultarServicos.jsp">
 			<div>Servicos</div>
 		</a>
 		

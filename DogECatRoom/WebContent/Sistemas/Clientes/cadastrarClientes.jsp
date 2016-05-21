@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="/template/head.jsp" />
-<title>DogECatRoom - Cadastrar Servicos</title>
+<title>DogECatRoom - Cadastrar Clientes</title>
 </head>
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
@@ -14,7 +14,7 @@
 		<fieldset>
 
 			<!-- Form Name -->
-			<legend>Servicos</legend>
+			<legend>Clientes</legend>
 
 			<!-- Text input-->
 			<div class="form-group">
@@ -122,27 +122,7 @@
 
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="textinput">Escolaridade</label>
-				<div class="col-md-4">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="textinput">Ocupação</label>
-				<div class="col-md-4">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="textinput">Salário</label>
+				<label class="col-md-4 control-label" for="textinput">Animal</label>
 				<div class="col-md-4">
 					<input id="textinput" name="textinput" type="text" placeholder=""
 						class="form-control input-md">

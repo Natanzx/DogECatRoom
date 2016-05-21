@@ -5,13 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<jsp:include page="/template/head.jsp"/>
-<title>DogECatRoom - Cliente</title>
+<title>DogECatRoom - Clientes</title>
 </head>
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp"/>
 
 	<div class="clOpcoesCrud">
-		<a href="cadastrarCliente.jsp">
+		<a href="cadastrarClientes.jsp">
 			<button class="btn btn-default">Cadastrar</button>
 		</a>
 	</div>
@@ -20,15 +20,20 @@
 		<tr>
 			<th>Nome</th>
 			<th>CPF</th>
-			<th>Telefone</th>
+			<th>CEP</th>
 			<th>Endereço</th>
+			<th>Número</th>
+			<th>Complemento</th>
+			<th>Bairro</th>
+			<th>Cidade</th>
+			<th>Estado</th>
+			<th>Telefone Celular</th>
+			<th>Telefone Fixo</th>
+			<th>Animal</th>
 		</tr>
 
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+
 		</tr>						
 	</table>
 

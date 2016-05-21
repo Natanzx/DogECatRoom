@@ -1,8 +1,13 @@
 	<div class="margin">
 		<div class="divHead">
-			Dog e Cat <br> Room
+			<div class="clSloganPrincipal">
+				Dog e Cat Room
+			</div>
+			<div class="clSloganLegenda">
+				Cuidando melhor do seu pet
+			</div>
 		</div>
-		<div>
-			<a href="/DogECatRoom/principal.jsp">Principal</a>
-		</div>
+		
+		<jsp:include page="/template/MenuPrincipal.jsp"/>
+		
 		<div class="divContent">

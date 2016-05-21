@@ -4,15 +4,31 @@
 	width: 			80%;
 	margin:			auto;
 	position:		relative;
-	border: 		1px solid #ececec;
+	border:			1px solid #ececec;
 }
 
 .divHead{
 	background:		#666;
-	color:			white;
-	height:			100px;
-	text-align:		center;
-	padding:		25px 0px;
+	height:			170px;
+	text-align:		left;
+	padding:		40px 0px 0px 40px;
+}
+.clSloganPrincipal{
+	font-family:	"Century Gothic";
+	font-size:		35pt;
+	text-shadow:	1px 1px 1px white;
+	letter-spacing: 1px;
+	color:			white;	
+}
+.clSloganLegenda{
+	font-family:	"Century Gothic";
+	font-size:		10pt;
+	text-shadow:	1px 1px 1px white;
+	letter-spacing: 1px;
+	color:			white;	
+}
+.clMenuNav{
+	border-radius:	0px !important;
 }
 .divContent{
 	min-height:		450px;
@@ -33,15 +49,19 @@
 }
 .divMenu div{
 	float:			left;
-	border:			1px solid #666;
-	padding:		15px 30px;
-	margin:			0px 10px;
-	font-size:		14px;
-	font-family: 	"Century Gothic";	
+	*border:			1px solid #666;
+	padding:		25px 40px;
+	margin:			0px 15px;
+	font-size:		16px;
+	font-family: 	"Century Gothic";
+	background:		#ddd;
+	color:			#444;
+	box-shadow:		2px 2px 3px #666;
 }
 .divMenu div:hover{
 	background:		#666;
 	color:			white;
+	text-shadow:	2px 2px 2px black;
 }
 
 .clTblCliente{
