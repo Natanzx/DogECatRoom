@@ -10,6 +10,12 @@
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp"/>
 
+	<div class="clOpcoesCrud">
+		<a href="cadastrarAgenda.jsp">
+			<button class="btn btn-default">Cadastrar</button>
+		</a>
+	</div>
+	
 	<table class="clTblCliente">
 		<tr>
 			<th>Nome</th>
