@@ -8,8 +8,10 @@
 <title>DogECatRoom - Login</title>
 </head>
 <body>
-	<jsp:include page="/template/cabecalho_padrao.jsp" />
-
+	<jsp:include page="/template/cabecalho.jsp" />
+	
+	<div class="divContent">
+	
 	<form class="form-horizontal" action="principal.jsp">
 		<fieldset>
 		
@@ -47,6 +49,7 @@
 	</form>
 
 
+	</div>
 
-	<jsp:include page="/template/rodape_padrao.jsp" />
+	<jsp:include page="/template/rodape.jsp" />
 </body>

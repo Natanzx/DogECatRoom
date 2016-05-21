@@ -22,7 +22,9 @@
 					<li><a href="#">Separated link</a></li>
 					<li role="separator" class="divider"></li>
 					<li><a href="#">One more separated link</a></li>
-				</ul></li>
+				</ul>
+			</li>
+			<li><a href="/DogECatRoom/login.jsp">Sair</a></li>
 		</ul>
 	</nav>
 </div>
