@@ -12,7 +12,7 @@
 	
 	<div class="divContent">
 	
-	<form class="form-horizontal" action="principal.jsp">
+	<form class="form-horizontal" action="principal.jsp" method="post">
 		<fieldset>
 		
 			<!-- Text input-->
@@ -39,16 +39,15 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="button1id"></label>
 				<div class="col-md-8">
-					<button id="button1id" name="button1id" class="btn btn-success">Logar</button>
-					<button id="" name="" class="btn btn-warning">Esqueceu a
-						senha</button>
+					<button id="button1id" type="submit" name="button1id" class="btn btn-success">Logar</button>
+					<a href="EsqueceuSenha.jsp" target="">
+						<button id="" name="" type="button" class="btn btn-warning">Esqueceu a senha</button>
+					</a>
 				</div>
 			</div>
 
 		</fieldset>
 	</form>
-
-
 	</div>
 
 	<jsp:include page="/template/rodape.jsp" />
