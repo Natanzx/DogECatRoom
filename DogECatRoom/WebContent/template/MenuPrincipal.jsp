@@ -1,16 +1,33 @@
 
 <div>
 	<nav class="navbar navbar-inverse clMenuNav">
-		<ul class="nav navbar-nav">
-			<li class="active">
-				<a href="/DogECatRoom/principal.jsp">
-					Principal </a></li>
+		<ul class="nav navbar-nav clMenuPrincipal user-menu">
+			<li class="active"><a href="/DogECatRoom/principal.jsp">
+				<svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg>
+				Principal </a>
+			</li>
 
-			<li><a href="/DogECatRoom/Sistemas/Clientes/consultarClientes.jsp">Clientes</a></li>
-			<li><a href="/DogECatRoom/Sistemas/Servicos/consultarServicos.jsp">Serviços</a></li>
-			<li><a href="/DogECatRoom/Sistemas/Funcionarios/consultarFuncionarios.jsp">Funcionarios</a></li>
-			<li><a href="/DogECatRoom/Sistemas/Relatorios/Relatorios.jsp">Relatórios</a></li>
+			<li><a href="/DogECatRoom/Sistemas/Clientes/consultarClientes.jsp">
+				<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-male-user"></use></svg>
+				Clientes
+			</a></li>
+			
+			<li><a href="/DogECatRoom/Sistemas/Servicos/consultarServicos.jsp">
+				<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-clipboard-with-paper"></use></svg>
+				Serviços</a>
+			</li>
+			
+			<li><a href="/DogECatRoom/Sistemas/Funcionarios/consultarFuncionarios.jsp">
+				<svg class="glyph stroked dashboard dial"><use xlink:href="#stroked-dashboard-dial"/></svg>
+				Funcionarios</a>
+			</li>
+			
+			<li><a href="/DogECatRoom/Sistemas/Relatorios/Relatorios.jsp">
+				<svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg>
+				Relatórios</a>
+			</li>
 
+			<!--
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown" role="button" aria-haspopup="true"
 				aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -24,7 +41,21 @@
 					<li><a href="#">One more separated link</a></li>
 				</ul>
 			</li>
-			<li><a href="/DogECatRoom/login.jsp">Sair</a></li>
+			-->
+			<li class="dropdown pull-right">
+			<a href="#"	class="dropdown-toggle" data-toggle="dropdown">
+			<svg class="glyph stroked male-user">
+				<use xlink:href="#stroked-male-user"></use></svg> Usuario <span
+					class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="/DogECatRoom/perfil.jsp"><svg class="glyph stroked male-user">
+								<use xlink:href="#stroked-male-user"></use></svg> Perfil</a></li>
+					<li><a href="/DogECatRoom/config.jsp"><svg class="glyph stroked gear">
+								<use xlink:href="#stroked-gear"></use></svg> Configurações</a></li>
+					<li><a href="/DogECatRoom/login.jsp"><svg class="glyph stroked cancel">
+								<use xlink:href="#stroked-cancel"></use></svg> Sair</a></li>
+				</ul>
+			</li>
 		</ul>
 	</nav>
 </div>

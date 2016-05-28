@@ -24,6 +24,9 @@
 		</tr>
 
 		<tr>
+			<td>Tosa</td>
+			<td>Tosa</td>
+			<td>Tosa</td>
 		</tr>						
 	</table>
 

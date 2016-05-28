@@ -32,10 +32,12 @@ legend{
 }
 .clMenuNav{
 	border-radius:	0px !important;
+	margin-bottom: 	0px;
 }
 .divContent{
 	min-height:		450px;
 	padding:		40px 0px;
+	position: 		relative;
 }
 .divRodape{
 	background:		#666;
@@ -43,7 +45,9 @@ legend{
 	padding:		20px 0px;
 	text-align:		center;
 }
-
+.clMenuPrincipal{
+	margin:			auto;
+}
 .divMenu{
 	display:		table;
 	font-weight: 	bold;
@@ -79,4 +83,8 @@ legend{
 
 .clOpcoesCrud{
 	margin:			10px 50px;
+}
+.clIcon{
+	font-size:		30pt;	
+}
 }
