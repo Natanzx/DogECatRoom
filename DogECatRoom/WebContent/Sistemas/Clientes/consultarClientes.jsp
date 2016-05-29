@@ -18,8 +18,8 @@
 	
 	<table class="clTblCliente">
 		<tr>
-			<th>Nome</th>
-			<th>CPF</th>
+			<th width="15%">Nome</th>
+			<th width="8%">CPF</th>
 			<th>CEP</th>
 			<th>Endereço</th>
 			<th>Número</th>
@@ -27,9 +27,9 @@
 			<th>Bairro</th>
 			<th>Cidade</th>
 			<th>Estado</th>
-			<th>Telefone Celular</th>
-			<th>Telefone Fixo</th>
-			<th>Animal</th>
+			<th>Tel. Celular</th>
+			<th>Tel. Fixo</th>
+			<th>Pet</th>
 		</tr>
 
 		<tr>
@@ -44,7 +44,7 @@
 			<td>Distrito Federal</td>
 			<td>61 93224411</td>
 			<td>61 91334422</td>
-			<td>Cachorro</td>
+			<td><a href="#">Detalhes</a></td>
 		</tr>						
 	</table>
 
