@@ -7,9 +7,9 @@ public class FuncionarioBO {
 
 	private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 
-	public void cadastrarFuncionario(FuncionarioDTO funcionarioDTO) {
+	public void salvarFuncionario(FuncionarioDTO funcionarioDTO) {
 
-		if (funcionarioDTO == null||funcionarioDTO.getId()== 0) {
+		if (funcionarioDTO.getId() == null || funcionarioDTO.getId()== 0) {
 			if (funcionarioDTO.getNome() != null && funcionarioDTO.getCpf() != null
 					&& funcionarioDTO.getBairro() != null && funcionarioDTO.getCidade() != null
 					&& funcionarioDTO.getMatricula() != 0) {
