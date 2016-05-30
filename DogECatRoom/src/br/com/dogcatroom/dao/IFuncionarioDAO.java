@@ -1,5 +1,9 @@
 package br.com.dogcatroom.dao;
 
-public interface IFuncionarioDAO {
+import br.com.dogcatroom.dto.FuncionarioDTO;
 
+public interface IFuncionarioDAO {
+	
+	void cadastrarFuncionario(FuncionarioDTO funcionarioDTO);
+    void alterarFuncionario(FuncionarioDTO funcionarioDTO);
 }
