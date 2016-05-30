@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.dogcatroom.bo.ClienteBO;
-import br.com.dogcatroom.dao.implementacao.ClienteDAO;
 import br.com.dogcatroom.dto.ClienteDTO;
 
 @WebServlet("/ClienteController")
@@ -20,44 +19,104 @@ public class ClienteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String acao = request.getParameter("acao");
 		
-		ClienteDAO clientedao = new ClienteDAO();
+		if(acao!=null && acao.equals("listar")){
+			
+			ClienteBO clienteBO = new ClienteBO();
+			List<ClienteDTO> lista = clienteBO.buscarTodosClientes();
+		
+			request.setAttribute("lista", lista);
+			
+			RequestDispatcher saida= request.getRequestDispatcher("Sistemas/Clientes/consultarClientes.jsp");
+			saida.forward(request, response);
+		}
+
+		if(acao!=null && acao.equals("alterar")){
+			String id = request.getParameter("id");
+			
+			ClienteBO clienteBO = new ClienteBO();
+			ClienteDTO cliente = clienteBO.buscarClientePorID(Integer.parseInt(id));
+			
+			request.setAttribute("cliente", cliente);
+			RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Clientes/alterarCliente.jsp");
+			saida.forward(request,response);
+			
+		}
 		
 		if(acao!=null && acao.equals("excluir")){
 			String id = request.getParameter("id");
 			
 			ClienteDTO cliente = new ClienteDTO();
 			cliente.setId(Integer.parseInt(id));
-			clientedao.excluir(cliente);
+			
+			ClienteBO clienteBO = new ClienteBO();
+			clienteBO.excluirCliente(cliente);
+			
+			response.sendRedirect("ClienteController?acao=listar");
+		}
+		
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String acao = request.getParameter("acao");
+		
+		if(acao!=null && acao.equals("cadastrar")){
+			Integer numero = null;
+			String nome = request.getParameter("textNome");
+			String cpf = request.getParameter("textCpf");
+			String cep = request.getParameter("textCep");
+			String endereco = request.getParameter("textEndereco");
+			String numerotext =request.getParameter("textNumero");
+			String complemento = request.getParameter("textComplemento");
+			String bairro = request.getParameter("textBairro");
+			String cidade = request.getParameter("textCidade");
+			String estado = request.getParameter("textEstado");
+			String telCelular = request.getParameter("textTelCelular");
+			String telFixo = request.getParameter("textTelFixo");
+			
+			if(numerotext != ""){
+				numero = (Integer.parseInt(numerotext));
+			}
+			
+			ClienteDTO cliente = new ClienteDTO();
+			
+			cliente.setNome(nome);
+			cliente.setCpf(cpf);
+			cliente.setCep(cep);
+			cliente.setEndereco(endereco);
+			cliente.setNumero(numero);
+			cliente.setComplemento(complemento);
+			cliente.setBairro(bairro);
+			cliente.setCidade(cidade);
+			cliente.setEstado(estado);
+			cliente.setTelCelular(telCelular);
+			cliente.setTelFixo(telFixo);
+			
+			ClienteBO clienteBO = new ClienteBO();
+			clienteBO.cadastarCliente(cliente);
 			
 			response.sendRedirect("ClienteController?acao=listar");
 		}
 	
+	
 	if(acao!=null && acao.equals("alterar")){
-		String id = request.getParameter("id");
+		Integer numero = null;
+		String nome = request.getParameter("textNome");
+		String cpf = request.getParameter("textCpf");
+		String cep = request.getParameter("textCep");
+		String endereco = request.getParameter("textEndereco");
+		String numerotext =request.getParameter("textNumero");
+		String complemento = request.getParameter("textComplemento");
+		String bairro = request.getParameter("textBairro");
+		String cidade = request.getParameter("textCidade");
+		String estado = request.getParameter("textEstado");
+		String telCelular = request.getParameter("textTelCelular");
+		String telFixo = request.getParameter("textTelFixo");
+		int id = Integer.parseInt(request.getParameter("textId"));
 		
-		ClienteDTO cliente = clientedao.buscarPorID(Integer.parseInt(id));
-		
-		request.setAttribute("cliente", cliente);
-		RequestDispatcher saida = request.getRequestDispatcher("ClienteAlterar.jsp");
-		saida.forward(request,response);
-		
-		response.sendRedirect("ClienteController?acao=listar");
-		
-		
-	}
-	if(acao!=null && acao.equals("cadastrar")){
-		
-		String nome = request.getParameter("txtNome");
-		String cpf = request.getParameter("txtCPf");
-		String cep = request.getParameter("txtCep");
-		String endereco = request.getParameter("txtEndereco");
-		int numero = (Integer.parseInt(request.getParameter("txtNumero")));
-		String complemento = request.getParameter("txtComplemento");
-		String bairro = request.getParameter("txtBairro");
-		String cidade = request.getParameter("txtCidade");
-		String estado = request.getParameter("txtEstado");
-		String telCelular = request.getParameter("txtTelCelular");
-		String telFixo = request.getParameter("txtTelFixo");
+		if(numerotext != ""){
+			numero = (Integer.parseInt(numerotext));
+		}
 		
 		ClienteDTO cliente = new ClienteDTO();
 		
@@ -72,27 +131,13 @@ public class ClienteController extends HttpServlet {
 		cliente.setEstado(estado);
 		cliente.setTelCelular(telCelular);
 		cliente.setTelFixo(telFixo);
+		cliente.setId(id);
 		
 		ClienteBO clienteBO = new ClienteBO();
-		clienteBO.cadastarCliente(cliente);
-	}
-	
-	if(acao!=null && acao.equals("listar")){
-	
-		ClienteBO clienteBO = new ClienteBO();
-		List<ClienteDTO> lista = clienteBO.buscarTodosClientes();
-	
-		request.setAttribute("lista", lista);
+		clienteBO.alterarCliente(cliente);
 		
-		RequestDispatcher saida= request.getRequestDispatcher("consultarClientes.jsp");
-		saida.forward(request, response);
+		response.sendRedirect("ClienteController?acao=listar");
 	}
-	
-	
-	
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
+}
 
 }

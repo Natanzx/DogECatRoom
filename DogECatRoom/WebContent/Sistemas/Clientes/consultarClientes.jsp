@@ -13,13 +13,13 @@
 	<jsp:include page="/template/cabecalho_padrao.jsp"/>
 
 	<div class="clOpcoesCrud">
-		<a href="cadastrarClientes.jsp">
+		<a href="Sistemas/Clientes/cadastrarClientes.jsp">
 			<button class="btn btn-default">Cadastrar</button>
 		</a>
 	</div>
-	<table bgcolor="#e0e0e0" align="center" cellpadding=4 style="text-align:justify; width:800px; font-family:"Arial, Helvetica, sans-serif;">
+	<table border="1" bgcolor="#e0e0e0" align="center" cellpadding=4 style="text-align:justify; width:800px; font-family:"Arial, Helvetica, sans-serif;">
 	<tr bgcolor="#2b3e8c" style="color: #FFF;">
-		<th>Id</th> <th>Cliente</th> <th>CPF</th> <th>Cep</th> <th>Endereço</th> <th>Numero</th> <th>Complemento</th> <th>Bairro</th> <th>Cidade</th ><th>Estado</th> <th>Celular</th> <th>Fixo</th> </tr>
+		<th>Id</th> <th>Cliente</th> <th>CPF</th> <th>Cep</th> <th>Endereço</th> <th>Numero</th> <th>Complemento</th> <th>Bairro</th> <th>Cidade</th ><th>Estado</th> <th>Celular</th> <th>Fixo</th> <th>Acao</th> </tr>
 	</tr>    
 	<% 
 	//retorna object tem que fazer cast pois nois sabe que é uma lista
@@ -46,9 +46,6 @@
 		</td>
 	</tr>
 <% } %>
-	<tr>
-		<td align="center" colspan=7><a href="Inicio.jsp">Voltar</a></td>
-	</tr>
 </table>
 
 	<jsp:include page="/template/rodape_padrao.jsp"/>

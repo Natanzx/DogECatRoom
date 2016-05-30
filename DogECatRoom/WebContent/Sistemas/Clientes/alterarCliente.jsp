@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="br.com.dogcatroom.dto.ClienteDTO" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,19 +10,21 @@
 </head>
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
-	
-	<form class="form-horizontal" method="POST" action="../../ClienteController?acao=cadastrar">
+	<%
+		ClienteDTO cliente =(ClienteDTO) request.getAttribute("cliente");
+	%>
+	<form class="form-horizontal" method="POST" action="ClienteController?acao=alterar">
 		<fieldset>
-
+			
 			<!-- Titulo - Clientes -->
 			<legend>Clientes</legend>
-
+			<input type="hidden" name="textId" value="<%=cliente.getId()%>"/>
 			<!-- Text input-->
 			<div class="form-group">
 				<label class="col-md-3 control-label" for="textinput">Nome</label>
 				<div class="col-md-5">
 					<input id="textinput" name="textNome" type="text"
-						placeholder="Digite o nome" class="form-control input-md">
+						placeholder="Digite o nome" class="form-control input-md" value=<%=cliente.getNome() %>>
 
 				</div>
 			</div>
@@ -32,7 +35,7 @@
 				<div class="col-md-2">
 					<input id="textinput" name="textCpf" type="text"
 						placeholder="Ex: 000000000-00" class="form-control input-md"
-						required=""> 
+						required="" value=<%=cliente.getCpf() %>> 
 				</div>
 			</div>
 			
@@ -42,14 +45,14 @@
 				<div class="col-md-2">
 					<input id="textinput" name="textTelCelular" type="text"
 						placeholder="(00) XXXX-XXXX" class="form-control input-md"
-						required="">
+						required="" value=<%=cliente.getTelCelular() %>>
 
 				</div>
 			<!-- Telefone Fixo-->
 				<label class="col-md-1 control-label" for="textinput">Tel. Fixo</label>
 				<div class="col-md-2">
 					<input id="textinput" name="textTelFixo" type="text"
-						placeholder="(XX) XXXX-XXXX" class="form-control input-md">
+						placeholder="(XX) XXXX-XXXX" class="form-control input-md" value=<%=cliente.getTelFixo() %>>
 
 				</div>
 			</div>
@@ -59,14 +62,14 @@
 				<label class="col-md-3 control-label" for="textinput">Endereço</label>
 				<div class="col-md-3">
 					<input id="textinput" name="textEndereco" type="text"
-						placeholder="Digite o endereço" class="form-control input-md">
+						placeholder="Digite o endereço" class="form-control input-md" value=<%=cliente.getEndereco() %>>
 
 				</div>
 				<!-- Numero	-->
 				<label class="col-md-1 control-label" for="textinput">Número</label>
 				<div class="col-md-1">
 					<input id="textinput" name="textNumero" type="text" placeholder=""
-						class="form-control input-md">
+						class="form-control input-md" value=<%=cliente.getNumero() %>>
 
 				</div>
 			</div>
@@ -76,14 +79,14 @@
 				<label class="col-md-3 control-label" for="textinput">Complemento</label>
 				<div class="col-md-2">
 					<input id="textinput" name="textComplemento" type="text" placeholder=""
-						class="form-control input-md">
+						class="form-control input-md" value=<%=cliente.getComplemento() %>>
 
 				</div>
 			<!-- Bairro	-->
 				<label class="col-md-1 control-label" for="textinput">Bairro</label>
 				<div class="col-md-2">
 					<input id="textinput" name="textBairro" type="text" placeholder=""
-						class="form-control input-md">
+						class="form-control input-md" value=<%=cliente.getBairro() %>>
 
 				</div>
 			</div>
@@ -93,21 +96,21 @@
 				<label class="col-md-3 control-label" for="textinput">Cidade</label>
 				<div class="col-md-2">
 					<input id="textinput" name="textCidade" type="text" placeholder=""
-						class="form-control input-md">
+						class="form-control input-md" value=<%=cliente.getCidade() %>>
 
 				</div>
 			<!-- Estado -->
 				<label class="col-md-1 control-label" for="textinput">Estado</label>
 				<div class="col-md-2">
 					<input id="textinput" name="textEstado" type="text" placeholder=""
-						class="form-control input-md">
+						class="form-control input-md" value=<%=cliente.getEstado() %>>
 
 				</div>
 			<!-- CEP -->
 				<label class="col-md-1 control-label" for="textinput">Cep</label>
 				<div class="col-md-2">
 					<input id="textCep" name="textCep" type="text" placeholder=""
-						class="form-control input-md">
+						class="form-control input-md" value=<%=cliente.getCep() %>>
 
 				</div>
 			</div>

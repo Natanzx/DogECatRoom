@@ -13,8 +13,20 @@ public class ClienteBO {
 		clienteDao.cadastrar(cliente);
 	}
 	
+	public void alterarCliente(ClienteDTO cliente){
+		clienteDao.alterar(cliente);
+	}
+	
 	public List<ClienteDTO> buscarTodosClientes(){
 		return clienteDao.buscarTodos();
+	}
+	
+	public ClienteDTO buscarClientePorID(Integer id){
+		return clienteDao.buscarPorID(id);
+	}
+	
+	public void excluirCliente(ClienteDTO cliente){
+		clienteDao.excluir(cliente);
 	}
 	
 }

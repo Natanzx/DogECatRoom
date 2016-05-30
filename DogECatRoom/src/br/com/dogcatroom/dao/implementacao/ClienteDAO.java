@@ -51,7 +51,8 @@ public class ClienteDAO implements IClienteDAO {
 	
 	public void alterar(ClienteDTO cliente) {
 
-		String sql = "update cliente set nome=?, cpf=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telCelular=?,telFixo=?,cep=?";
+		String sql = "update cliente set nome=?, cpf=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telCelular=?,telFixo=?,cep=?"
+				+"where id = ?";
 
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
@@ -66,7 +67,7 @@ public class ClienteDAO implements IClienteDAO {
 			preparador.setString(9, cliente.getTelCelular());
 			preparador.setString(10, cliente.getTelFixo());
 			preparador.setString(11, cliente.getCep());
-			
+			preparador.setInt(12, cliente.getId());
 
 			preparador.execute();
 			preparador.close();
@@ -98,7 +99,7 @@ public class ClienteDAO implements IClienteDAO {
 	}
 
 	public List<ClienteDTO> buscarTodos() {
-		String sql = "SELECT * FROM cliente";
+		String sql = "SELECT * FROM cliente where ativo = 1";
 		List<ClienteDTO> lista = new ArrayList<ClienteDTO>();
 		try {
 			PreparedStatement pstm = con.prepareStatement(sql);
@@ -107,10 +108,12 @@ public class ClienteDAO implements IClienteDAO {
 
 			while (resultado.next()) {
 				ClienteDTO cliente = new ClienteDTO();
+				
+				cliente.setId(Integer.parseInt(resultado.getString("id")));
 				cliente.setNome(resultado.getString("nome"));
 				cliente.setCpf(resultado.getString("cpf"));
 				cliente.setEndereco(resultado.getString("endereco"));
-				cliente.setNumero(Integer.parseInt(resultado.getString("numero")));
+				cliente.setNumero(resultado.getInt("numero"));
 				cliente.setComplemento(resultado.getString("complemento"));
 				cliente.setBairro(resultado.getString("bairro"));
 				cliente.setCidade(resultado.getString("cidade"));
@@ -152,6 +155,7 @@ public class ClienteDAO implements IClienteDAO {
 				cliente.setTelCelular(resultado.getString("telCelular"));
 				cliente.setTelFixo(resultado.getString("telFixo"));
 				cliente.setCep(resultado.getString("cep"));
+				cliente.setId(id);
 	}
 
 			pstm.close();
