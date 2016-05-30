@@ -11,6 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 public class ClienteController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		dasdasdasdas
+		das
+		das
+		das
+		d
+		asd
+		asd
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
