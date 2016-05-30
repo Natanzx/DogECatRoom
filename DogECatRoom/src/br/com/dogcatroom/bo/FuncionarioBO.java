@@ -7,7 +7,7 @@ public class FuncionarioBO {
 
 	private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 
-	public void salvarFuncionario(FuncionarioDTO funcionarioDTO) {
+	public void salvarFuncionario(FuncionarioDTO funcionarioDTO) throws Exception {
 
 		if (funcionarioDTO.getId() == null || funcionarioDTO.getId()== 0) {
 			if (funcionarioDTO.getNome() != null && funcionarioDTO.getCpf() != null
@@ -20,7 +20,8 @@ public class FuncionarioBO {
 				
 			}
 		}
-
+      throw new Exception("Preencher todos os campos.");    
+	
 	}
 
 }

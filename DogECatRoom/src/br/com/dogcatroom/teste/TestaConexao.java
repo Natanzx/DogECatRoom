@@ -20,23 +20,27 @@ public class TestaConexao {
 	private static void cadastrarFuncionarioTeste() {
 		FuncionarioBO funcionarioBO = new FuncionarioBO();
 		FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
-		funcionarioDTO.setNome("Estevão Candido");
-		funcionarioDTO.setCpf("02511641100");
-		funcionarioDTO.setMatricula(282726);
-		funcionarioDTO.setEndereco("Rua 14");
-		funcionarioDTO.setNumero("27");
-		funcionarioDTO.setComplemento("QD 52");
-		funcionarioDTO.setBairro("Morada Nobre");
-		funcionarioDTO.setCidade("Valparaiso de Goiás");
-		funcionarioDTO.setEstado("GO");
-		funcionarioDTO.setTelCelular("92465125");
-		funcionarioDTO.setTelFixo("30252893");
+		funcionarioDTO.setCpf("04959203945");
+		funcionarioDTO.setMatricula(201630);
+		funcionarioDTO.setEndereco("Rua hakman");
+		funcionarioDTO.setNumero("239");
+		funcionarioDTO.setComplemento("QD 90");
+		funcionarioDTO.setBairro("Alfremeno");
+		funcionarioDTO.setCidade("Nanakusem");
+		funcionarioDTO.setEstado("ZZ");
+		funcionarioDTO.setTelCelular("90294343");
+		funcionarioDTO.setTelFixo("30879090");
 		funcionarioDTO.setEscolaridade("Superior Incompleto");
-		funcionarioDTO.setOcupacao("Estgiário");
-		funcionarioDTO.setSalario(10000.56);
+		funcionarioDTO.setOcupacao("Guerreiro");
+		funcionarioDTO.setSalario(999999.56);
 		funcionarioDTO.setAtivo(true);
 
-		funcionarioBO.salvarFuncionario(funcionarioDTO);
+		try {
+			funcionarioBO.salvarFuncionario(funcionarioDTO);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			
+		}
 	}
 	
 	

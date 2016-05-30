@@ -2,7 +2,10 @@ package br.com.dogcatroom.dao.implementacao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.dogcatroom.conexao.ConnectionFactory;
 import br.com.dogcatroom.dao.IFuncionarioDAO;
@@ -48,6 +51,48 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 	@Override
 	public void alterarFuncionario(FuncionarioDTO funcionarioDTO) {
 		// TODO Auto-generated method stub
+
+	}
+	
+	@Override
+	public List<FuncionarioDTO> buscarTodos() {
+		String sql = "SELECT * FROM funcionario where ativo = 1";
+		
+		List<FuncionarioDTO> listaFuncionario = new ArrayList<FuncionarioDTO>();
+		try {
+			PreparedStatement pstm = con.prepareStatement(sql);
+
+			ResultSet resultado = pstm.executeQuery();
+
+			while (resultado.next()) {
+				FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
+				
+				funcionarioDTO.setId(Integer.parseInt(resultado.getString("id")));
+				funcionarioDTO.setNome(resultado.getString("nome"));
+				funcionarioDTO.setCpf(resultado.getString("cpf"));
+				funcionarioDTO.setMatricula(Integer.parseInt(resultado.getString("matricula")));
+				funcionarioDTO.setEndereco(resultado.getString("endereco"));
+				funcionarioDTO.setNumero(resultado.getString("numero"));
+				funcionarioDTO.setComplemento(resultado.getString("complemento"));
+				funcionarioDTO.setBairro(resultado.getString("bairro"));
+				funcionarioDTO.setCidade("cidade");
+				funcionarioDTO.setEstado("estado");
+				funcionarioDTO.setTelCelular("telCelular");
+				funcionarioDTO.setTelFixo("telFixo");
+				funcionarioDTO.setEscolaridade("escolaridade");
+				funcionarioDTO.setOcupacao("ocupacao");
+				funcionarioDTO.setSalario(Double.parseDouble(resultado.getString("salario")));
+				funcionarioDTO.setAtivo(Boolean.parseBoolean(resultado.getString("ativo")));
+				
+
+				listaFuncionario.add(funcionarioDTO);
+
+			}
+
+			pstm.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}return listaFuncionario;
 
 	}
 
