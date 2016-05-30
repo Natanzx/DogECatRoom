@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.List" %>
+<%@page import="br.com.dogcatroom.dto.ClienteDTO" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,38 +17,39 @@
 			<button class="btn btn-default">Cadastrar</button>
 		</a>
 	</div>
-	
-	<table class="clTblCliente">
-		<tr>
-			<th width="15%">Nome</th>
-			<th width="8%">CPF</th>
-			<th>CEP</th>
-			<th>Endereço</th>
-			<th>Número</th>
-			<th>Complemento</th>
-			<th>Bairro</th>
-			<th>Cidade</th>
-			<th>Estado</th>
-			<th>Tel. Celular</th>
-			<th>Tel. Fixo</th>
-			<th>Pet</th>
-		</tr>
-
-		<tr>
-			<td>Natanael Dias</td>
-			<td>12344422109</td>
-			<td>73340307</td>
-			<td>Sudoeste Quadra CSW 40</td>
-			<td>03</td>
-			<td>Rua abaixo</td>
-			<td>Asa Sul</td>
-			<td>Brasilia</td>
-			<td>Distrito Federal</td>
-			<td>61 93224411</td>
-			<td>61 91334422</td>
-			<td><a href="#">Detalhes</a></td>
-		</tr>						
-	</table>
+	<table bgcolor="#e0e0e0" align="center" cellpadding=4 style="text-align:justify; width:800px; font-family:"Arial, Helvetica, sans-serif;">
+	<tr bgcolor="#2b3e8c" style="color: #FFF;">
+		<th>Id</th> <th>Cliente</th> <th>CPF</th> <th>Cep</th> <th>Endereço</th> <th>Numero</th> <th>Complemento</th> <th>Bairro</th> <th>Cidade</th ><th>Estado</th> <th>Celular</th> <th>Fixo</th> </tr>
+	</tr>    
+	<% 
+	//retorna object tem que fazer cast pois nois sabe que é uma lista
+		List<ClienteDTO> lista=(List<ClienteDTO>) request.getAttribute("lista");	
+	for(ClienteDTO cliente : lista){
+	%>
+	<tr>
+		<td align="center"><% out.print(cliente.getId()); %></td>
+		<td><% out.print(cliente.getNome()); %></td>
+		<td><% out.print(cliente.getCpf()); %></td> 
+		<td><% out.print(cliente.getCep()); %></td>
+		<td><% out.print(cliente.getEndereco()); %></td>
+		<td><% out.print(cliente.getNumero()); %></td>
+		<td><% out.print(cliente.getComplemento()); %></td>
+		<td><% out.print(cliente.getBairro()); %></td>
+		<td><% out.print(cliente.getCidade()); %></td>
+		<td><% out.print(cliente.getEstado()); %></td>
+		<td><% out.print(cliente.getTelCelular()); %></td>
+		<td><% out.print(cliente.getTelFixo()); %></td>
+		<td align="center">
+			<a href="ClienteController?acao=excluir&id=<%out.print(cliente.getId());%>">Excluir</a>
+			|
+			<a href="ClienteController?acao=alterar&id=<%out.print(cliente.getId());%>">Alterar</a>
+		</td>
+	</tr>
+<% } %>
+	<tr>
+		<td align="center" colspan=7><a href="Inicio.jsp">Voltar</a></td>
+	</tr>
+</table>
 
 	<jsp:include page="/template/rodape_padrao.jsp"/>
 </body>

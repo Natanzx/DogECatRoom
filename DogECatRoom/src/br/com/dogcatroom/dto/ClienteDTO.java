@@ -3,8 +3,8 @@ package br.com.dogcatroom.dto;
 public class ClienteDTO {
 
 	private int id;
-	private String cpf;
 	private String nome;
+	private String cpf;
 	private String cep;
 	private String endereco;
 	private int numero;
