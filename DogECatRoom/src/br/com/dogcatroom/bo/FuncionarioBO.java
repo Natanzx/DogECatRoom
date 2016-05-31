@@ -1,27 +1,39 @@
 package br.com.dogcatroom.bo;
 
+import java.util.List;
+
+import br.com.dogcatroom.dao.IFuncionarioDAO;
 import br.com.dogcatroom.dao.implementacao.FuncionarioDAO;
 import br.com.dogcatroom.dto.FuncionarioDTO;
 
 public class FuncionarioBO {
 
-	private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+	FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+	IFuncionarioDAO iFuncionarioDAO = funcionarioDAO;
 
 	public void salvarFuncionario(FuncionarioDTO funcionarioDTO) throws Exception {
-
-		if (funcionarioDTO.getId() == null || funcionarioDTO.getId()== 0) {
+		if (funcionarioDTO.getId() == null || funcionarioDTO.getId() == 0) {
 			if (funcionarioDTO.getNome() != null && funcionarioDTO.getCpf() != null
 					&& funcionarioDTO.getBairro() != null && funcionarioDTO.getCidade() != null
 					&& funcionarioDTO.getMatricula() != 0) {
-                   funcionarioDAO.cadastrarFuncionario(funcionarioDTO);
+				iFuncionarioDAO.cadastrarFuncionario(funcionarioDTO);
 			}
-		}else{
-			if(funcionarioDTO.getId() != null && funcionarioDTO.getId() != 0  ){
-				
+		} else {
+			if (funcionarioDTO.getId() != null && funcionarioDTO.getId() != 0) {
+				iFuncionarioDAO.alterarFuncionario(funcionarioDTO);
 			}
 		}
-      throw new Exception("Preencher todos os campos.");    
-	
+		throw new Exception("Preencher todos os campos.");
+
+	}
+
+	public List<FuncionarioDTO> buscarTodosFuncionariosAtivo() {
+		List<FuncionarioDTO> buscarTodos = iFuncionarioDAO.buscarTodos();
+		for (FuncionarioDTO funcionarioDTO : buscarTodos) {
+			System.out.println(funcionarioDTO.getNome() + funcionarioDTO.getCidade() + funcionarioDTO.isAtivo());
+		}
+
+		return buscarTodos;
 	}
 
 }

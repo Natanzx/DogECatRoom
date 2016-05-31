@@ -2,12 +2,13 @@ package br.com.dogcatroom.teste;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import br.com.dogcatroom.bo.FuncionarioBO;
 import br.com.dogcatroom.conexao.ConnectionFactory;
 import br.com.dogcatroom.dto.FuncionarioDTO;
 
-public class TestaConexao {
+class TestaConexao {
 
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
@@ -16,10 +17,17 @@ public class TestaConexao {
 		c.close();
 	}
 
-	
+	private static void buscarfuncionarioAtivo() {
+		FuncionarioBO funcionarioBO = new FuncionarioBO();
+		List<FuncionarioDTO> buscarTodosFuncionariosAtivo = funcionarioBO.buscarTodosFuncionariosAtivo();
+		buscarTodosFuncionariosAtivo.size();
+	}
+
 	private static void cadastrarFuncionarioTeste() {
 		FuncionarioBO funcionarioBO = new FuncionarioBO();
 		FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
+		funcionarioDTO.setId(1);
+		funcionarioDTO.setNome("Jacaré Banguela");
 		funcionarioDTO.setCpf("04959203945");
 		funcionarioDTO.setMatricula(201630);
 		funcionarioDTO.setEndereco("Rua hakman");
@@ -39,9 +47,8 @@ public class TestaConexao {
 			funcionarioBO.salvarFuncionario(funcionarioDTO);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			
+
 		}
 	}
-	
-	
+
 }

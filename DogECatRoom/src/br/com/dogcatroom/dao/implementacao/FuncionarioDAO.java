@@ -50,14 +50,43 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 
 	@Override
 	public void alterarFuncionario(FuncionarioDTO funcionarioDTO) {
-		// TODO Auto-generated method stub
+
+		String sql = "UPDATE funcionario SET nome=?, cpf=?,matricula=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telcelular=?,telfixo=?,escolaridade=?,ocupacao=?,salario=?,ativo=?"
+				+ " where id =?";
+
+		try {
+			PreparedStatement preparador = con.prepareStatement(sql);
+
+			preparador.setString(1, funcionarioDTO.getNome());
+			preparador.setString(2, funcionarioDTO.getCpf());
+			preparador.setInt(3, funcionarioDTO.getMatricula());
+			preparador.setString(4, funcionarioDTO.getEndereco());
+			preparador.setString(5, funcionarioDTO.getNumero());
+			preparador.setString(6, funcionarioDTO.getComplemento());
+			preparador.setString(7, funcionarioDTO.getBairro());
+			preparador.setString(8, funcionarioDTO.getCidade());
+			preparador.setString(9, funcionarioDTO.getEstado());
+			preparador.setString(10, funcionarioDTO.getTelCelular());
+			preparador.setString(11, funcionarioDTO.getTelFixo());
+			preparador.setString(12, funcionarioDTO.getEscolaridade());
+			preparador.setString(13, funcionarioDTO.getOcupacao());
+			preparador.setDouble(14, funcionarioDTO.getSalario());
+			preparador.setBoolean(15, funcionarioDTO.isAtivo());
+			preparador.setInt(16, funcionarioDTO.getId());
+
+			preparador.execute();
+			preparador.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
-	
+
 	@Override
 	public List<FuncionarioDTO> buscarTodos() {
 		String sql = "SELECT * FROM funcionario where ativo = 1";
-		
+
 		List<FuncionarioDTO> listaFuncionario = new ArrayList<FuncionarioDTO>();
 		try {
 			PreparedStatement pstm = con.prepareStatement(sql);
@@ -66,7 +95,7 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 
 			while (resultado.next()) {
 				FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
-				
+
 				funcionarioDTO.setId(Integer.parseInt(resultado.getString("id")));
 				funcionarioDTO.setNome(resultado.getString("nome"));
 				funcionarioDTO.setCpf(resultado.getString("cpf"));
@@ -83,7 +112,6 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 				funcionarioDTO.setOcupacao("ocupacao");
 				funcionarioDTO.setSalario(Double.parseDouble(resultado.getString("salario")));
 				funcionarioDTO.setAtivo(Boolean.parseBoolean(resultado.getString("ativo")));
-				
 
 				listaFuncionario.add(funcionarioDTO);
 
@@ -92,7 +120,8 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 			pstm.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}return listaFuncionario;
+		}
+		return listaFuncionario;
 
 	}
 

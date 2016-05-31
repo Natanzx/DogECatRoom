@@ -50,7 +50,7 @@ public class FuncionarioController extends HttpServlet {
 		
 		String acao = request.getParameter("acao");
 		
-		if(acao!=null && acao.equals("enviar")){
+		if(acao!=null && acao.equals("salvar")){
 
 			String nome = request.getParameter("nomeFuncionario");
 			String numeroCPF = request.getParameter("numeroCPF");
