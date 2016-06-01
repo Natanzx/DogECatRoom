@@ -7,12 +7,12 @@
 				Principal </a>
 			</li>
 
-			<li><a href="ClienteController?acao=listar">
+			<li><a href="/DogECatRoom/ClienteController?acao=listar">
 				<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-male-user"></use></svg>
 				Clientes
 			</a></li>
 			
-			<li><a href="/DogECatRoom/Sistemas/Servicos/consultarServicos.jsp">
+			<li><a href="/DogECatRoom/ServicoController?acao=listar">
 				<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-clipboard-with-paper"></use></svg>
 				Serviços</a>
 			</li>

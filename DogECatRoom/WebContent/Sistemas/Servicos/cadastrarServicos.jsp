@@ -10,7 +10,7 @@
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
 
-	<form class="form-horizontal">
+	<form class="form-horizontal" action="/DogECatRoom/ServicoController?acao=cadastrar" method="POST">
 		<fieldset>
 
 			<!-- Form Name -->
@@ -20,7 +20,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="textinput">Nome</label>
 				<div class="col-md-4">
-					<input id="textinput" name="textinput" type="text"
+					<input id="textinput" name="textNome" type="text"
 						placeholder="Digite o nome" class="form-control input-md">
 
 				</div>
@@ -30,7 +30,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="textinput">Descrição</label>
 				<div class="col-md-4">
-					<input id="textinput" name="textinput" type="text"
+					<input id="textinput" name="textDescricao" type="text"
 						placeholder="Informe a descrição" class="form-control input-md">
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="textinput">Valor</label>
 				<div class="col-md-4">
-					<input id="textinput" name="textinput" type="text" placeholder=""
+					<input id="textinput" name="textValor" type="text" placeholder=""
 						class="form-control input-md">
 
 				</div>
