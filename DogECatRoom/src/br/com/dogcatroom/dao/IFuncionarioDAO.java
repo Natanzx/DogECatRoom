@@ -8,5 +8,5 @@ public interface IFuncionarioDAO {
 	
 	void cadastrarFuncionario(FuncionarioDTO funcionarioDTO);
     void alterarFuncionario(FuncionarioDTO funcionarioDTO);
-    List<FuncionarioDTO> buscarTodos();
+    List<FuncionarioDTO> buscarTodosFuncionariosAtivo();
 }

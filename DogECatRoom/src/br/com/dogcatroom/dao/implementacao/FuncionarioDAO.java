@@ -18,7 +18,7 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 	@Override
 	public void cadastrarFuncionario(FuncionarioDTO funcionarioDTO) {
 
-		String sql = "INSERT INTO funcionario (nome,cpf,matricula,endereco,numero,complemento,bairro,cidade,estado,telcelular,telfixo,escolaridade,ocupacao,salario,ativo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO funcionario (nome,cpf,matricula,endereco,numero,complemento,bairro,cidade,estado,telcelular,telfixo,escolaridade,ocupacao,salario,ativo,login,senha) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
@@ -38,20 +38,23 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 			preparador.setString(13, funcionarioDTO.getOcupacao());
 			preparador.setDouble(14, funcionarioDTO.getSalario());
 			preparador.setBoolean(15, funcionarioDTO.isAtivo());
+			preparador.setString(16, funcionarioDTO.getLogin());
+			preparador.setString(17, funcionarioDTO.getSenha());
 
 			preparador.execute();
 			preparador.close();
 			System.out.println("Parabéns!!! Cadastrado com sucesso!");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("erro ao cadastrar");
 		}
 	}
 
 	@Override
 	public void alterarFuncionario(FuncionarioDTO funcionarioDTO) {
 
-		String sql = "UPDATE funcionario SET nome=?, cpf=?,matricula=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telcelular=?,telfixo=?,escolaridade=?,ocupacao=?,salario=?,ativo=?"
+		String sql = "UPDATE funcionario SET nome=?, cpf=?,matricula=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telcelular=?,telfixo=?,escolaridade=?,ocupacao=?,salario=?,ativo=?,login=?,senha=?"
 				+ " where id =?";
 
 		try {
@@ -72,7 +75,9 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 			preparador.setString(13, funcionarioDTO.getOcupacao());
 			preparador.setDouble(14, funcionarioDTO.getSalario());
 			preparador.setBoolean(15, funcionarioDTO.isAtivo());
-			preparador.setInt(16, funcionarioDTO.getId());
+			preparador.setString(16, funcionarioDTO.getLogin());
+			preparador.setString(17, funcionarioDTO.getSenha());
+			preparador.setInt(18, funcionarioDTO.getId());
 
 			preparador.execute();
 			preparador.close();
@@ -84,7 +89,7 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 	}
 
 	@Override
-	public List<FuncionarioDTO> buscarTodos() {
+	public List<FuncionarioDTO> buscarTodosFuncionariosAtivo() {
 		String sql = "SELECT * FROM funcionario where ativo = 1";
 
 		List<FuncionarioDTO> listaFuncionario = new ArrayList<FuncionarioDTO>();
@@ -104,15 +109,16 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 				funcionarioDTO.setNumero(resultado.getString("numero"));
 				funcionarioDTO.setComplemento(resultado.getString("complemento"));
 				funcionarioDTO.setBairro(resultado.getString("bairro"));
-				funcionarioDTO.setCidade("cidade");
-				funcionarioDTO.setEstado("estado");
-				funcionarioDTO.setTelCelular("telCelular");
-				funcionarioDTO.setTelFixo("telFixo");
-				funcionarioDTO.setEscolaridade("escolaridade");
-				funcionarioDTO.setOcupacao("ocupacao");
+				funcionarioDTO.setCidade(resultado.getString("cidade"));
+				funcionarioDTO.setEstado(resultado.getString("estado"));
+				funcionarioDTO.setTelCelular(resultado.getString("telCelular"));
+				funcionarioDTO.setTelFixo(resultado.getString("telFixo"));
+				funcionarioDTO.setEscolaridade(resultado.getString("escolaridade"));
+				funcionarioDTO.setOcupacao(resultado.getString("ocupacao"));
 				funcionarioDTO.setSalario(Double.parseDouble(resultado.getString("salario")));
 				funcionarioDTO.setAtivo(Boolean.parseBoolean(resultado.getString("ativo")));
-
+				funcionarioDTO.setLogin(resultado.getString("login"));
+				
 				listaFuncionario.add(funcionarioDTO);
 
 			}

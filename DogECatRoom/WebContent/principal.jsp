@@ -66,7 +66,7 @@
 			</div>
 		</a>
 		
-		<a href="Sistemas/Funcionarios/consultarFuncionarios.jsp">							
+		<a href="/DogECatRoom/FuncionarioController?acao=listar">							
 			<div class="col-xs-12 col-md-6 col-lg-2">
 				<div class="panel panel-blue panel-widget ">
 					<div class="col-sm-3 col-lg-11 widget-left">

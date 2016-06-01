@@ -10,7 +10,7 @@
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
 
-	<form class="form-horizontal">
+	<form class="form-horizontal" method="POST" action="../../FuncionarioController?acao=salvar">
 		<fieldset>
 
 			<!-- Form Name -->

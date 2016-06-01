@@ -1,14 +1,18 @@
 package br.com.dogcatroom.controller;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.dogcatroom.bo.ClienteBO;
 import br.com.dogcatroom.bo.FuncionarioBO;
+import br.com.dogcatroom.dto.ClienteDTO;
 import br.com.dogcatroom.dto.FuncionarioDTO;
 
 /**
@@ -18,27 +22,27 @@ import br.com.dogcatroom.dto.FuncionarioDTO;
 public class FuncionarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public FuncionarioController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+
 		String acao = request.getParameter("acao");
-		
-		
-		
-		
+
+		if (acao != null && acao.equals("listar")) {
+
+			FuncionarioBO funcionarioBO = new FuncionarioBO();
+			List<FuncionarioDTO> funcionarioDTOs = funcionarioBO.buscarTodosFuncionariosAtivo();
+
+			request.setAttribute("lista", funcionarioDTOs);
+
+			RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Funcionarios/consultarFuncionarios.jsp");
+			saida.forward(request, response);
+		}
+
 	}
 
 	/**
@@ -47,10 +51,10 @@ public class FuncionarioController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String acao = request.getParameter("acao");
-		
-		if(acao!=null && acao.equals("salvar")){
+
+		if (acao != null && acao.equals("salvar")) {
 
 			String nome = request.getParameter("nomeFuncionario");
 			String numeroCPF = request.getParameter("numeroCPF");
@@ -66,11 +70,10 @@ public class FuncionarioController extends HttpServlet {
 			String escolaridade = request.getParameter("escolaridadeFuncionario");
 			String ocupacao = request.getParameter("ocupacaoFuncionario");
 			double salario = Double.parseDouble(request.getParameter("salarioFuncionario"));
-			boolean estadoFuncionario = Boolean.parseBoolean(request.getParameter("estadoFuncionario"));
-		
-			
+			boolean estadoFuncionario = request.getParameter("estadoFuncionario").equalsIgnoreCase("Ativo")? false: true;
+
 			FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
-			
+
 			funcionarioDTO.setNome(nome);
 			funcionarioDTO.setCpf(numeroCPF);
 			funcionarioDTO.setMatricula(matricula);
@@ -86,7 +89,6 @@ public class FuncionarioController extends HttpServlet {
 			funcionarioDTO.setOcupacao(ocupacao);
 			funcionarioDTO.setSalario(salario);
 			funcionarioDTO.setAtivo(estadoFuncionario);
-			
 
 			FuncionarioBO funcionarioBO = new FuncionarioBO();
 			try {
@@ -95,10 +97,9 @@ public class FuncionarioController extends HttpServlet {
 				e.getMessage();
 			}
 
-			response.sendRedirect("consultarFuncionarios.jsp");
+			response.sendRedirect("FuncionarioController?acao=listar");
 		}
 
-		
 	}
 
 }

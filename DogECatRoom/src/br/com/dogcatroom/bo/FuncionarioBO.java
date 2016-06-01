@@ -21,14 +21,16 @@ public class FuncionarioBO {
 		} else {
 			if (funcionarioDTO.getId() != null && funcionarioDTO.getId() != 0) {
 				iFuncionarioDAO.alterarFuncionario(funcionarioDTO);
-			}
-		}
-		throw new Exception("Preencher todos os campos.");
+			} else {
 
+				throw new Exception("Preencher todos os campos.");
+			}
+
+		}
 	}
 
 	public List<FuncionarioDTO> buscarTodosFuncionariosAtivo() {
-		List<FuncionarioDTO> buscarTodos = iFuncionarioDAO.buscarTodos();
+		List<FuncionarioDTO> buscarTodos = iFuncionarioDAO.buscarTodosFuncionariosAtivo();
 		for (FuncionarioDTO funcionarioDTO : buscarTodos) {
 			System.out.println(funcionarioDTO.getNome() + funcionarioDTO.getCidade() + funcionarioDTO.isAtivo());
 		}
