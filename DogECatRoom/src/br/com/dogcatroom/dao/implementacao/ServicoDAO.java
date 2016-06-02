@@ -14,120 +14,97 @@ import br.com.dogcatroom.dto.ServicoDTO;
 
 public class ServicoDAO implements IServicoDAO {
 	private Connection con = ConnectionFactory.getConnection();
-	
-	public void cadastrar(ServicoDTO servico) {
 
-		String sql = "INSERT INTO servicos (nome, descricao,valor,ativo) values (?,?,?,1)";
+	@Override
+	public void cadastrarServico(ServicoDTO servico) throws SQLException {
 
-		try {
-			PreparedStatement preparador = con.prepareStatement(sql);
-			preparador.setString(1, servico.getNome());
-			preparador.setString(2, servico.getDescricao());
-			preparador.setDouble(3, servico.getValor());
+		String sql = "INSERT INTO servico (nome, descricao,valor,ativo) values (?,?,?,?)";
 
-			preparador.execute();
-			preparador.close();
+		PreparedStatement preparador = con.prepareStatement(sql);
+		preparador.setString(1, servico.getNome());
+		preparador.setString(2, servico.getDescricao());
+		preparador.setDouble(3, servico.getValor());
+		preparador.setBoolean(4, servico.isAtivo());
 
-			System.out.println("Servico cadastrado com sucesso!");
-
-		} catch (SQLException e) {
-
-			System.out.println("Operação não concluída. ):");
-
-			e.printStackTrace();
-		}
+		preparador.execute();
+		preparador.close();
 
 	}
-	
-	public void alterarServico(ServicoDTO servico) {
 
-		String sql = "update servicos set nome=?, descricao=?,valor=?"
-				+" where id = ?";
+	@Override
+	public void alterarServico(ServicoDTO servico) throws SQLException {
 
-		try {
-			PreparedStatement preparador = con.prepareStatement(sql);
-			preparador.setString(1, servico.getNome());
-			preparador.setString(2, servico.getDescricao());
-			preparador.setDouble(3, servico.getValor());
-			preparador.setInt(4, servico.getId());
+		String sql = "update servico set nome=?, descricao=?,valor=?,ativo=?" + " where id = ?";
 
-			preparador.execute();
-			preparador.close();
+		PreparedStatement preparador = con.prepareStatement(sql);
+		preparador.setString(1, servico.getNome());
+		preparador.setString(2, servico.getDescricao());
+		preparador.setDouble(3, servico.getValor());
+		preparador.setBoolean(4, servico.isAtivo());
+		preparador.setInt(5, servico.getId());
 
-			System.out.println("Servico alterado com sucesso!");
-
-		} catch (SQLException e) {
-
-			System.out.println("Operação não concluída. ):");
-
-			e.printStackTrace();
-		}
+		preparador.execute();
+		preparador.close();
 
 	}
-	
-	public List<ServicoDTO> buscarTodos() {
-		String sql = "SELECT * FROM servicos where ativo = 1";
+
+	@Override
+	public List<ServicoDTO> buscarTodosServicos() throws SQLException {
+		String sql = "SELECT * FROM servico where ativo = 1";
 		List<ServicoDTO> lista = new ArrayList<ServicoDTO>();
-		try {
-			PreparedStatement pstm = con.prepareStatement(sql);
 
-			ResultSet resultado = pstm.executeQuery();
+		PreparedStatement pstm = con.prepareStatement(sql);
 
-			while (resultado.next()) {
-				ServicoDTO servico = new ServicoDTO();
-				
-				servico.setId(Integer.parseInt(resultado.getString("id")));
-				servico.setNome(resultado.getString("nome"));
-				servico.setDescricao(resultado.getString("descricao"));
-				servico.setValor(resultado.getFloat("valor"));
+		ResultSet resultado = pstm.executeQuery();
 
-				lista.add(servico);
+		while (resultado.next()) {
+			ServicoDTO servico = new ServicoDTO();
 
-			}
-			pstm.close();
-			System.out.println("Buscar todos servicos com sucesso!");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}return lista;
+			servico.setId(Integer.parseInt(resultado.getString("id")));
+			servico.setNome(resultado.getString("nome"));
+			servico.setDescricao(resultado.getString("descricao"));
+			servico.setValor(resultado.getFloat("valor"));
+			servico.setAtivo(Boolean.parseBoolean(resultado.getString("ativo")));
+
+			lista.add(servico);
+
+		}
+		pstm.close();
+
+		return lista;
 
 	}
 
-	public ServicoDTO buscarPorID(Integer id) {
-		String sql = "SELECT * FROM servicos WHERE id=?";
+	public ServicoDTO buscarPorID(ServicoDTO servicoDTO) throws SQLException {
+		String sql = "SELECT * FROM servico WHERE id=?";
 		ServicoDTO servico = null;
-		try {
-			PreparedStatement pstm = con.prepareStatement(sql);
-			pstm.setInt(1, id);
-			ResultSet resultado = pstm.executeQuery();
-			
-			if(resultado.next()) { 
-				servico = new ServicoDTO();
-				servico.setNome(resultado.getString("nome"));
-				servico.setDescricao(resultado.getString("descricao"));
-				servico.setValor(resultado.getFloat("valor"));
-				servico.setId(id);
-	}
 
-			pstm.close();
-			System.out.println("Buscar por ID com sucesso!");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}return servico;
+		PreparedStatement pstm = con.prepareStatement(sql);
+		pstm.setInt(1, servico.getId());
+		ResultSet resultado = pstm.executeQuery();
+
+		if (resultado.next()) {
+			servico = new ServicoDTO();
+			servico.setNome(resultado.getString("nome"));
+			servico.setDescricao(resultado.getString("descricao"));
+			servico.setValor(resultado.getFloat("valor"));
+			servico.setAtivo(Boolean.parseBoolean(resultado.getString("ativo")));
+			servico.setId(resultado.getInt("id"));
+		}
+
+		pstm.close();
+		return servico;
 
 	}
-	
-	public void excluir(ServicoDTO servico) {
-		String sql = "update servicos set ativo = 0 where id = ?";
 
-		try {
+	@Override
+	public void excluirServico(ServicoDTO servico) throws SQLException {
+		String sql = "update servico set ativo = 0 where id = ?";
+
 			PreparedStatement pstm = con.prepareStatement(sql);
 			pstm.setInt(1, servico.getId());
 			pstm.execute();
 			pstm.close();
-			System.out.println("Servico excluido com sucesso!");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 
 	}
 }

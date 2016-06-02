@@ -1,31 +1,48 @@
 package br.com.dogcatroom.bo;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import br.com.dogcatroom.Exception.BusinesException;
+import br.com.dogcatroom.dao.IServicoDAO;
 import br.com.dogcatroom.dao.implementacao.ServicoDAO;
 import br.com.dogcatroom.dto.ServicoDTO;
 
 public class ServicoBO {
 
-	ServicoDAO serDAO = new ServicoDAO();
-	
-	public List<ServicoDTO> BuscarServicos(){
-		return serDAO.buscarTodos();
+	ServicoDAO servicoDAO = new ServicoDAO();
+	IServicoDAO iServicoDAO = servicoDAO;
+
+	public List<ServicoDTO> BuscarServicos() throws SQLException {
+		return iServicoDAO.buscarTodosServicos();
 	}
-	
-	public ServicoDTO buscarServicoPorID(Integer id){
-		return serDAO.buscarPorID(id);
+
+	public void salvarServico(ServicoDTO servicoDTO) throws BusinesException, SQLException {
+		if (servicoDTO.getId() == null || servicoDTO.getId() == 0) {
+			if (servicoDTO.getNome() != null && servicoDTO.getValor() != 0) {
+				iServicoDAO.cadastrarServico(servicoDTO);
+			}
+		} else {
+			if (servicoDTO.getId() != null && servicoDTO.getId() != 0) {
+				iServicoDAO.alterarServico(servicoDTO);
+			} else {
+				throw new BusinesException(
+						"Por favor preencher todos os campos. O Valor não pode ser menor ou igual a 0");
+			}
+		}
 	}
-	
-	public void cadastrarServico(ServicoDTO servico){
-		serDAO.cadastrar(servico);
+
+	public void excluirServico(ServicoDTO servico) throws SQLException {
+		iServicoDAO.excluirServico(servico);
+		
 	}
-	
-	public void excluirServico(ServicoDTO servico){
-		serDAO.excluir(servico);
+
+	public ServicoDTO buscarServicoPorID(ServicoDTO servicoDTO) throws SQLException {
+		return iServicoDAO.buscarPorID(servicoDTO);
 	}
+
 	
-	public void alterarServico(ServicoDTO servico){
-		serDAO.alterarServico(servico);
-	}
+	
+	
+	
 }

@@ -10,7 +10,8 @@
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
 
-	<form class="form-horizontal" action="/DogECatRoom/ServicoController?acao=cadastrar" method="POST">
+	<form class="form-horizontal"
+		action="/DogECatRoom/ServicoController?acao=salvar" method="POST">
 		<fieldset>
 
 			<!-- Form Name -->
@@ -42,6 +43,15 @@
 					<input id="textinput" name="textValor" type="text" placeholder=""
 						class="form-control input-md">
 
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="textinput">Ativo</label>
+				<div class="col-md-2" name="estadoServico">
+					<select class="form-control">
+						<option>Ativo</option>
+						<option>Inativo</option>
+					</select>
 				</div>
 			</div>
 

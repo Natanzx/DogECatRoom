@@ -1,6 +1,7 @@
 package br.com.dogcatroom.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.dogcatroom.Exception.BusinesException;
 import br.com.dogcatroom.bo.ClienteBO;
 import br.com.dogcatroom.bo.ServicoBO;
 import br.com.dogcatroom.dto.ClienteDTO;
@@ -17,85 +19,107 @@ import br.com.dogcatroom.dto.ServicoDTO;
 
 @WebServlet("/ServicoController")
 public class ServicoController extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String acao = request.getParameter("acao");
-		
-		if(acao!=null && acao.equals("listar")){
-			
+
+		if (acao != null && acao.equals("listar")) {
+
 			ServicoBO servicoBO = new ServicoBO();
-			List<ServicoDTO> lista = servicoBO.BuscarServicos();
-		
-			request.setAttribute("lista", lista);
-			
-			RequestDispatcher saida= request.getRequestDispatcher("Sistemas/Servicos/consultarServicos.jsp");
-			saida.forward(request, response);
+			try {
+				List<ServicoDTO> lista = servicoBO.BuscarServicos();
+				request.setAttribute("lista", lista);
+				RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Servicos/consultarServicos.jsp");
+				saida.forward(request, response);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 		}
-		
-		if(acao!=null && acao.equals("excluir")){
+
+		if (acao != null && acao.equals("excluir")) {
 			String id = request.getParameter("id");
-			
+
 			ServicoDTO servico = new ServicoDTO();
 			servico.setId(Integer.parseInt(id));
-			
+
 			ServicoBO servicoBO = new ServicoBO();
-			servicoBO.excluirServico(servico);
-			
-			response.sendRedirect("ServicoController?acao=listar");
+			try {
+				servicoBO.excluirServico(servico);
+				response.sendRedirect("ServicoController?acao=listar");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 		}
-		
-		if(acao!=null && acao.equals("alterar")){
+
+		if (acao != null && acao.equals("alterar")) {
 			String id = request.getParameter("id");
-			
+
 			ServicoBO servicoBO = new ServicoBO();
-			ServicoDTO servico = servicoBO.buscarServicoPorID(Integer.parseInt(id));
-			
-			request.setAttribute("servico", servico);
-			RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Servicos/alterarServicos.jsp");
-			saida.forward(request,response);
-			
+			ServicoDTO servicoDTO = new ServicoDTO();
+			servicoDTO.setId(Integer.parseInt(id));
+			ServicoDTO servico;
+			try {
+				servico = servicoBO.buscarServicoPorID(servicoDTO);
+				request.setAttribute("servico", servico);
+				RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Servicos/alterarServicos.jsp");
+				saida.forward(request, response);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String acao = request.getParameter("acao");
-		
-		if(acao!=null && acao.equals("cadastrar")){
-			
+
+		if (acao != null && acao.equals("salvar")) {
+
 			String nome = request.getParameter("textNome");
 			String descricao = request.getParameter("textDescricao");
 			Float valor = Float.parseFloat(request.getParameter("textValor"));
-			
+
 			ServicoDTO servico = new ServicoDTO();
-			
+
 			servico.setNome(nome);
 			servico.setDescricao(descricao);
 			servico.setValor(valor);
-			
-			
+			servico.setAtivo(true);
+
 			ServicoBO servicoBO = new ServicoBO();
-			servicoBO.cadastrarServico(servico);
-			
-			response.sendRedirect("ServicoController?acao=listar");
+			try {
+				if (servico.getId() != null) {
+					servicoBO.salvarServico(servico);
+				}
+				servicoBO.salvarServico(servico);
+				response.sendRedirect("ServicoController?acao=listar");
+			} catch (BusinesException | SQLException e) {
+				e.printStackTrace();
+			}
+
 		}
-		
-		if(acao!=null && acao.equals("alterar")){
-			
+
+		if (acao != null && acao.equals("alterar")) {
+
 			String nome = request.getParameter("textNome");
 			String descricao = request.getParameter("textDescricao");
 			Float valor = Float.parseFloat(request.getParameter("textValor"));
 			int id = Integer.parseInt(request.getParameter("textId"));
-			
+
 			ServicoDTO servico = new ServicoDTO();
-			
+
 			servico.setNome(nome);
 			servico.setDescricao(descricao);
 			servico.setValor(valor);
 			servico.setId(id);
-			
-			
+
 			ServicoBO servicoBO = new ServicoBO();
-			servicoBO.alterarServico(servico);
-			
+			// servicoBO.alterarServico(servico);
+
 			response.sendRedirect("ServicoController?acao=listar");
 		}
 	}
