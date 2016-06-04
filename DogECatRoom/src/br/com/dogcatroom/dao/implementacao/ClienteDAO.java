@@ -16,7 +16,7 @@ public class ClienteDAO implements IClienteDAO {
 
 	private Connection con = ConnectionFactory.getConnection();
 
-	public void cadastrar(ClienteDTO cliente) {
+	public void cadastrarCliente(ClienteDTO cliente) {
 
 		String sql = "INSERT INTO cliente (nome, cpf,endereco,numero,complemento,bairro,cidade,estado,telCelular,telFixo,cep,ativo) values (?,?,?,?,?,?,?,?,?,?,?,1)";
 
@@ -49,9 +49,9 @@ public class ClienteDAO implements IClienteDAO {
 
 	}
 	
-	public void alterar(ClienteDTO cliente) {
+	public void alterarCliente(ClienteDTO cliente) {
 
-		String sql = "update cliente set nome=?, cpf=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telCelular=?,telFixo=?,cep=?"
+		String sql = "update cliente set nome=?, cpf=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telCelular=?,telFixo=?,cep=?,ativo=? "
 				+"where id = ?";
 
 		try {
@@ -67,7 +67,8 @@ public class ClienteDAO implements IClienteDAO {
 			preparador.setString(9, cliente.getTelCelular());
 			preparador.setString(10, cliente.getTelFixo());
 			preparador.setString(11, cliente.getCep());
-			preparador.setInt(12, cliente.getId());
+			preparador.setInt(12, cliente.getAtivo());
+			preparador.setInt(13, cliente.getId());
 
 			preparador.execute();
 			preparador.close();
@@ -83,7 +84,7 @@ public class ClienteDAO implements IClienteDAO {
 
 	}
 	
-	public void excluir(ClienteDTO cliente) {
+	public void excluirCliente(ClienteDTO cliente) {
 		String sql = "update cliente set ativo = 0 where id = ?";
 
 		try {
@@ -98,7 +99,7 @@ public class ClienteDAO implements IClienteDAO {
 
 	}
 
-	public List<ClienteDTO> buscarTodos() {
+	public List<ClienteDTO> buscarTodosClientes() {
 		String sql = "SELECT * FROM cliente where ativo = 1";
 		List<ClienteDTO> lista = new ArrayList<ClienteDTO>();
 		try {
@@ -134,7 +135,7 @@ public class ClienteDAO implements IClienteDAO {
 
 	}
 
-	public ClienteDTO buscarPorID(Integer id) {
+	public ClienteDTO buscarClientePorID(Integer id) {
 		String sql = "SELECT * FROM cliente WHERE id=?";
 		ClienteDTO cliente = null;
 		try {

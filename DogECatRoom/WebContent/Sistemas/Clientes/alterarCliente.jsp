@@ -114,6 +114,16 @@
 
 				</div>
 			</div>
+			
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="textinput">Ativo</label>
+				<div class="col-md-2" name="estadoCliente">
+					<select class="form-control" name="estadoCliente">
+						<option value="1">Ativo</option>
+						<option value="0">Inativo</option>
+					</select>
+				</div>
+			</div>
 		</fieldset>
 		
 		<fieldset>

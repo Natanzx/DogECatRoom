@@ -74,8 +74,11 @@ public class ClienteController extends HttpServlet {
 			String telCelular = request.getParameter("textTelCelular");
 			String telFixo = request.getParameter("textTelFixo");
 			
+			
 			if(numerotext != ""){
 				numero = (Integer.parseInt(numerotext));
+			}else{
+				numero = 0;
 			}
 			
 			ClienteDTO cliente = new ClienteDTO();
@@ -113,6 +116,7 @@ public class ClienteController extends HttpServlet {
 		String telCelular = request.getParameter("textTelCelular");
 		String telFixo = request.getParameter("textTelFixo");
 		int id = Integer.parseInt(request.getParameter("textId"));
+		int estadoCliente = Integer.parseInt(request.getParameter("estadoCliente"));
 		
 		if(numerotext != ""){
 			numero = (Integer.parseInt(numerotext));
@@ -132,6 +136,7 @@ public class ClienteController extends HttpServlet {
 		cliente.setTelCelular(telCelular);
 		cliente.setTelFixo(telFixo);
 		cliente.setId(id);
+		cliente.setAtivo(estadoCliente);
 		
 		ClienteBO clienteBO = new ClienteBO();
 		clienteBO.alterarCliente(cliente);

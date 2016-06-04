@@ -15,7 +15,14 @@ public class ClienteDTO {
 	private String telCelular;
 	private String telFixo;
 	private AnimalDTO animal;
+	private int ativo;
 	
+	public int getAtivo() {
+		return ativo;
+	}
+	public void setAtivo(int ativo) {
+		this.ativo = ativo;
+	}
 	public String getNome() {
 		return nome;
 	}
