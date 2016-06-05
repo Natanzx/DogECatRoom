@@ -19,24 +19,18 @@
 	</div>
 
 	<table border="1" class="clTblCliente table">
-		<tr>
+		<tr bgcolor="#2b3e8c" style="color: #FFF;">
 		
 			<th>Matricula</th>
 			<th>Nome</th>
 			<th>CPF</th>
-			<th>Endereço</th>
-			<th>Número</th>
-			<th>Complemento</th>
-			<th>Bairro</th>
-			<th>Cidade</th>
-			<th>Estado</th>
 			<th>Telefone Celular</th>
 			<th>Telefone Fixo</th>
-			<th>Escolaridade</th>
 			<th>Ocupação</th>
 			<th>Salário</th>
 			<th>login</th>
 			<th>Ativo</th>
+			<th>Ações</th>
 		</tr>
 		<% 
 	//retorna object lista
@@ -47,19 +41,17 @@
 		<td><% out.print(funcionario.getMatricula()); %></td>
 			<td><% out.print(funcionario.getNome()); %></td>
 			<td><% out.print(funcionario.getCpf()); %></td>
-			<td><% out.print(funcionario.getEndereco()); %></td>
-			<td><% out.print(funcionario.getNumero()); %></td>
-			<td><% out.print(funcionario.getComplemento()); %></td>
-			<td><% out.print(funcionario.getBairro()); %></td>
-			<td><% out.print(funcionario.getCidade()); %></td>
-			<td><% out.print(funcionario.getEstado()); %></td>
 			<td><% out.print(funcionario.getTelCelular()); %></td>
 			<td><% out.print(funcionario.getTelFixo()); %></td>
-			<td><% out.print(funcionario.getEscolaridade()); %></td>
 			<td><% out.print(funcionario.getOcupacao()); %></td>
 			<td><% out.print(funcionario.getSalario()); %></td>
 			<td><% out.print(funcionario.getLogin()); %></td>
 			<td><% out.print(funcionario.isAtivo()? "Inativo" : "Ativo"); %></td>
+			<td align="center">
+				<a href="FuncionarioController?acao=alterar&id=<%out.print(funcionario.getId());%>">Alterar</a>
+			|
+				<a href="FuncionarioController?acao=excluir&id=<%out.print(funcionario.getId());%>">Excluir</a>
+		</td>
 		</tr>
 		<% } %>
 	</table>

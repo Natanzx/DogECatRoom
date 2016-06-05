@@ -10,6 +10,7 @@ import java.util.List;
 import br.com.dogcatroom.conexao.ConnectionFactory;
 import br.com.dogcatroom.dao.IFuncionarioDAO;
 import br.com.dogcatroom.dto.FuncionarioDTO;
+import br.com.dogcatroom.dto.ServicoDTO;
 
 public class FuncionarioDAO implements IFuncionarioDAO {
 
@@ -54,7 +55,7 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 	@Override
 	public void alterarFuncionario(FuncionarioDTO funcionarioDTO) {
 
-		String sql = "UPDATE funcionario SET nome=?, cpf=?,matricula=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telcelular=?,telfixo=?,escolaridade=?,ocupacao=?,salario=?,ativo=?,login=?,senha=?"
+		String sql = "UPDATE funcionario SET nome=?, cpf=?,matricula=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telcelular=?,telfixo=?,escolaridade=?,ocupacao=?,salario=?,ativo=?,login=?"
 				+ " where id =?";
 
 		try {
@@ -76,8 +77,7 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 			preparador.setDouble(14, funcionarioDTO.getSalario());
 			preparador.setBoolean(15, funcionarioDTO.isAtivo());
 			preparador.setString(16, funcionarioDTO.getLogin());
-			preparador.setString(17, funcionarioDTO.getSenha());
-			preparador.setInt(18, funcionarioDTO.getId());
+			preparador.setInt(17, funcionarioDTO.getId());
 
 			preparador.execute();
 			preparador.close();
@@ -129,6 +129,40 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 		}
 		return listaFuncionario;
 
+	}
+
+	@Override
+	public FuncionarioDTO buscarFuncionarioPorID(FuncionarioDTO funcionarioDTO) throws SQLException {
+		String sql = "SELECT * FROM funcionario WHERE id=?";
+
+		PreparedStatement pstm = con.prepareStatement(sql);
+		pstm.setInt(1, funcionarioDTO.getId());
+		ResultSet resultado = pstm.executeQuery();
+
+		if (resultado.next()) {
+			FuncionarioDTO funcionario = new FuncionarioDTO();
+			
+			funcionarioDTO.setNome(resultado.getString("nome"));
+			funcionarioDTO.setCpf(resultado.getString("cpf"));
+			funcionarioDTO.setMatricula(Integer.parseInt(resultado.getString("matricula")));
+			funcionarioDTO.setEndereco(resultado.getString("endereco"));
+			funcionarioDTO.setNumero(resultado.getString("numero"));
+			funcionarioDTO.setComplemento(resultado.getString("complemento"));
+			funcionarioDTO.setBairro(resultado.getString("bairro"));
+			funcionarioDTO.setCidade(resultado.getString("cidade"));
+			funcionarioDTO.setEstado(resultado.getString("estado"));
+			funcionarioDTO.setTelCelular(resultado.getString("telCelular"));
+			funcionarioDTO.setTelFixo(resultado.getString("telFixo"));
+			funcionarioDTO.setEscolaridade(resultado.getString("escolaridade"));
+			funcionarioDTO.setOcupacao(resultado.getString("ocupacao"));
+			funcionarioDTO.setSalario(Double.parseDouble(resultado.getString("salario")));
+			funcionarioDTO.setAtivo(Boolean.parseBoolean(resultado.getString("ativo")));
+			funcionarioDTO.setLogin(resultado.getString("login"));
+		}
+
+		pstm.close();
+		
+		return funcionarioDTO;
 	}
 
 }
