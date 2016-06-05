@@ -19,7 +19,7 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 	@Override
 	public void cadastrarFuncionario(FuncionarioDTO funcionarioDTO) {
 
-		String sql = "INSERT INTO funcionario (nome,cpf,matricula,endereco,numero,complemento,bairro,cidade,estado,telcelular,telfixo,escolaridade,ocupacao,salario,ativo,login,senha) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO funcionarios (nome,cpf,matricula,endereco,numero,complemento,bairro,cidade,estado,telcelular,telfixo,escolaridade,ocupacao,salario,ativo,login,senha) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
@@ -55,7 +55,7 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 	@Override
 	public void alterarFuncionario(FuncionarioDTO funcionarioDTO) {
 
-		String sql = "UPDATE funcionario SET nome=?, cpf=?,matricula=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telcelular=?,telfixo=?,escolaridade=?,ocupacao=?,salario=?,ativo=?,login=?"
+		String sql = "UPDATE funcionarios SET nome=?, cpf=?,matricula=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telcelular=?,telfixo=?,escolaridade=?,ocupacao=?,salario=?,ativo=?,login=?"
 				+ " where id =?";
 
 		try {
@@ -90,7 +90,7 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 
 	@Override
 	public List<FuncionarioDTO> buscarTodosFuncionariosAtivo() {
-		String sql = "SELECT * FROM funcionario where ativo = 1";
+		String sql = "SELECT * FROM funcionarios where ativo = 1";
 
 		List<FuncionarioDTO> listaFuncionario = new ArrayList<FuncionarioDTO>();
 		try {
@@ -101,7 +101,7 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 			while (resultado.next()) {
 				FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
 
-				funcionarioDTO.setId(Integer.parseInt(resultado.getString("id")));
+				funcionarioDTO.setId(Integer.parseInt(resultado.getString("idFuncionario")));
 				funcionarioDTO.setNome(resultado.getString("nome"));
 				funcionarioDTO.setCpf(resultado.getString("cpf"));
 				funcionarioDTO.setMatricula(Integer.parseInt(resultado.getString("matricula")));
@@ -133,7 +133,7 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 
 	@Override
 	public FuncionarioDTO buscarFuncionarioPorID(FuncionarioDTO funcionarioDTO) throws SQLException {
-		String sql = "SELECT * FROM funcionario WHERE id=?";
+		String sql = "SELECT * FROM funcionarios WHERE id=?";
 
 		PreparedStatement pstm = con.prepareStatement(sql);
 		pstm.setInt(1, funcionarioDTO.getId());
