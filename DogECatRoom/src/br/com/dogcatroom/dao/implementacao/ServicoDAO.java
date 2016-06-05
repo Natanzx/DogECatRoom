@@ -18,7 +18,7 @@ public class ServicoDAO implements IServicoDAO {
 	@Override
 	public void cadastrarServico(ServicoDTO servico) throws SQLException {
 
-		String sql = "INSERT INTO servico (nome, descricao,valor,ativo) values (?,?,?,?)";
+		String sql = "INSERT INTO servicos (nome, descricao,valor,ativo) values (?,?,?,?)";
 
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setString(1, servico.getNome());
@@ -34,7 +34,7 @@ public class ServicoDAO implements IServicoDAO {
 	@Override
 	public void alterarServico(ServicoDTO servico) throws SQLException {
 
-		String sql = "update servico set nome=?, descricao=?,valor=?,ativo=?" + " where id = ?";
+		String sql = "update servicos set nome=?, descricao=?,valor=?,ativo=?" + " where id = ?";
 
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setString(1, servico.getNome());
@@ -50,7 +50,7 @@ public class ServicoDAO implements IServicoDAO {
 
 	@Override
 	public List<ServicoDTO> buscarTodosServicos() throws SQLException {
-		String sql = "SELECT * FROM servico where ativo = 1";
+		String sql = "SELECT * FROM servicos where ativo = 1";
 		List<ServicoDTO> lista = new ArrayList<ServicoDTO>();
 
 		PreparedStatement pstm = con.prepareStatement(sql);
@@ -76,7 +76,7 @@ public class ServicoDAO implements IServicoDAO {
 	}
 
 	public ServicoDTO buscarPorID(ServicoDTO servicoDTO) throws SQLException {
-		String sql = "SELECT * FROM servico WHERE id=?";
+		String sql = "SELECT * FROM servicos WHERE id=?";
 		ServicoDTO servico = null;
 
 		PreparedStatement pstm = con.prepareStatement(sql);
@@ -99,7 +99,7 @@ public class ServicoDAO implements IServicoDAO {
 
 	@Override
 	public void excluirServico(ServicoDTO servico) throws SQLException {
-		String sql = "update servico set ativo = 0 where id = ?";
+		String sql = "update servicos set ativo = 0 where id = ?";
 
 			PreparedStatement pstm = con.prepareStatement(sql);
 			pstm.setInt(1, servico.getId());
