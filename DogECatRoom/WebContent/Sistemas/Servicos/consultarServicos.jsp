@@ -18,7 +18,7 @@
 		</a>
 	</div>
 
-	<table border="1" class="table">
+	<table class="table">
 	<tr bgcolor="#2b3e8c" style="color: #FFF;">
 		<th>Id</th> 
 		<th>Servico</th> 
