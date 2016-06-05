@@ -17,23 +17,24 @@
 			<button class="btn btn-default">Cadastrar</button>
 		</a>
 	</div>
-	<table border="1" class="table">
-	<tr bgcolor="#2b3e8c" style="color: #FFF;">
-		<th>Id</th> 
-		<th>Cliente</th> 
-		<th>CPF</th> 
-		<th>Cep</th> 
-		<th>Endereço</th> 
-		<th>Numero</th> 
-		<th>Complemento</th> 
-		<th>Bairro</th> 
-		<th>Cidade</th>
-		<th>Estado</th> 
-		<th>Celular</th> 
-		<th>Fixo</th> 
-		<th>Acao</th> 
-	</tr>
-	</tr>    
+	<table class="table tblClientes">
+		<thead>
+			<tr bgcolor="#2b3e8c" style="color: #FFF;">
+				<th>Id</th> 
+				<th>Cliente</th> 
+				<th>CPF</th> 
+				<th>Cep</th> 
+				<th>Endereço</th> 
+				<th>Numero</th> 
+				<th>Complemento</th> 
+				<th>Bairro</th> 
+				<th>Cidade</th>
+				<th>Estado</th> 
+				<th>Celular</th> 
+				<th>Fixo</th> 
+				<th>Acao</th> 
+			</tr>
+		</thead>
 	<% 
 	//retorna object tem que fazer cast pois nois sabe que é uma lista
 		List<ClienteDTO> lista=(List<ClienteDTO>) request.getAttribute("lista");	
