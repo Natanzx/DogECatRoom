@@ -18,7 +18,7 @@ public class ClienteDAO implements IClienteDAO {
 
 	public void cadastrarCliente(ClienteDTO cliente) {
 
-		String sql = "INSERT INTO cliente (nome, cpf,endereco,numero,complemento,bairro,cidade,estado,telCelular,telFixo,cep,ativo) values (?,?,?,?,?,?,?,?,?,?,?,1)";
+		String sql = "INSERT INTO clientes (nome, cpf,endereco,numero,complemento,bairro,cidade,estado,telCelular,telFixo,cep,ativo) values (?,?,?,?,?,?,?,?,?,?,?,1)";
 
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
@@ -51,8 +51,8 @@ public class ClienteDAO implements IClienteDAO {
 	
 	public void alterarCliente(ClienteDTO cliente) {
 
-		String sql = "update cliente set nome=?, cpf=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telCelular=?,telFixo=?,cep=?,ativo=? "
-				+"where id = ?";
+		String sql = "update clientes set nome=?, cpf=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telCelular=?,telFixo=?,cep=?,ativo=? "
+				+"where idCliente = ?";
 
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
@@ -85,7 +85,7 @@ public class ClienteDAO implements IClienteDAO {
 	}
 	
 	public void excluirCliente(ClienteDTO cliente) {
-		String sql = "update cliente set ativo = 0 where id = ?";
+		String sql = "update clientes set ativo = 0 where idCliente = ?";
 
 		try {
 			PreparedStatement pstm = con.prepareStatement(sql);
@@ -100,7 +100,7 @@ public class ClienteDAO implements IClienteDAO {
 	}
 
 	public List<ClienteDTO> buscarTodosClientes() {
-		String sql = "SELECT * FROM cliente where ativo = 1";
+		String sql = "SELECT * FROM clientes where ativo = 1";
 		List<ClienteDTO> lista = new ArrayList<ClienteDTO>();
 		try {
 			PreparedStatement pstm = con.prepareStatement(sql);
@@ -110,7 +110,7 @@ public class ClienteDAO implements IClienteDAO {
 			while (resultado.next()) {
 				ClienteDTO cliente = new ClienteDTO();
 				
-				cliente.setId(Integer.parseInt(resultado.getString("id")));
+				cliente.setId(Integer.parseInt(resultado.getString("idCliente")));
 				cliente.setNome(resultado.getString("nome"));
 				cliente.setCpf(resultado.getString("cpf"));
 				cliente.setEndereco(resultado.getString("endereco"));
@@ -136,7 +136,7 @@ public class ClienteDAO implements IClienteDAO {
 	}
 
 	public ClienteDTO buscarClientePorID(Integer id) {
-		String sql = "SELECT * FROM cliente WHERE id=?";
+		String sql = "SELECT * FROM clientes WHERE idCliente = ?";
 		ClienteDTO cliente = null;
 		try {
 			PreparedStatement pstm = con.prepareStatement(sql);
