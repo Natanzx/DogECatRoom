@@ -16,9 +16,6 @@ import br.com.dogcatroom.bo.FuncionarioBO;
 import br.com.dogcatroom.dto.ClienteDTO;
 import br.com.dogcatroom.dto.FuncionarioDTO;
 
-/**
- * Servlet implementation class FuncionarioController
- */
 @WebServlet("/FuncionarioController")
 public class FuncionarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -66,10 +63,6 @@ public class FuncionarioController extends HttpServlet {
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -116,6 +109,7 @@ public class FuncionarioController extends HttpServlet {
 			funcionarioDTO.setAtivo(estadoFuncionario);
 
 			FuncionarioBO funcionarioBO = new FuncionarioBO();
+			
 			try {
 				funcionarioBO.salvarFuncionario(funcionarioDTO);
 				response.sendRedirect("FuncionarioController?acao=listar");
