@@ -1,5 +1,6 @@
 package br.com.dogcatroom.bo;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import br.com.dogcatroom.dao.IFuncionarioDAO;
@@ -36,6 +37,12 @@ public class FuncionarioBO {
 		}
 
 		return buscarTodos;
+	}
+	
+	
+	public FuncionarioDTO buscarFuncionarioPorID(FuncionarioDTO funcionarioDTO) throws SQLException{
+		return iFuncionarioDAO.buscarFuncionarioPorID(funcionarioDTO);
+		
 	}
 
 }

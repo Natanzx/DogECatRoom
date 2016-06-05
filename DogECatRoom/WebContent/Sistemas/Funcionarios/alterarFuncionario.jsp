@@ -1,27 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="br.com.dogcatroom.dto.FuncionarioDTO" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="/template/head.jsp" />
-<title>DogECatRoom - Cadastrar Funcionarios</title>
+<title>DogECatRoom - Cadastrar Clientes</title>
 </head>
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
-
-	<form class="form-horizontal" method="POST" action="../../FuncionarioController?acao=salvar">
+	<%
+	FuncionarioDTO funcionarioDTO = (FuncionarioDTO) request.getAttribute("funcionario");
+	%>
+	<form class="form-horizontal" method="POST" action="FuncionarioController?acao=alterar">
 		<fieldset>
-
-			<!-- Form Name -->
+			
+			<!-- Titulo - Clientes -->
 			<legend>Funcionários</legend>
-
-			<!-- Nome -->
+			<input type="hidden" name="id" value="<%=funcionarioDTO.getId()%>"/>
+			<!-- Text input-->
 			<div class="form-group">
+
+				<!-- Nome -->
 				<label class="col-md-3 control-label" for="textinput">Nome</label>
-				<div class="col-md-4">
+				<div class="col-md-5">
 					<input id="textinput" name="nomeFuncionario" type="text"
-						placeholder="Digite o nome" class="form-control input-md">
+						placeholder="Digite o nome" class="form-control input-md"
+						value=<%=funcionarioDTO.getNome() %>>
 
 				</div>
 				<!-- CPF	-->
@@ -29,25 +35,25 @@
 				<div class="col-md-2">
 					<input id="textinput" name="numeroCPF" type="text"
 						placeholder="Ex: 000000000-00" class="form-control input-md"
-						required="">
+						value=<%= funcionarioDTO.getCpf()%>>
 				</div>
 			</div>
 
 			<!-- Tel Cel-->
 			<div class="form-group">
-				<label class="col-md-3 control-label" for="textinput">Tel.
-					Celular</label>
+				<label class="col-md-3 control-label" for="textinput">Tel.Celular</label>
 				<div class="col-md-3">
 					<input id="textinput" name="telCelular" type="text"
 						placeholder="(00) XXXX-XXXX" class="form-control input-md"
-						required="">
+						value=<%=funcionarioDTO.getTelCelular() %>>
 				</div>
 				<!-- Tel Fixo-->
 				<label class="col-md-2 control-label" for="textinput">Tel.
 					Fixo</label>
 				<div class="col-md-2">
 					<input id="textinput" name="telFixo" type="text"
-						placeholder="(XX) XXXX-XXXX" class="form-control input-md">
+						placeholder="(XX) XXXX-XXXX" class="form-control input-md"
+						value="<%= funcionarioDTO.getTelFixo() %>">
 				</div>
 			</div>
 
@@ -56,14 +62,14 @@
 				<label class="col-md-3 control-label" for="textinput">Endereço</label>
 				<div class="col-md-4">
 					<input id="textinput" name="enderecoFuncionario" type="text"
-						placeholder="Digite o endereço" class="form-control input-md">
+						placeholder="Digite o endereço" class="form-control input-md" value="<%= funcionarioDTO.getEndereco() %>">
 
 				</div>
 				<!-- Numero -->
 				<label class="col-md-1 control-label" for="textinput">Número</label>
 				<div class="col-md-1">
 					<input id="textinput" name="numeroFuncionario" type="text"
-						placeholder="" class="form-control input-md">
+						class="form-control input-md" value="<%= funcionarioDTO.getNumero()%>">
 				</div>
 			</div>
 
@@ -72,13 +78,13 @@
 				<label class="col-md-3 control-label" for="textinput">Complemento</label>
 				<div class="col-md-4">
 					<input id="textinput" name="complementoFuncionario" type="text"
-						placeholder="" class="form-control input-md">
+						 class="form-control input-md" value="<%= funcionarioDTO.getComplemento() %>">
 				</div>
 				<!-- Bairro-->
 				<label class="col-md-1 control-label" for="textinput">Bairro</label>
 				<div class="col-md-2">
 					<input id="textinput" name="bairroFuncionario" type="text"
-						placeholder="" class="form-control input-md">
+						 class="form-control input-md" value="<%= funcionarioDTO.getBairro()%>">
 
 				</div>
 			</div>
@@ -88,14 +94,14 @@
 				<label class="col-md-3 control-label" for="textinput">Cidade</label>
 				<div class="col-md-3">
 					<input id="textinput" name="cidadeFuncionario" type="text"
-						placeholder="" class="form-control input-md">
+						 class="form-control input-md" value="<%= funcionarioDTO.getCidade() %>">
 
 				</div>
 				<!-- Estado	-->
 				<label class="col-md-2 control-label" for="textinput">Estado</label>
 				<div class="col-md-2">
 					<input id="textinput" name="estadoFuncionario" type="text"
-						placeholder="" class="form-control input-md">
+						 class="form-control input-md" value="<%= funcionarioDTO.getEstado() %>">
 
 				</div>
 			</div>
@@ -105,13 +111,13 @@
 				<label class="col-md-3 control-label" for="textinput">Escolaridade</label>
 				<div class="col-md-2">
 					<input id="textinput" name="escolaridadeFuncionario" type="text"
-						placeholder="" class="form-control input-md">
+						 class="form-control input-md" value="<%= funcionarioDTO.getEscolaridade()%>">
 				</div>
 				<!-- Ocupação	-->
 				<label class="col-md-3 control-label" for="textinput">Ocupação</label>
 				<div class="col-md-2">
 					<input id="textinput" name="ocupacaoFuncionario" type="text"
-						placeholder="" class="form-control input-md">
+					 class="form-control input-md" value="<%=funcionarioDTO.getOcupacao() %>">
 				</div>
 			</div>
 
@@ -120,12 +126,12 @@
 				<label class="col-md-3 control-label" for="textinput">Salário</label>
 				<div class="col-md-2">
 					<input id="textinput" name="salarioFuncionario" type="text"
-						placeholder="" class="form-control input-md">
+						class="form-control input-md" value="<%= funcionarioDTO.getSalario()%>">
 				</div>
 				<label class="col-md-3 control-label" for="textinput">Matrícula</label>
 				<div class="col-md-2">
 					<input id="textinput" name="matriculaFuncionario" type="text"
-						placeholder="" class="form-control input-md">
+					 class="form-control input-md" value="<%=funcionarioDTO.getMatricula() %>">
 				</div>
 			</div>
 			
@@ -134,19 +140,18 @@
 				<label class="col-md-3 control-label" for="textinput">Login</label>
 				<div class="col-md-2">
 					<input id="textinput" name="loginFuncionario" type="text"
-						placeholder="" class="form-control input-md">
+						class="form-control input-md" value="<%=funcionarioDTO.getLogin() %>">
 				</div>
-				<label class="col-md-3 control-label" for="textinput">Senha</label>
-				<div class="col-md-2">
-					<input id="textinput" name="senhaFuncionario" type="password"
-						placeholder="" class="form-control input-md">
-				</div>
+				<label class="col-md-3 control-label" for="button1id"></label>
+				<div class="col-md-1">
+					<button id="" name="" class="btn btn-defult"  onclick= href="FuncionarioController?acao=alterar&id=<%out.print(funcionarioDTO.getId());%>">Trocar Senha</button>
+			</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-md-3 control-label" for="textinput">Ativo</label>
-				<div class="col-md-2" name="estadoFuncionario">
-					<select class="form-control">
+				<div class="col-md-2" name="estadoFuncionario" >
+					<select class="form-control" >
 						<option>Ativo</option>
 						<option>Inativo</option>
 					</select>
@@ -163,7 +168,7 @@
 				</div>
 			</div>
 
-		</fieldset>
+		</fieldset>		
 	</form>
 
 	<jsp:include page="/template/rodape_padrao.jsp" />

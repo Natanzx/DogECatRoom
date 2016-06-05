@@ -1,6 +1,7 @@
 package br.com.dogcatroom.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -42,6 +43,26 @@ public class FuncionarioController extends HttpServlet {
 			RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Funcionarios/consultarFuncionarios.jsp");
 			saida.forward(request, response);
 		}
+		
+		if (acao != null && acao.equals("alterar")) {
+            FuncionarioDTO funcionarioAlterar = new FuncionarioDTO();
+            funcionarioAlterar.setId(Integer.parseInt(request.getParameter("id")));
+			
+            FuncionarioBO funcionarioBO = new FuncionarioBO();
+            FuncionarioDTO funcionarioDTO;
+			try {
+				funcionarioDTO = funcionarioBO.buscarFuncionarioPorID(funcionarioAlterar);
+				request.setAttribute("funcionario", funcionarioDTO);
+				RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Funcionarios/alterarFuncionario.jsp");
+				saida.forward(request,response);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
 
 	}
 
@@ -70,6 +91,8 @@ public class FuncionarioController extends HttpServlet {
 			String escolaridade = request.getParameter("escolaridadeFuncionario");
 			String ocupacao = request.getParameter("ocupacaoFuncionario");
 			double salario = Double.parseDouble(request.getParameter("salarioFuncionario"));
+			String login = request.getParameter("loginFuncionario");
+			String senha = request.getParameter("senhaFuncionario");
 			boolean estadoFuncionario = request.getParameter("estadoFuncionario").equalsIgnoreCase("Ativo")? false: true;
 
 			FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
@@ -88,18 +111,68 @@ public class FuncionarioController extends HttpServlet {
 			funcionarioDTO.setEscolaridade(escolaridade);
 			funcionarioDTO.setOcupacao(ocupacao);
 			funcionarioDTO.setSalario(salario);
+			funcionarioDTO.setLogin(login);
+			funcionarioDTO.setSenha(senha);
 			funcionarioDTO.setAtivo(estadoFuncionario);
 
 			FuncionarioBO funcionarioBO = new FuncionarioBO();
 			try {
 				funcionarioBO.salvarFuncionario(funcionarioDTO);
+				response.sendRedirect("FuncionarioController?acao=listar");
 			} catch (Exception e) {
 				e.getMessage();
 			}
 
-			response.sendRedirect("FuncionarioController?acao=listar");
 		}
 
+		if (acao != null && acao.equals("alterar")) {
+
+			String nome = request.getParameter("nomeFuncionario");
+			String numeroCPF = request.getParameter("numeroCPF");
+			int matricula = Integer.parseInt(request.getParameter("matriculaFuncionario"));
+			String endereco = request.getParameter("enderecoFuncionario");
+			String numeroEndereco = request.getParameter("numeroFuncionario");
+			String complemento = request.getParameter("complementoFuncionario");
+			String bairro = request.getParameter("bairroFuncionario");
+			String cidade = request.getParameter("cidadeFuncionario");
+			String estado = request.getParameter("estadoFuncionario");
+			String telCelular = request.getParameter("telCelular");
+			String telFixo = request.getParameter("telFixo");
+			String escolaridade = request.getParameter("escolaridadeFuncionario");
+			String ocupacao = request.getParameter("ocupacaoFuncionario");
+			double salario = Double.parseDouble(request.getParameter("salarioFuncionario"));
+			boolean estadoFuncionario = request.getParameter("estadoFuncionario").equalsIgnoreCase("Ativo")? false: true;
+			int id = Integer.parseInt(request.getParameter("id"));
+			String login = request.getParameter("loginFuncionario");
+			FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
+
+			funcionarioDTO.setNome(nome);
+			funcionarioDTO.setCpf(numeroCPF);
+			funcionarioDTO.setMatricula(matricula);
+			funcionarioDTO.setEndereco(endereco);
+			funcionarioDTO.setNumero(numeroEndereco);
+			funcionarioDTO.setComplemento(complemento);
+			funcionarioDTO.setBairro(bairro);
+			funcionarioDTO.setCidade(cidade);
+			funcionarioDTO.setEstado(estado);
+			funcionarioDTO.setTelCelular(telCelular);
+			funcionarioDTO.setTelFixo(telFixo);
+			funcionarioDTO.setEscolaridade(escolaridade);
+			funcionarioDTO.setOcupacao(ocupacao);
+			funcionarioDTO.setSalario(salario);
+			funcionarioDTO.setAtivo(estadoFuncionario);
+			funcionarioDTO.setId(id);
+			funcionarioDTO.setLogin(login);
+
+			FuncionarioBO funcionarioBO = new FuncionarioBO();
+			try {
+				funcionarioBO.salvarFuncionario(funcionarioDTO);
+				response.sendRedirect("FuncionarioController?acao=listar");
+			} catch (Exception e) {
+				e.getMessage();
+			}
+
+		}
 	}
 
 }
