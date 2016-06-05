@@ -19,7 +19,7 @@
 	</div>
 
 	<table border="1" class="clTblCliente table">
-		<tr>
+		<tr bgcolor="#2b3e8c" style="color: #FFF;">
 		
 			<th>Matricula</th>
 			<th>Nome</th>
