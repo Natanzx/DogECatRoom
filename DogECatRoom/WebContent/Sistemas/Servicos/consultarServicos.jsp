@@ -19,21 +19,21 @@
 	</div>
 
 	<table class="table">
-	<tr bgcolor="#2b3e8c" style="color: #FFF;">
-		<th>Id</th> 
-		<th>Servico</th> 
-		<th>Descricao</th> 
-		<th>Valor</th> 
-		<th>Acao</th> 
-	</tr>
-	</tr>    
+		<thead>
+			<tr>
+				<th>Servico</th> 
+				<th>Descricao</th> 
+				<th>Valor</th> 
+				<th>Acao</th> 
+			</tr>
+		</thead>
+		
 	<% 
 	//retorna object tem que fazer cast pois nois sabe que é uma lista
 		List<ServicoDTO> lista=(List<ServicoDTO>) request.getAttribute("lista");	
 	for(ServicoDTO servico : lista){
 	%>
 	<tr>
-		<td align="center"><% out.print(servico.getId()); %></td>
 		<td><% out.print(servico.getNome()); %></td>
 		<td><% out.print(servico.getDescricao()); %></td> 
 		<td><% out.print(servico.getValor()); %></td>
