@@ -87,4 +87,14 @@ legend{
 .clIcon{
 	font-size:		30pt;	
 }
+.table{
+	width: 90%;
+	margin: auto;
+}
+.table td{
+	border: 1px solid #ddd;
+}
+.table thead tr{
+	background: #2b3e8c;
+	color: #fff;
 }
