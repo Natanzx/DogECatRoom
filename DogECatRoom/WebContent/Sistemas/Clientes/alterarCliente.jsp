@@ -7,6 +7,59 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="/template/head.jsp" />
 <title>DogECatRoom - Cadastrar Clientes</title>
+
+	<script>
+		$(document).ready(function(){
+		
+			function listaAnimaisCliente(){
+				$.ajax({	            
+		            url: "/DogECatRoom/AnimalController",
+		            data: 'acao=listar',
+		            type: 'GET',
+		            success: function(result){
+		                $("#divConsultaAnimal").html(result);
+		            }
+	        	});	
+			}
+
+	        $("#btnCadastrarAnimal").click(function(){
+	        	
+		        $.ajax({	            
+		            url: "/DogECatRoom/AnimalController",
+		            data: {
+	            		'acao': 'cadastrar',
+	            		'nome': $("#nomeAnimal").val(),
+	            		'tipo': $("#tipoAnimal").val(),
+	            		'raca': $("#racaAnimal").val(),
+	            		'cor': $("#corAnimal").val(),
+	            		'dataNasc': $("#dataNascAnimal").val(),
+	            		'sexo': $("#sexoAnimal").val(),
+	            		'pedigre': $("#pedigreAnimal").val(),
+	            		'numPedigre': $("#numPedigreAnimal").val()
+		            },
+		            type: 'POST',
+		            success: function(result){
+		            	listaAnimaisCliente();
+		            }
+	        	});	        	
+	        	
+	        });	
+	        
+	        $("#btnAddAnimal").click(function(){
+		        $.ajax({	            
+		            url: "cadastrarAnimal.jsp",
+		            //data: 'acao=listar',
+		            type: 'GET',
+		            success: function(result){
+		                $("#divConsultaAnimal").html(result);
+		            }
+	        	});	        	
+	        	
+	        });
+	        
+        });
+	</script>		
+
 </head>
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
@@ -130,6 +183,12 @@
 			<!-- Titulo - Animais -->
 			<legend>Animal</legend>
 		
+<<<<<<< HEAD
+=======
+			<div id="divConsultaAnimal"></div>			
+		
+		
+>>>>>>> desenvolvimento
 			<!-- Text input-->
 			<div class="form-group">
 				<label class="col-md-3 control-label" for="textinput">Nome Pet</label>

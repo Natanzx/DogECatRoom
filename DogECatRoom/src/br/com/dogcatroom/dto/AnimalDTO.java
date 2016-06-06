@@ -3,19 +3,28 @@ package br.com.dogcatroom.dto;
 public class AnimalDTO {
 
 	private int idAnimal;
+	private int idCliente;
 	private String nome;
 	private String tipo;
 	private String raca;
 	private String cor;
 	private String dataNasc;
-	private char sexo;
-	private boolean pedigre;
+	private String sexo;
+	private int pedigre;
 	private int numPedigre;
+	private int ativo;
+	
 	public int getIdAnimal() {
 		return idAnimal;
 	}
 	public void setIdAnimal(int idAnimal) {
 		this.idAnimal = idAnimal;
+	}
+	public int getIdCliente() {
+		return idCliente;
+	}
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
 	}
 	public String getNome() {
 		return nome;
@@ -47,16 +56,16 @@ public class AnimalDTO {
 	public void setDataNasc(String dataNasc) {
 		this.dataNasc = dataNasc;
 	}
-	public char getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
-	public void setSexo(char sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public boolean isPedigre() {
+	public int getPedigre() {
 		return pedigre;
 	}
-	public void setPedigre(boolean pedigre) {
+	public void setPedigre(int pedigre) {
 		this.pedigre = pedigre;
 	}
 	public int getNumPedigre() {
@@ -64,6 +73,12 @@ public class AnimalDTO {
 	}
 	public void setNumPedigre(int numPedigre) {
 		this.numPedigre = numPedigre;
+	}
+	public int getAtivo() {
+		return ativo;
+	}
+	public void setAtivo(int ativo) {
+		this.ativo = ativo;
 	}
 	
 	

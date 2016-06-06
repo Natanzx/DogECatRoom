@@ -16,14 +16,16 @@
 		</a>
 	</div>
 	
-	<table class="clTblCliente">
-		<tr>
-			<th>Nome</th>
-			<th>CPF</th>
-			<th>Telefone</th>
-			<th>Endereço</th>
-		</tr>
-
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>CPF</th>
+				<th>Telefone</th>
+				<th>Endereço</th>
+			</tr>
+		</thead>
+		
 		<tr>
 			<td></td>
 			<td></td>

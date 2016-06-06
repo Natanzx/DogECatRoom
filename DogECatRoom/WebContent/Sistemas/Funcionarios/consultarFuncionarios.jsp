@@ -19,19 +19,20 @@
 	</div>
 
 	<table class="table">
-		<tr bgcolor="#2b3e8c" style="color: #FFF;">
-		
-			<th>Matricula</th>
-			<th>Nome</th>
-			<th>CPF</th>
-			<th>Telefone Celular</th>
-			<th>Telefone Fixo</th>
-			<th>Ocupação</th>
-			<th>Salário</th>
-			<th>login</th>
-			<th>Ativo</th>
-			<th>Ações</th>
-		</tr>
+		<thead>
+			<tr>
+				<th>Matricula</th>
+				<th>Nome</th>
+				<th>CPF</th>
+				<th>Telefone Celular</th>
+				<th>Telefone Fixo</th>
+				<th>Ocupação</th>
+				<th>Salário</th>
+				<th>login</th>
+				<th>Ativo</th>
+				<th>Ações</th>
+			</tr>
+		</thead>
 		<% 
 	//retorna object lista
 		List<FuncionarioDTO> lista =(List<FuncionarioDTO>) request.getAttribute("lista");	

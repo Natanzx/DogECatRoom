@@ -14,13 +14,16 @@
 
 	<div class="clOpcoesCrud">
 		<a href="Sistemas/Clientes/cadastrarClientes.jsp">
-			<button class="btn btn-default">Cadastrar</button>
+			<button class="btn btn-primary">Cadastrar</button>
 		</a>
+		<a href="/DogECatRoom/principal.jsp">
+			<button class="btn btn-danger">Voltar</button>
+		</a>		
 	</div>
+	
 	<table class="table tblClientes">
 		<thead>
-			<tr bgcolor="#2b3e8c" style="color: #FFF;">
-				<th>Id</th> 
+			<tr>
 				<th>Cliente</th> 
 				<th>CPF</th> 
 				<th>Cep</th> 
@@ -41,7 +44,6 @@
 	for(ClienteDTO cliente : lista){
 	%>
 	<tr>
-		<td align="center"><% out.print(cliente.getId()); %></td>
 		<td><% out.print(cliente.getNome()); %></td>
 		<td><% out.print(cliente.getCpf()); %></td> 
 		<td><% out.print(cliente.getCep()); %></td>
