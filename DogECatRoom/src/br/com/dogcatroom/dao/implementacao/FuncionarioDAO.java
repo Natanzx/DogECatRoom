@@ -56,7 +56,7 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 	public void alterarFuncionario(FuncionarioDTO funcionarioDTO) {
 
 		String sql = "UPDATE funcionarios SET nome=?, cpf=?,matricula=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=?,telcelular=?,telfixo=?,escolaridade=?,ocupacao=?,salario=?,ativo=?,login=?"
-				+ " where id =?";
+				+ " where idFuncionario = ? ";
 
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
@@ -133,7 +133,7 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 
 	@Override
 	public FuncionarioDTO buscarFuncionarioPorID(FuncionarioDTO funcionarioDTO) throws SQLException {
-		String sql = "SELECT * FROM funcionarios WHERE id=?";
+		String sql = "SELECT * FROM funcionarios WHERE idFuncionario = ? ";
 
 		PreparedStatement pstm = con.prepareStatement(sql);
 		pstm.setInt(1, funcionarioDTO.getId());
