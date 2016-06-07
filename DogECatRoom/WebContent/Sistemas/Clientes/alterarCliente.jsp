@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="/template/head.jsp" />
 <title>DogECatRoom - Cadastrar Clientes</title>
+
 	<script>
 		$(document).ready(function(){
 		
@@ -58,6 +59,7 @@
 	        
         });
 	</script>		
+
 </head>
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
@@ -181,9 +183,12 @@
 			<!-- Titulo - Animais -->
 			<legend>Animal</legend>
 		
+<<<<<<< HEAD
+=======
 			<div id="divConsultaAnimal"></div>			
 		
 		
+>>>>>>> desenvolvimento
 			<!-- Text input-->
 			<div class="form-group">
 				<label class="col-md-3 control-label" for="textinput">Nome Pet</label>

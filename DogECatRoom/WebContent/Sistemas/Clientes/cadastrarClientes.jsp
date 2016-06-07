@@ -173,6 +173,83 @@
 		
 		<fieldset>
 			<!-- Titulo - Animais -->
+<<<<<<< HEAD
+			<legend>Animal</legend>
+		
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-3 control-label" for="textinput">Nome Pet</label>
+				<div class="col-md-2">
+					<input id="textinput" name="textinput" type="text" placeholder=""
+						class="form-control input-md">
+
+				</div>
+				
+				<label class="col-md-1 control-label" for="textinput">Tipo</label>
+				<div class="col-md-2">
+					<input id="textinput" name="textinput" type="text" placeholder=""
+						class="form-control input-md">
+
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-md-3 control-label" for="textinput">Raca</label>
+				<div class="col-md-2">
+					<input id="textinput" name="textinput" type="text" placeholder=""
+						class="form-control input-md">
+
+				</div>
+				
+				<label class="col-md-1 control-label" for="textinput">Cor</label>
+				<div class="col-md-2">
+					<input id="textinput" name="textinput" type="text" placeholder=""
+						class="form-control input-md">
+
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-3 control-label" for="textinput">Data Nascimento</label>
+				<div class="col-md-2">
+					<input id="textinput" name="textinput" type="text" placeholder=""
+						class="form-control input-md">
+
+				</div>
+				
+				<label class="col-md-1 control-label" for="textinput">Sexo</label>
+				<div class="col-md-2">
+					<input id="textinput" name="textinput" type="text" placeholder=""
+						class="form-control input-md">
+
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-3 control-label" for="textinput">Pedigre</label>
+				<div class="col-md-2">
+					<input id="textinput" name="textinput" type="text" placeholder=""
+						class="form-control input-md">
+
+				</div>
+				
+				<label class="col-md-1 control-label" for="textinput">N° Pedigre</label>
+				<div class="col-md-2">
+					<input id="textinput" name="textinput" type="text" placeholder=""
+						class="form-control input-md">
+
+				</div>
+			</div>																	
+			
+						<!-- Button (Double) -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="button1id"></label>
+				<div class="col-md-8">
+					<button id="button1id" name="button1id" class="btn btn-success">Enviar</button>
+					<button id="" name="" class="btn btn-danger">Limpar</button>
+				</div>
+			</div>
+		</fieldset>		
+	</form>
+=======
 			<legend>
 				Animal 
 				<button id="btnAddAnimal" type="button" class="btn btn-xs btn-warning">Adicionar</button>
@@ -275,6 +352,7 @@
 	</div>	
 	</form>
 	
+>>>>>>> desenvolvimento
 
 	<jsp:include page="/template/rodape_padrao.jsp" />
 </body>
