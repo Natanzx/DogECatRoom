@@ -1,6 +1,7 @@
 package br.com.dogcatroom.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.dogcatroom.bo.AnimalBO;
 import br.com.dogcatroom.dto.AnimalDTO;
@@ -20,6 +22,7 @@ public class AnimalController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
 		String acao = rq.getParameter("acao");
+		HttpSession session = rq.getSession(true);
 		
 		if(acao!=null && acao.equals("listar")){
 			
@@ -33,10 +36,41 @@ public class AnimalController extends HttpServlet {
 			RequestDispatcher saida= rq.getRequestDispatcher("Sistemas/Clientes/consultarAnimal.jsp");
 			saida.forward(rq, rs);
 		}
+		
+		if(acao!=null && acao.equals("listAnimaisTemp")){
+			List<AnimalDTO> listA = new ArrayList<AnimalDTO>();
+			
+			if(session.getAttribute("listAnimalTemp") != null){
+				listA = (ArrayList<AnimalDTO>)session.getAttribute("listAnimalTemp");
+			}
+			
+			rq.setAttribute("listaAnimal", listA);
+			
+			RequestDispatcher saida= rq.getRequestDispatcher("Sistemas/Clientes/consultarAnimal.jsp");
+			saida.forward(rq, rs);
+		}		
+		
+		if(acao!=null && acao.equals("deletarAnimalTemp")){
+			List<AnimalDTO> listA = new ArrayList<AnimalDTO>();
+			int idAnimal = Integer.parseInt(rq.getParameter("idAnimal"));
+			
+			if(session.getAttribute("listAnimalTemp") != null){
+				listA = (ArrayList<AnimalDTO>)session.getAttribute("listAnimalTemp");
+			}
+			AnimalDTO a = new AnimalDTO();
+			a.setIdAnimal(idAnimal);
+			
+			listA.remove(a);
+			
+			session.setAttribute("listAnimalTemp", listA);
+		}		
+
 	}
 
 	protected void doPost(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
 		String acao = rq.getParameter("acao");
+		
+		HttpSession session = rq.getSession(true);
 		
 		if(acao!=null && acao.equals("cadastrar")){
 			
@@ -65,6 +99,43 @@ public class AnimalController extends HttpServlet {
 			animalBO.cadastrar(a);;
 			
 		}
+
+		if(acao!=null && acao.equals("cadastrarTemp")){
+			
+			List<AnimalDTO> listAnimal = new ArrayList<AnimalDTO>();
+			
+			int idCliente = 0;
+			String nome = rq.getParameter("nome");
+			String tipo = rq.getParameter("tipo");
+			String raca = rq.getParameter("raca");
+			String cor = rq.getParameter("cor");
+			String dataNasc = rq.getParameter("dataNasc");
+			String sexo = rq.getParameter("sexo");
+			int pedigre = Integer.parseInt(rq.getParameter("pedigre"));
+			int numPedigre = Integer.parseInt(rq.getParameter("numPedigre"));
+
+			AnimalDTO a = new AnimalDTO();
+			a.setIdCliente(idCliente);
+			a.setNome(nome);
+			a.setTipo(tipo);
+			a.setRaca(raca);
+			a.setCor(cor);
+			a.setDataNasc(dataNasc);
+			a.setSexo(sexo);
+			a.setPedigre(pedigre);
+			a.setNumPedigre(numPedigre);
+
+			//AnimalBO animalBO = new AnimalBO();
+			//animalBO.cadastrar(a);
+			if (session.getAttribute("listAnimalTemp") != null){
+				listAnimal = (ArrayList<AnimalDTO>)session.getAttribute("listAnimalTemp");
+			}
+			
+			listAnimal.add(a);
+			
+			session.setAttribute("listAnimalTemp", listAnimal);
+		}
+		
 	}
 
 }

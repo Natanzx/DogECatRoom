@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.dogcatroom.bo.ClienteBO;
 import br.com.dogcatroom.dto.ClienteDTO;
@@ -54,7 +55,14 @@ public class ClienteController extends HttpServlet {
 			response.sendRedirect("ClienteController?acao=listar");
 		}
 		
-		
+		if(acao!=null && acao.equals("cadastrar")){
+			HttpSession session = request.getSession();
+			session.removeAttribute("listAnimalTemp");
+			//session.invalidate();
+			
+			RequestDispatcher saida= request.getRequestDispatcher("Sistemas/Clientes/cadastrarClientes.jsp");
+			saida.forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

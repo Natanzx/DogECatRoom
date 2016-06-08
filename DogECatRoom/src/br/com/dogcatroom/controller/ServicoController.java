@@ -118,7 +118,11 @@ public class ServicoController extends HttpServlet {
 			servico.setId(id);
 
 			ServicoBO servicoBO = new ServicoBO();
-			// servicoBO.alterarServico(servico);
+			try{
+			servicoBO.salvarServico(servico);
+			}catch(BusinesException | SQLException e){
+				e.printStackTrace();
+			}
 
 			response.sendRedirect("ServicoController?acao=listar");
 		}
