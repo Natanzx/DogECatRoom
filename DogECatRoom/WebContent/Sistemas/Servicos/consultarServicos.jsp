@@ -37,10 +37,13 @@
 		<td><% out.print(servico.getNome()); %></td>
 		<td><% out.print(servico.getDescricao()); %></td> 
 		<td><% out.print(servico.getValor()); %></td>
-		<td align="center">
-			<a href="ServicoController?acao=excluir&id=<%out.print(servico.getId());%>">Excluir</a>
-			|
-			<a href="ServicoController?acao=alterar&id=<%out.print(servico.getId());%>">Alterar</a>
+		<td>
+			<a href="ServicoController?acao=excluir&id=<%out.print(servico.getId());%>">
+				<button class="btn btn-danger btn-xs">X</button>
+			</a>
+			<a href="ServicoController?acao=alterar&id=<%out.print(servico.getId());%>">
+				<button class="btn btn-warning btn-xs">Alterar</button>
+			</a>
 		</td>
 	</tr>
 <% } %>

@@ -45,22 +45,13 @@
 
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="textinput">Ativo</label>
-				<div class="col-md-2" name="estadoServico">
-					<select class="form-control">
-						<option>Ativo</option>
-						<option>Inativo</option>
-					</select>
-				</div>
-			</div>
 
 			<!-- Button (Double) -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="button1id"></label>
 				<div class="col-md-8">
 					<button id="button1id" name="button1id" class="btn btn-success">Enviar</button>
-					<button id="" name="" class="btn btn-danger">Limpar</button>
+					<button id="" name="" type="reset" class="btn btn-danger">Limpar</button>
 				</div>
 			</div>
 
