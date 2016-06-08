@@ -1,5 +1,7 @@
 @CHARSET "ISO-8859-1";
-
+a{
+	text-decoration: none; 
+}
 legend{
 	padding: 0px 20px !important;
 }
