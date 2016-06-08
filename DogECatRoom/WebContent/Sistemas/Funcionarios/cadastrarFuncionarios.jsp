@@ -143,17 +143,6 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="textinput">Ativo</label>
-				<div class="col-md-2" name="estadoFuncionario">
-					<select class="form-control">
-						<option>Ativo</option>
-						<option>Inativo</option>
-					</select>
-				</div>
-			</div>
-
-
 			<!-- Button (Double) -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="button1id"></label>

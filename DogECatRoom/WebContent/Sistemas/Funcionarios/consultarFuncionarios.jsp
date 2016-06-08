@@ -48,11 +48,14 @@
 			<td><% out.print(funcionario.getSalario()); %></td>
 			<td><% out.print(funcionario.getLogin()); %></td>
 			<td><% out.print(funcionario.isAtivo()? "Inativo" : "Ativo"); %></td>
-			<td align="center">
-				<a href="FuncionarioController?acao=alterar&id=<%out.print(funcionario.getId());%>">Alterar</a>
-			|
-				<a href="FuncionarioController?acao=excluir&id=<%out.print(funcionario.getId());%>">Excluir</a>
-		</td>
+			<td>
+				<a href="FuncionarioController?acao=excluir&id=<%out.print(funcionario.getId());%>">
+					<button class="btn btn-danger btn-xs">X</button>
+				</a>			
+				<a href="FuncionarioController?acao=alterar&id=<%out.print(funcionario.getId());%>">
+					<button class="btn btn-warning btn-xs">Alterar</button>
+				</a>
+			</td>
 		</tr>
 		<% } %>
 	</table>
