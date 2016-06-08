@@ -34,14 +34,14 @@ public class ServicoDAO implements IServicoDAO {
 	@Override
 	public void alterarServico(ServicoDTO servico) throws SQLException {
 
-		String sql = "update servicos set nome=?, descricao=?,valor=?,ativo=?" + " where id = ?";
+		String sql = "update servicos set nome=?, descricao=?,valor=?" + " where id = ?";
 
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setString(1, servico.getNome());
 		preparador.setString(2, servico.getDescricao());
 		preparador.setDouble(3, servico.getValor());
-		preparador.setBoolean(4, servico.isAtivo());
-		preparador.setInt(5, servico.getId());
+		//preparador.setBoolean(4, servico.isAtivo());
+		preparador.setInt(4, servico.getId());
 
 		preparador.execute();
 		preparador.close();
@@ -80,7 +80,7 @@ public class ServicoDAO implements IServicoDAO {
 		ServicoDTO servico = null;
 
 		PreparedStatement pstm = con.prepareStatement(sql);
-		pstm.setInt(1, servico.getId());
+		pstm.setInt(1, servicoDTO.getId());
 		ResultSet resultado = pstm.executeQuery();
 
 		if (resultado.next()) {
