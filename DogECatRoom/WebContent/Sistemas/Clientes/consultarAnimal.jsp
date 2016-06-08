@@ -1,18 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.List" %>
 <%@page import="br.com.dogcatroom.dto.AnimalDTO" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-</head>
-<body>
 	<table class="table">
 		<thead>
 			<tr>
-				<th colspan="8">Lista de Animais</th>
+				<th colspan="9">Lista de Animais</th>
 			</tr>
 			<tr>
 				<th>Nome</th>
@@ -23,6 +15,7 @@
 				<th>Sexo</th>
 				<th>Pedigre</th>
 				<th>N° Pedigre</th>
+				<th>Acao</th>
 			</tr>
 		</thead>
 		
@@ -40,12 +33,16 @@
 				<td><% out.print(a.getDataNasc()); %></td>
 				<td><% out.print(a.getSexo()); %></td>
 				<td><% out.print(a.getPedigre()); %></td>
-				<td><% out.print(a.getNumPedigre()); %></td>				
+				<td><% out.print(a.getNumPedigre()); %></td>
+				<td>
+					<a href="/DogECatRoom/AnimalController?acao=deletarAnimalTemp&idAnimal=<%out.print(a.getIdAnimal());%>">
+						<button type="button" class="btn btn-danger btn-xs">X</button>
+					</a>
+					<button class="btn btn-warning btn-xs">Alterar</button>
+				</td>					
 			</tr>
 		<%
 			}
 		%>
 		</tbody>
 	</table>	
-</body>
-</html>

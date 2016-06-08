@@ -13,7 +13,7 @@
 	<jsp:include page="/template/cabecalho_padrao.jsp"/>
 
 	<div class="clOpcoesCrud">
-		<a href="Sistemas/Clientes/cadastrarClientes.jsp">
+		<a href="/DogECatRoom/ClienteController?acao=cadastrar">
 			<button class="btn btn-primary">Cadastrar</button>
 		</a>
 		<a href="/DogECatRoom/principal.jsp">
@@ -55,10 +55,14 @@
 		<td><% out.print(cliente.getEstado()); %></td>
 		<td><% out.print(cliente.getTelCelular()); %></td>
 		<td><% out.print(cliente.getTelFixo()); %></td>
-		<td align="center">
-			<a href="ClienteController?acao=excluir&id=<%out.print(cliente.getId());%>">Excluir</a>
-			|
-			<a href="ClienteController?acao=alterar&id=<%out.print(cliente.getId());%>">Alterar</a>
+		<td nowrap>
+			<a href="ClienteController?acao=excluir&id=<%out.print(cliente.getId());%>">
+				<button id="btnDeleteAnimalTemp" class="btn btn-danger btn-xs">X</button>
+			</a>
+			
+			<a href="ClienteController?acao=alterar&id=<%out.print(cliente.getId());%>">
+				<button class="btn btn-warning btn-xs">Alterar</button>
+			</a>
 		</td>
 	</tr>
 <% } %>

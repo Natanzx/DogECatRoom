@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.List" %>
+<%@page import="br.com.dogcatroom.dto.AnimalDTO" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,57 +11,52 @@
 
 	<script>
 		$(document).ready(function(){
-			/*
 			var countAnimal = 0;
-			var Animais;
-			var table = "<table class='table'>";
-			var tr = "<tr>";
 			
-			function listaAnimaisCliente(Animal){
-				var result;
-				
-				if (countAnimal == 1){
-					result = "<tr>"	
-				}else{
-					result = table + tr;	
-				};
-					
-				$("#divConsultaAnimal").append(result);	
+			function listaAnimaisCliente(){
+
+		        $.ajax({	            
+		            url: "/DogECatRoom/AnimalController?acao=listAnimaisTemp",
+		            type: 'GET',
+		            success: function(result){
+		            	$("#divConsultaAnimal").html(result);	
+		            }
+	        	});				
 			}
 	       
 	      
 	        $("#btnCadastrarAnimal").click(function(){
 	        	++countAnimal;
-	        	
-	            var Animal = {
-	            	id : countAnimal,
-            		nome: $("#nomeAnimal").val(),
-            		tipo: $("#tipoAnimal").val(),
-            		raca: $("#racaAnimal").val(),
-            		cor: $("#corAnimal").val(),
-	           		dataNasc: $("#dataNascAnimal").val(),
-            		sexo: $("#sexoAnimal").val(),
-            		pedigre: $("#pedigreAnimal").val(),
-            		numPedigre: $("#numPedigreAnimal").val()
-	            };
-	            
-	            Animais = {1: Animal};
-	            
-	            listaAnimaisCliente(Animal);
-	        });		      
-	        
-	        $("#btnAddAnimal").click(function(){
+
 		        $.ajax({	            
-		            url: "cadastrarAnimal.jsp",
-		            //data: 'acao=listar',
-		            type: 'GET',
-		            success: function(result){
-		                $("#divConsultaAnimal").html(result);
+		            url: "/DogECatRoom/AnimalController?acao=cadastrarTemp",
+		            data: {
+		            	'id': countAnimal,
+		            	'nome': $("#nomeAnimal").val(),
+		            	'tipo': $("#tipoAnimal").val(),
+		            	'raca': $("#racaAnimal").val(),
+		            	'cor': $("#corAnimal").val(),
+		            	'dataNasc': $("#dataNascAnimal").val(),
+		            	'sexo': $("#sexo").val(),
+		            	'pedigre': $("#pedigreAnimal").val(),
+		            	'numPedigre': $("#numPedigreAnimal").val()
+		            },
+		            type: 'POST',
+		            success: function(){
+		            	listaAnimaisCliente();
+		            	$("#divCadastraAnimal").hide();
 		            }
-	        	});	        	
-	        	
+	        	});	
+	        });		
+	        
+			$("#btnDeleteAnimalTemp").click(function(){
+				listaAnimaisCliente();
+			});
+	        
+	        $("#btnAddAnimal").click(function(){	        	
+	        	$("#divCadastraAnimal").show();
 	        });
-			*/
+			
 		});
 	
 	</script>
@@ -173,93 +170,17 @@
 		
 		<fieldset>
 			<!-- Titulo - Animais -->
-<<<<<<< HEAD
-			<legend>Animal</legend>
-		
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="textinput">Nome Pet</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
 
-				</div>
-				
-				<label class="col-md-1 control-label" for="textinput">Tipo</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
+			<div id="divConsultaAnimal" style="padding: 0px 0px 40px">
+			
 			</div>
 			
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="textinput">Raca</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-				
-				<label class="col-md-1 control-label" for="textinput">Cor</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="textinput">Data Nascimento</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-				
-				<label class="col-md-1 control-label" for="textinput">Sexo</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="textinput">Pedigre</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-				
-				<label class="col-md-1 control-label" for="textinput">N° Pedigre</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-			</div>																	
-			
-						<!-- Button (Double) -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="button1id"></label>
-				<div class="col-md-8">
-					<button id="button1id" name="button1id" class="btn btn-success">Enviar</button>
-					<button id="" name="" class="btn btn-danger">Limpar</button>
-				</div>
-			</div>
-		</fieldset>		
-	</form>
-=======
 			<legend>
 				Animal 
 				<button id="btnAddAnimal" type="button" class="btn btn-xs btn-warning">Adicionar</button>
 				
 			</legend>
-			
-			<div id="divConsultaAnimal">
-			
-			</div>
-			
+						
 			<div id="divCadastraAnimal">
 
 				<!-- Text input-->
@@ -339,7 +260,6 @@
 			
 		</fieldset>		
 	
-	
 	<hr>
 	
 	<!-- Button (Double) -->
@@ -347,12 +267,10 @@
 		<label class="col-md-4 control-label" for="button1id"></label>
 		<div class="col-md-8">
 			<button id="button1id" type="submit" name="button1id" class="btn btn-primary">Enviar</button>
-			<button id="" name="" type="button" class="btn btn-danger">Limpar</button>
+			<button id="" name="" type="reset" class="btn btn-danger">Limpar</button>
 		</div>
 	</div>	
 	</form>
-	
->>>>>>> desenvolvimento
 
 	<jsp:include page="/template/rodape_padrao.jsp" />
 </body>
