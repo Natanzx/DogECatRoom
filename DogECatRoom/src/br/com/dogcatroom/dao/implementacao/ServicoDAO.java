@@ -34,7 +34,7 @@ public class ServicoDAO implements IServicoDAO {
 	@Override
 	public void alterarServico(ServicoDTO servico) throws SQLException {
 
-		String sql = "update servicos set nome=?, descricao=?,valor=?" + " where id = ?";
+		String sql = "update servicos set nome=?, descricao=?,valor=?" + " where idCliente = ?";
 
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setString(1, servico.getNome());
@@ -76,7 +76,7 @@ public class ServicoDAO implements IServicoDAO {
 	}
 
 	public ServicoDTO buscarPorID(ServicoDTO servicoDTO) throws SQLException {
-		String sql = "SELECT * FROM servicos WHERE id=?";
+		String sql = "SELECT * FROM servicos WHERE idCliente=?";
 		ServicoDTO servico = null;
 
 		PreparedStatement pstm = con.prepareStatement(sql);
@@ -99,7 +99,7 @@ public class ServicoDAO implements IServicoDAO {
 
 	@Override
 	public void excluirServico(ServicoDTO servico) throws SQLException {
-		String sql = "update servicos set ativo = 0 where id = ?";
+		String sql = "update servicos set ativo = 0 where idCliente = ?";
 
 			PreparedStatement pstm = con.prepareStatement(sql);
 			pstm.setInt(1, servico.getId());
