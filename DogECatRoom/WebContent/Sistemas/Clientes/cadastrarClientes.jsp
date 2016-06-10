@@ -65,7 +65,7 @@
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
 	
-	<form class="form-horizontal" method="POST" action="../../ClienteController?acao=cadastrar">
+	<form class="form-horizontal" method="POST" action="/DogECatRoom/ClienteController?acao=cadastrar">
 		<fieldset>
 
 			<!-- Titulo - Clientes -->

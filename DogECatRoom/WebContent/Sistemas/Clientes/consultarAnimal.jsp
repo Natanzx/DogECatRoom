@@ -1,5 +1,37 @@
 <%@page import="java.util.List" %>
 <%@page import="br.com.dogcatroom.dto.AnimalDTO" %>
+<script>
+	var idCliente = $("#idCliente").val();
+	
+	function AnimalDeletar(idAnimal){
+		$.ajax({	            
+	    	url: "/DogECatRoom/AnimalController",
+	        data: {
+	        	'acao':'excluir',
+	        	'idAnimal': idAnimal
+	        },
+	        type: 'GET',
+	        success: function(result){
+	        	listaAnimaisCliente();
+	        }
+		});	        				
+	}
+	
+	function listaAnimaisCliente(){
+		$.ajax({	            
+            url: "/DogECatRoom/AnimalController",
+            data: {
+            	'acao': 'listar',
+            	'idCliente': idCliente
+            },
+            type: 'GET',
+            success: function(result){
+                $("#divResultadoAnimal").html(result);
+            }
+    	});	
+	} 
+
+</script>
 
 	<table class="table">
 		<thead>
@@ -35,10 +67,9 @@
 				<td><% out.print(a.getPedigre()); %></td>
 				<td><% out.print(a.getNumPedigre()); %></td>
 				<td>
-					<a href="/DogECatRoom/AnimalController?acao=deletarAnimalTemp&idAnimal=<%out.print(a.getIdAnimal());%>">
-						<button type="button" class="btn btn-danger btn-xs">X</button>
-					</a>
-					<button class="btn btn-warning btn-xs">Alterar</button>
+					<button type="button" class="btn btn-danger btn-xs" onclick="AnimalDeletar(<%=a.getIdAnimal() %>)">X</button>
+					
+					<button class="btn btn-warning btn-xs" idAnimal="<%=a.getIdAnimal() %>">Alterar</button>
 				</td>					
 			</tr>
 		<%

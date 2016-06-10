@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="br.com.dogcatroom.dto.ClienteDTO" %>
+<%
+	ClienteDTO cliente =(ClienteDTO) request.getAttribute("cliente");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,64 +11,10 @@
 <jsp:include page="/template/head.jsp" />
 <title>DogECatRoom - Cadastrar Clientes</title>
 
-	<script>
-		$(document).ready(function(){
-		
-			function listaAnimaisCliente(){
-				$.ajax({	            
-		            url: "/DogECatRoom/AnimalController",
-		            data: 'acao=listar',
-		            type: 'GET',
-		            success: function(result){
-		                $("#divConsultaAnimal").html(result);
-		            }
-	        	});	
-			}
-
-	        $("#btnCadastrarAnimal").click(function(){
-	        	
-		        $.ajax({	            
-		            url: "/DogECatRoom/AnimalController",
-		            data: {
-	            		'acao': 'cadastrar',
-	            		'nome': $("#nomeAnimal").val(),
-	            		'tipo': $("#tipoAnimal").val(),
-	            		'raca': $("#racaAnimal").val(),
-	            		'cor': $("#corAnimal").val(),
-	            		'dataNasc': $("#dataNascAnimal").val(),
-	            		'sexo': $("#sexoAnimal").val(),
-	            		'pedigre': $("#pedigreAnimal").val(),
-	            		'numPedigre': $("#numPedigreAnimal").val()
-		            },
-		            type: 'POST',
-		            success: function(result){
-		            	listaAnimaisCliente();
-		            }
-	        	});	        	
-	        	
-	        });	
-	        
-	        $("#btnAddAnimal").click(function(){
-		        $.ajax({	            
-		            url: "cadastrarAnimal.jsp",
-		            //data: 'acao=listar',
-		            type: 'GET',
-		            success: function(result){
-		                $("#divConsultaAnimal").html(result);
-		            }
-	        	});	        	
-	        	
-	        });
-	        
-        });
-	</script>		
-
 </head>
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
-	<%
-		ClienteDTO cliente =(ClienteDTO) request.getAttribute("cliente");
-	%>
+
 	<form class="form-horizontal" method="POST" action="ClienteController?acao=alterar">
 		<fieldset>
 			
@@ -181,81 +130,20 @@
 		
 		<fieldset>
 			<!-- Titulo - Animais -->
-			<legend>Animal</legend>
-		
-<<<<<<< HEAD
-=======
-			<div id="divConsultaAnimal"></div>			
-		
-		
->>>>>>> desenvolvimento
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="textinput">Nome Pet</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
 
-				</div>
-				
-				<label class="col-md-1 control-label" for="textinput">Tipo</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-			</div>
+			<legend>
+				Animal
+				<button id="btnAddAnimal" type="button" class="btn btn-xs btn-warning">Adicionar</button>
+			</legend>
 			
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="textinput">Raca</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-				
-				<label class="col-md-1 control-label" for="textinput">Cor</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="textinput">Data Nascimento</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-				
-				<label class="col-md-1 control-label" for="textinput">Sexo</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="textinput">Pedigre</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-				
-				<label class="col-md-1 control-label" for="textinput">N° Pedigre</label>
-				<div class="col-md-2">
-					<input id="textinput" name="textinput" type="text" placeholder=""
-						class="form-control input-md">
-
-				</div>
-			</div>																	
-			
-						<!-- Button (Double) -->
+			<div id="divResultadoAnimal" style="padding: 0px 0px 40px">
+			</div>		
+																	
+			<!-- Button (Double) -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="button1id"></label>
 				<div class="col-md-8">
+					<input type="hidden" id="idCliente" value="<%=cliente.getId() %>">
 					<button id="button1id" name="button1id" class="btn btn-success">Enviar</button>
 					<button id="" name="" class="btn btn-danger">Limpar</button>
 				</div>
@@ -265,4 +153,43 @@
 
 	<jsp:include page="/template/rodape_padrao.jsp" />
 </body>
+<script>	
+	
+		$(document).ready(function(){
+		
+			var idCliente = $("#idCliente").val();
+			
+			listaAnimaisCliente();
+			
+			function listaAnimaisCliente(){
+				$.ajax({	            
+		            url: "/DogECatRoom/AnimalController",
+		            data: {
+		            	'acao': 'listar',
+		            	'idCliente': idCliente
+		            },
+		            type: 'GET',
+		            success: function(result){
+		                $("#divResultadoAnimal").html(result);
+		            }
+	        	});	
+			}
+	        
+	        $("#btnAddAnimal").click(function(){
+		        $.ajax({	            
+		        	url: "/DogECatRoom/AnimalController",
+		            data: {
+		            	'acao': 'cadastro',
+		            	'idCliente': idCliente
+		            },
+		            type: 'GET',
+		            success: function(result){
+		                $("#divResultadoAnimal").html(result);
+		            }
+	        	});	        	
+	        	
+	        });
+	        
+        });
+	</script>	
 </html>

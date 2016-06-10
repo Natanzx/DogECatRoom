@@ -1,6 +1,7 @@
 package br.com.dogcatroom.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.dogcatroom.bo.AnimalBO;
 import br.com.dogcatroom.bo.ClienteBO;
+import br.com.dogcatroom.dto.AnimalDTO;
 import br.com.dogcatroom.dto.ClienteDTO;
 
 @WebServlet("/ClienteController")
@@ -65,22 +68,23 @@ public class ClienteController extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String acao = request.getParameter("acao");
+	protected void doPost(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
+		String acao = rq.getParameter("acao");
+		HttpSession session = rq.getSession(true);
 		
 		if(acao!=null && acao.equals("cadastrar")){
 			Integer numero = null;
-			String nome = request.getParameter("textNome");
-			String cpf = request.getParameter("textCpf");
-			String cep = request.getParameter("textCep");
-			String endereco = request.getParameter("textEndereco");
-			String numerotext =request.getParameter("textNumero");
-			String complemento = request.getParameter("textComplemento");
-			String bairro = request.getParameter("textBairro");
-			String cidade = request.getParameter("textCidade");
-			String estado = request.getParameter("textEstado");
-			String telCelular = request.getParameter("textTelCelular");
-			String telFixo = request.getParameter("textTelFixo");
+			String nome = rq.getParameter("textNome");
+			String cpf = rq.getParameter("textCpf");
+			String cep = rq.getParameter("textCep");
+			String endereco = rq.getParameter("textEndereco");
+			String numerotext =rq.getParameter("textNumero");
+			String complemento = rq.getParameter("textComplemento");
+			String bairro = rq.getParameter("textBairro");
+			String cidade = rq.getParameter("textCidade");
+			String estado = rq.getParameter("textEstado");
+			String telCelular = rq.getParameter("textTelCelular");
+			String telFixo = rq.getParameter("textTelFixo");
 			
 			
 			if(numerotext != ""){
@@ -102,29 +106,39 @@ public class ClienteController extends HttpServlet {
 			cliente.setEstado(estado);
 			cliente.setTelCelular(telCelular);
 			cliente.setTelFixo(telFixo);
-			
+						
 			ClienteBO clienteBO = new ClienteBO();
 			clienteBO.cadastarCliente(cliente);
 			
-			response.sendRedirect("ClienteController?acao=listar");
+			if(session.getAttribute("listAnimalTemp") != null){
+				List<AnimalDTO> listaAnimal = (ArrayList<AnimalDTO>)session.getAttribute("listAnimalTemp");
+				AnimalBO animalBO = new AnimalBO();
+				
+				for (AnimalDTO animal : listaAnimal) {
+					animal.setIdCliente(cliente.getId());
+					animalBO.cadastrar(animal);
+				}
+			}			
+			
+			rs.sendRedirect("ClienteController?acao=listar");
 		}
 	
 	
 	if(acao!=null && acao.equals("alterar")){
 		Integer numero = null;
-		String nome = request.getParameter("textNome");
-		String cpf = request.getParameter("textCpf");
-		String cep = request.getParameter("textCep");
-		String endereco = request.getParameter("textEndereco");
-		String numerotext =request.getParameter("textNumero");
-		String complemento = request.getParameter("textComplemento");
-		String bairro = request.getParameter("textBairro");
-		String cidade = request.getParameter("textCidade");
-		String estado = request.getParameter("textEstado");
-		String telCelular = request.getParameter("textTelCelular");
-		String telFixo = request.getParameter("textTelFixo");
-		int id = Integer.parseInt(request.getParameter("textId"));
-		int estadoCliente = Integer.parseInt(request.getParameter("estadoCliente"));
+		String nome = rq.getParameter("textNome");
+		String cpf = rq.getParameter("textCpf");
+		String cep = rq.getParameter("textCep");
+		String endereco = rq.getParameter("textEndereco");
+		String numerotext =rq.getParameter("textNumero");
+		String complemento = rq.getParameter("textComplemento");
+		String bairro = rq.getParameter("textBairro");
+		String cidade = rq.getParameter("textCidade");
+		String estado = rq.getParameter("textEstado");
+		String telCelular = rq.getParameter("textTelCelular");
+		String telFixo = rq.getParameter("textTelFixo");
+		int id = Integer.parseInt(rq.getParameter("textId"));
+		int estadoCliente = Integer.parseInt(rq.getParameter("estadoCliente"));
 		
 		if(numerotext != ""){
 			numero = (Integer.parseInt(numerotext));
@@ -149,7 +163,7 @@ public class ClienteController extends HttpServlet {
 		ClienteBO clienteBO = new ClienteBO();
 		clienteBO.alterarCliente(cliente);
 		
-		response.sendRedirect("ClienteController?acao=listar");
+		rs.sendRedirect("ClienteController?acao=listar");
 	}
 }
 

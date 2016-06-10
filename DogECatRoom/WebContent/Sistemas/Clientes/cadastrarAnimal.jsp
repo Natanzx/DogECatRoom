@@ -1,16 +1,62 @@
 
+<script>
+
+	$(document).ready(function(){
+		var idCliente = $("#idCliente").val();
+		
+		function listaAnimaisCliente(){
+			$.ajax({	            
+	            url: "/DogECatRoom/AnimalController",
+	            data: {
+	            	'acao': 'listar',
+	            	'idCliente': idCliente
+	            },
+	            type: 'GET',
+	            success: function(result){
+	                $("#divResultadoAnimal").html(result);
+	            }
+        	});	
+		}
+		
+		$("#btnCadastrarAnimal").click(function(){
+			
+		    $.ajax({	            
+		        url: "/DogECatRoom/AnimalController",
+		        data: {
+		    		'acao': 'cadastrar',
+		    		'idCliente': idCliente,
+		    		'nome': $("#nomeAnimal").val(),
+		    		'tipo': $("#tipoAnimal").val(),
+		    		'raca': $("#racaAnimal").val(),
+		    		'cor': $("#corAnimal").val(),
+		    		'dataNasc': $("#dataNascAnimal").val(),
+		    		'sexo': $("#sexoAnimal").val(),
+		    		'pedigre': $("#pedigreAnimal").val(),
+		    		'numPedigre': $("#numPedigreAnimal").val()
+		        },
+		        type: 'POST',
+		        success: function(result){
+		        	listaAnimaisCliente();
+		        }
+			});	        	
+			
+		});
+	});		
+		
+</script>
+
 	<!-- Text input-->
 	<div class="form-group">
 		<label class="col-md-3 control-label" for="textinput">Nome Pet</label>
 		<div class="col-md-2">
-			<input id="textinput" id="nome" type="text" placeholder=""
+			<input id="nomeAnimal" type="text" placeholder=""
 				class="form-control input-md">
 
 		</div>
 		
 		<label class="col-md-1 control-label" for="textinput">Tipo</label>
 		<div class="col-md-2">
-			<input id="textinput" id="tipo" type="text" placeholder=""
+			<input id="tipoAnimal" type="text" placeholder=""
 				class="form-control input-md">
 
 		</div>
@@ -19,14 +65,14 @@
 	<div class="form-group">
 		<label class="col-md-3 control-label" for="textinput">Raca</label>
 		<div class="col-md-2">
-			<input id="textinput" id="raca" type="text" placeholder=""
+			<input id="racaAnimal" type="text" placeholder=""
 				class="form-control input-md">
 
 		</div>
 		
 		<label class="col-md-1 control-label" for="textinput">Cor</label>
 		<div class="col-md-2">
-			<input id="textinput" id="cor" type="text" placeholder=""
+			<input id="corAnimal" type="text" placeholder=""
 				class="form-control input-md">
 
 		</div>
@@ -34,14 +80,14 @@
 	<div class="form-group">
 		<label class="col-md-3 control-label" for="textinput">Data Nascimento</label>
 		<div class="col-md-2">
-			<input id="textinput" id="dataNasc" type="text" placeholder=""
+			<input id="dataNascAnimal" type="text" placeholder=""
 				class="form-control input-md">
 
 		</div>
 		
 		<label class="col-md-1 control-label" for="textinput">Sexo</label>
 		<div class="col-md-2">
-			<input id="textinput" id="sexo" type="text" placeholder=""
+			<input id="sexoAnimal" type="text" placeholder=""
 				class="form-control input-md">
 
 		</div>
@@ -49,14 +95,14 @@
 	<div class="form-group">
 		<label class="col-md-3 control-label" for="textinput">Pedigre</label>
 		<div class="col-md-2">
-			<input id="textinput" id="pedigre" type="text" placeholder=""
+			<input id="pedigreAnimal" type="text" placeholder=""
 				class="form-control input-md">
 
 		</div>
 		
 		<label class="col-md-1 control-label" for="textinput">N° Pedigre</label>
 		<div class="col-md-2">
-			<input id="textinput" id="numPedigre" type="text" placeholder=""
+			<input id="numPedigreAnimal" type="text" placeholder=""
 				class="form-control input-md">
 
 		</div>
