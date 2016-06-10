@@ -17,32 +17,36 @@ public class ClienteDAO implements IClienteDAO {
 	private Connection con = ConnectionFactory.getConnection();
 
 	public void cadastrarCliente(ClienteDTO cliente) {
-
-		String sql = "INSERT INTO clientes (nome, cpf,endereco,numero,complemento,bairro,cidade,estado,telCelular,telFixo,cep,ativo) values (?,?,?,?,?,?,?,?,?,?,?,1)";
-
+		
+		String sql = "call ClienteInserirListar(?,?,?,?,?,?,?,?,?,?,?);";
+		
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
 			preparador.setString(1, cliente.getNome());
 			preparador.setString(2, cliente.getCpf());
 			preparador.setString(3, cliente.getEndereco());
-			preparador.setInt(4, cliente.getNumero());
-			preparador.setString(5, cliente.getComplemento());
-			preparador.setString(6, cliente.getBairro());
-			preparador.setString(7, cliente.getCidade());
-			preparador.setString(8, cliente.getEstado());
-			preparador.setString(9, cliente.getTelCelular());
-			preparador.setString(10, cliente.getTelFixo());
-			preparador.setString(11, cliente.getCep());
+			preparador.setString(4, cliente.getCep());
+			preparador.setInt(5, cliente.getNumero());
+			preparador.setString(6, cliente.getComplemento());
+			preparador.setString(7, cliente.getBairro());
+			preparador.setString(8, cliente.getCidade());
+			preparador.setString(9, cliente.getEstado());
+			preparador.setString(10, cliente.getTelCelular());
+			preparador.setString(11, cliente.getTelFixo());
 			
-
-			preparador.execute();
+			
+			ResultSet rs = preparador.executeQuery();
+			
+			while(rs.next()){
+				cliente.setId(rs.getInt("idCliente"));
+			}
 			preparador.close();
 
 			System.out.println("Parabéns!!! Cliente cadastrado com sucesso!");
 
 		} catch (SQLException e) {
 
-			System.out.println("Operação não concluída. ):");
+			System.out.println("Operação não concluída.");
 
 			e.printStackTrace();
 		}
@@ -166,5 +170,37 @@ public class ClienteDAO implements IClienteDAO {
 		}return cliente;
 
 	}
+	
+	public ClienteDTO buscarClientePorCPF(String CPF) {
+		String sql = "SELECT * FROM clientes WHERE CPF = ?";
+		ClienteDTO cliente = null;
+		try {
+			PreparedStatement pstm = con.prepareStatement(sql);
+			pstm.setString(1, CPF);
+			ResultSet resultado = pstm.executeQuery();
+			
+			if(resultado.next()) { 
+				cliente = new ClienteDTO();
+				cliente.setId(resultado.getInt("idCliente"));
+				cliente.setNome(resultado.getString("nome"));
+				cliente.setCpf(resultado.getString("cpf"));
+				cliente.setEndereco(resultado.getString("endereco"));
+				cliente.setNumero(Integer.parseInt(resultado.getString("numero")));
+				cliente.setComplemento(resultado.getString("complemento"));
+				cliente.setBairro(resultado.getString("bairro"));
+				cliente.setCidade(resultado.getString("cidade"));
+				cliente.setEstado(resultado.getString("estado"));
+				cliente.setTelCelular(resultado.getString("telCelular"));
+				cliente.setTelFixo(resultado.getString("telFixo"));
+				cliente.setCep(resultado.getString("cep"));
+	}
+
+			pstm.close();
+			System.out.println("Buscar por CPF com sucesso!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}return cliente;
+
+	}	
 
 }

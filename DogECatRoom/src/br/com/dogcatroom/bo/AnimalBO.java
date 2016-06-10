@@ -16,12 +16,12 @@ public class AnimalBO {
 		animalDAO.cadastrarAnimal(animalDTO);
 	}
 
-	public List<AnimalDTO> buscarPeloCliente(ClienteDTO clienteDTO) {
-		return animalDAO.buscarAnimaisPeloCliente(clienteDTO);
+	public List<AnimalDTO> buscarPeloidCliente(int idCliente) {
+		return animalDAO.buscarAnimaisPeloidCliente(idCliente);
 	}
 	
-	public void excluir(AnimalDTO animalDTO) {
-		animalDAO.excluirAnimal(animalDTO);
+	public void excluir(int idAnimal) {
+		animalDAO.excluirAnimal(idAnimal);
 	}		
 	
 }

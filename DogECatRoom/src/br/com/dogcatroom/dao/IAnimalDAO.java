@@ -9,8 +9,8 @@ public interface IAnimalDAO {
 	
 	void cadastrarAnimal(AnimalDTO animalDTO);
 	
-	List<AnimalDTO> buscarAnimaisPeloCliente(ClienteDTO clienteDTO);
+	List<AnimalDTO> buscarAnimaisPeloidCliente(int idCliente);
 	
-	void excluirAnimal(AnimalDTO animalDTO);
+	void excluirAnimal(int idAnimal);
 	
 }

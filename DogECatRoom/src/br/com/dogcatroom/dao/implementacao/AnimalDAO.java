@@ -45,13 +45,13 @@ public class AnimalDAO implements IAnimalDAO {
 	}
 
 	@Override
-	public List<AnimalDTO> buscarAnimaisPeloCliente(ClienteDTO c) {
+	public List<AnimalDTO> buscarAnimaisPeloidCliente(int idCliente) {
 		String sql = "SELECT * FROM animais WHERE idCliente = ? and ativo = 1";
 		List<AnimalDTO> listaAnimal = new ArrayList<AnimalDTO>();
 		
 		try {
 			PreparedStatement pstm = con.prepareStatement(sql);
-			pstm.setInt(1, c.getId());
+			pstm.setInt(1, idCliente);
 			
 			ResultSet rs = pstm.executeQuery();
 			
@@ -59,7 +59,7 @@ public class AnimalDAO implements IAnimalDAO {
 				AnimalDTO a = new AnimalDTO();
 				
 				a.setIdAnimal(rs.getInt("idAnimal"));
-				a.setIdCliente(rs.getInt("idAnimal"));
+				a.setIdCliente(rs.getInt("idCliente"));
 				a.setNome(rs.getString("nome"));
 				a.setTipo(rs.getString("tipo"));
 				a.setRaca(rs.getString("raca"));
@@ -82,12 +82,12 @@ public class AnimalDAO implements IAnimalDAO {
 	}
 
 	@Override
-	public void excluirAnimal(AnimalDTO a) {
-		String sql = "DELETE animais where idAnimal = ?";
+	public void excluirAnimal(int idAnimal) {
+		String sql = "UPDATE animais SET ativo = 0 where idAnimal = ?";
 
 		try {
 			PreparedStatement pstm = con.prepareStatement(sql);
-			pstm.setInt(1, a.getIdAnimal());
+			pstm.setInt(1, idAnimal);
 			
 			pstm.execute();
 			pstm.close();

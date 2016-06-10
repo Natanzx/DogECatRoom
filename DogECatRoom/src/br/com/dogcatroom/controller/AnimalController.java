@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.dogcatroom.bo.AnimalBO;
+import br.com.dogcatroom.bo.ClienteBO;
 import br.com.dogcatroom.dto.AnimalDTO;
 import br.com.dogcatroom.dto.ClienteDTO;
 
@@ -25,17 +26,32 @@ public class AnimalController extends HttpServlet {
 		HttpSession session = rq.getSession(true);
 		
 		if(acao!=null && acao.equals("listar")){
+			int idCliente = Integer.parseInt(rq.getParameter("idCliente"));
 			
-			ClienteDTO c = new ClienteDTO();
-			c.setId(1);
 			AnimalBO animalBO = new AnimalBO();
-			List<AnimalDTO> lista = animalBO.buscarPeloCliente(c);
+			List<AnimalDTO> lista = animalBO.buscarPeloidCliente(idCliente);
 		
 			rq.setAttribute("listaAnimal", lista);
 			
 			RequestDispatcher saida= rq.getRequestDispatcher("Sistemas/Clientes/consultarAnimal.jsp");
 			saida.forward(rq, rs);
 		}
+		
+		if(acao!=null && acao.equals("cadastro")){
+			int idCliente = Integer.parseInt(rq.getParameter("idCliente"));
+			rq.setAttribute("idCliente", idCliente);
+			
+			RequestDispatcher saida= rq.getRequestDispatcher("Sistemas/Clientes/cadastrarAnimal.jsp");
+			saida.forward(rq, rs);
+		}		
+		
+		if(acao!=null && acao.equals("excluir")){
+			int idAnimal = Integer.parseInt(rq.getParameter("idAnimal"));
+			
+			AnimalBO animalBO = new AnimalBO();
+			animalBO.excluir(idAnimal);
+		}
+		
 		
 		if(acao!=null && acao.equals("listAnimaisTemp")){
 			List<AnimalDTO> listA = new ArrayList<AnimalDTO>();
@@ -74,7 +90,7 @@ public class AnimalController extends HttpServlet {
 		
 		if(acao!=null && acao.equals("cadastrar")){
 			
-			int idCliente = 1;
+			int idCliente = Integer.parseInt(rq.getParameter("idCliente"));
 			String nome = rq.getParameter("nome");
 			String tipo = rq.getParameter("tipo");
 			String raca = rq.getParameter("raca");
@@ -96,8 +112,7 @@ public class AnimalController extends HttpServlet {
 			a.setNumPedigre(numPedigre);
 
 			AnimalBO animalBO = new AnimalBO();
-			animalBO.cadastrar(a);;
-			
+			animalBO.cadastrar(a);
 		}
 
 		if(acao!=null && acao.equals("cadastrarTemp")){

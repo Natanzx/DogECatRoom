@@ -35,12 +35,16 @@ public class ClienteController extends HttpServlet {
 		}
 
 		if(acao!=null && acao.equals("alterar")){
-			String id = request.getParameter("id");
+			int idCliente = Integer.parseInt(request.getParameter("id"));
 			
 			ClienteBO clienteBO = new ClienteBO();
-			ClienteDTO cliente = clienteBO.buscarClientePorID(Integer.parseInt(id));
+			ClienteDTO cliente = clienteBO.buscarClientePorID(idCliente);
+			
+			AnimalBO animalBO = new AnimalBO();
+			List<AnimalDTO> listaAnimal = animalBO.buscarPeloidCliente(idCliente);
 			
 			request.setAttribute("cliente", cliente);
+			request.setAttribute("listaAnimal", listaAnimal);
 			RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Clientes/alterarCliente.jsp");
 			saida.forward(request,response);
 			
