@@ -43,7 +43,18 @@ public class AnimalController extends HttpServlet {
 			
 			RequestDispatcher saida= rq.getRequestDispatcher("Sistemas/Clientes/cadastrarAnimal.jsp");
 			saida.forward(rq, rs);
-		}		
+		}	
+		
+		if(acao!=null && acao.equals("alterar")){
+			int idAnimal = Integer.parseInt(rq.getParameter("idAnimal"));
+			
+			AnimalBO animalBO = new AnimalBO();
+			AnimalDTO a = animalBO.buscaAnimalPorID(idAnimal);
+			rq.setAttribute("Animal", a);
+			
+			RequestDispatcher saida= rq.getRequestDispatcher("Sistemas/Clientes/alterarAnimal.jsp");
+			saida.forward(rq, rs);
+		}			
 		
 		if(acao!=null && acao.equals("excluir")){
 			int idAnimal = Integer.parseInt(rq.getParameter("idAnimal"));
@@ -114,6 +125,33 @@ public class AnimalController extends HttpServlet {
 			AnimalBO animalBO = new AnimalBO();
 			animalBO.cadastrar(a);
 		}
+		
+		if(acao!=null && acao.equals("update")){
+			
+			int idAnimal = Integer.parseInt(rq.getParameter("idAnimal"));
+			String nome = rq.getParameter("nome");
+			String tipo = rq.getParameter("tipo");
+			String raca = rq.getParameter("raca");
+			String cor = rq.getParameter("cor");
+			String dataNasc = rq.getParameter("dataNasc");
+			String sexo = rq.getParameter("sexo");
+			int pedigre = Integer.parseInt(rq.getParameter("pedigre"));
+			int numPedigre = Integer.parseInt(rq.getParameter("numPedigre"));
+
+			AnimalDTO a = new AnimalDTO();
+			a.setIdAnimal(idAnimal);
+			a.setNome(nome);
+			a.setTipo(tipo);
+			a.setRaca(raca);
+			a.setCor(cor);
+			a.setDataNasc(dataNasc);
+			a.setSexo(sexo);
+			a.setPedigre(pedigre);
+			a.setNumPedigre(numPedigre);
+
+			AnimalBO animalBO = new AnimalBO();
+			animalBO.alterar(a);
+		}		
 
 		if(acao!=null && acao.equals("cadastrarTemp")){
 			

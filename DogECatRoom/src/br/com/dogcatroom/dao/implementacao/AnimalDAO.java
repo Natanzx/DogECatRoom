@@ -99,4 +99,65 @@ public class AnimalDAO implements IAnimalDAO {
 		}
 	}
 
+	@Override
+	public AnimalDTO buscaAnimalPorID(int idAnimal) {
+		String sql = "SELECT * FROM animais WHERE idAnimal = ? and ativo = 1";
+		AnimalDTO a = new AnimalDTO();
+		
+		try {
+			PreparedStatement pstm = con.prepareStatement(sql);
+			pstm.setInt(1, idAnimal);
+			
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()){
+				a.setIdAnimal(rs.getInt("idAnimal"));
+				a.setIdCliente(rs.getInt("idCliente"));
+				a.setNome(rs.getString("nome"));
+				a.setTipo(rs.getString("tipo"));
+				a.setRaca(rs.getString("raca"));
+				a.setCor(rs.getString("cor"));
+				a.setDataNasc(rs.getString("dataNasc"));
+				a.setSexo(rs.getString("sexo"));
+				a.setPedigre(rs.getInt("pedigre"));
+				a.setNumPedigre(rs.getInt("numPedigre"));
+			}
+			pstm.close();
+			System.out.println("Busca animal por id concluida com sucesso!");
+
+		} catch (SQLException e) {
+			System.out.println("Operação não concluída. ):");
+			e.printStackTrace();
+		}
+		return a;
+	}
+
+	@Override
+	public void alterarAnimal(AnimalDTO a) {
+		String sql = "UPDATE animais SET nome = ?, tipo = ?, raca = ?, cor = ?, dataNasc = ?, sexo = ?, pedigre = ?, numPedigre = ? where idAnimal = ?";
+
+		try {
+			PreparedStatement pstm = con.prepareStatement(sql);
+			pstm.setString(1, a.getNome());
+			pstm.setString(2, a.getTipo());
+			pstm.setString(3, a.getRaca());
+			pstm.setString(4, a.getCor());
+			pstm.setString(5, a.getDataNasc());
+			pstm.setString(6, a.getSexo());
+			pstm.setInt(7, a.getPedigre());
+			pstm.setInt(8, a.getNumPedigre());
+			pstm.setInt(9, a.getIdAnimal());
+			
+			pstm.execute();
+			pstm.close();
+
+			System.out.println("Parabéns!!! Animal alterado com sucesso!");
+
+		} catch (SQLException e) {
+			System.out.println("Operação não concluída. ):");
+			e.printStackTrace();
+		}
+	
+	}
+
 }
