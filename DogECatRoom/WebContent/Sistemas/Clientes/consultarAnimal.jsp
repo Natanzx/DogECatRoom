@@ -17,6 +17,20 @@
 		});	        				
 	}
 	
+	function AnimalAlterar(idAnimal){
+		$.ajax({	            
+	    	url: "/DogECatRoom/AnimalController",
+	        data: {
+	        	'acao':'alterar',
+	        	'idAnimal': idAnimal
+	        },
+	        type: 'GET',
+	        success: function(result){
+	        	$("#divResultadoAnimal").html(result);
+	        }
+		});	        				
+	}	
+	
 	function listaAnimaisCliente(){
 		$.ajax({	            
             url: "/DogECatRoom/AnimalController",
@@ -69,7 +83,7 @@
 				<td>
 					<button type="button" class="btn btn-danger btn-xs" onclick="AnimalDeletar(<%=a.getIdAnimal() %>)">X</button>
 					
-					<button class="btn btn-warning btn-xs" idAnimal="<%=a.getIdAnimal() %>">Alterar</button>
+					<button type="button" class="btn btn-warning btn-xs" onclick="AnimalAlterar(<%=a.getIdAnimal() %>);">Alterar</button>
 				</td>					
 			</tr>
 		<%

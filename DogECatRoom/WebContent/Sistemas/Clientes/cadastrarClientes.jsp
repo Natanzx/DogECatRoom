@@ -9,6 +9,7 @@
 <jsp:include page="/template/head.jsp" />
 <title>DogECatRoom - Cadastrar Clientes</title>
 
+	<script src="/DogECatRoom/bibliotecas/js/validator.min.js"></script>
 	<script>
 		$(document).ready(function(){
 			var countAnimal = 0;
@@ -65,7 +66,7 @@
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
 	
-	<form class="form-horizontal" method="POST" action="/DogECatRoom/ClienteController?acao=cadastrar">
+	<form class="form-horizontal" method="POST" action="/DogECatRoom/ClienteController?acao=cadastrar" data-toggle="validator" role="form">
 		<fieldset>
 
 			<!-- Titulo - Clientes -->
@@ -76,8 +77,7 @@
 				<label class="col-md-3 control-label" for="textinput">Nome</label>
 				<div class="col-md-5">
 					<input id="textinput" name="textNome" type="text"
-						placeholder="Digite o nome" class="form-control input-md">
-
+						placeholder="Digite o nome" class="form-control input-md" required>
 				</div>
 			</div>
 
@@ -105,7 +105,6 @@
 				<div class="col-md-2">
 					<input id="textinput" name="textTelFixo" type="text"
 						placeholder="(XX) XXXX-XXXX" class="form-control input-md">
-
 				</div>
 			</div>
 
