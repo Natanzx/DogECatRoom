@@ -17,7 +17,7 @@
 				Serviços</a>
 			</li>
 			
-			<li><a href="FuncionarioController?acao=listar">
+			<li><a href="/DogECatRoom/FuncionarioController?acao=listar">
 				<svg class="glyph stroked dashboard dial"><use xlink:href="#stroked-dashboard-dial"/></svg>
 				Funcionarios</a>
 			</li>
