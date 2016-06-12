@@ -8,6 +8,6 @@ public class AtendimentoBO {
 	AtendimentoDAO atDAO = new AtendimentoDAO();
 	
 	public void RealizarAtendimento(AtendimentoDTO atendDTO){
-		atDAO.RealizarAtendimento(atendDTO);
+		//atDAO.RealizarAtendimento(atendDTO);
 	}
 }

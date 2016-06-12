@@ -12,7 +12,7 @@ import br.com.dogcatroom.dto.AtendimentoDTO;
 
 public class AtendimentoDAO {
 	private Connection con = ConnectionFactory.getConnection();
-	
+	/*
 	public void inserir(AtendimentoDTO atendimento) {
 		// Criar query
 		String sql = "INSERT INTO atendimento(id_cliente,id_servico,data,usuario) values(?,?,NOW(),?)";
@@ -21,9 +21,9 @@ public class AtendimentoDAO {
 		// Constroi PrepareStatement com sql
 		try {
 			PreparedStatement pstm = con.prepareStatement(sql);
-			pstm.setInt(1, orcamento.getId_cliente());
-			pstm.setInt(2, orcamento.getId_servico());
-			pstm.setString(3, orcamento.getUsuario());
+			//pstm.setInt(1, orcamento.getId_cliente());
+			//pstm.setInt(2, orcamento.getId_servico());
+			//pstm.setString(3, orcamento.getUsuario());
 			pstm.execute();
 			pstm.close();
 			System.out.println("Venda cadastrada com sucesso!");
@@ -44,7 +44,7 @@ public class AtendimentoDAO {
 				+ "inner join servico s on s.id = o.id_servico "
 				+ "order by data";
 		
-		List<Orcamento> lista = new ArrayList<Orcamento>();
+		//List<Orcamento> lista = new ArrayList<Orcamento>();
 		// Constroi PrepareStatement com sql
 		try {
 			PreparedStatement pstm = con.prepareStatement(sql);
@@ -63,7 +63,7 @@ public class AtendimentoDAO {
 				orac.setData(resultado.getString("o.data"));
 
 				lista.add(orac);
-
+				
 			}	
 			pstm.close();
 			System.out.println("Buscar todos registros com sucesso!");
@@ -72,5 +72,5 @@ public class AtendimentoDAO {
 		}return lista;
 
 	}
-	
+	*/
 }
