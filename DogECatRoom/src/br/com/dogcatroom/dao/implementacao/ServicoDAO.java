@@ -76,7 +76,7 @@ public class ServicoDAO implements IServicoDAO {
 	}
 
 	public ServicoDTO buscarPorID(ServicoDTO servicoDTO) throws SQLException {
-		String sql = "SELECT * FROM servicos WHERE idCliente=?";
+		String sql = "SELECT * FROM servicos WHERE id = ?";
 		ServicoDTO servico = null;
 
 		PreparedStatement pstm = con.prepareStatement(sql);
