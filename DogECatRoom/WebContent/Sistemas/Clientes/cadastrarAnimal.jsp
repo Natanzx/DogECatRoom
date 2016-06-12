@@ -50,7 +50,7 @@
 		<label class="col-md-3 control-label" for="textinput">Nome Pet</label>
 		<div class="col-md-2">
 			<input id="nomeAnimal" type="text" placeholder=""
-				class="form-control input-md">
+				class="form-control input-md" pattern="^[a-zA-Z\s]+$">
 
 		</div>
 		
@@ -80,7 +80,7 @@
 	<div class="form-group">
 		<label class="col-md-3 control-label" for="textinput">Data Nascimento</label>
 		<div class="col-md-2">
-			<input id="dataNascAnimal" type="text" placeholder=""
+			<input id="dataNascAnimal" type="date" placeholder=""
 				class="form-control input-md">
 
 		</div>
@@ -102,7 +102,7 @@
 		
 		<label class="col-md-1 control-label" for="textinput">N° Pedigre</label>
 		<div class="col-md-2">
-			<input id="numPedigreAnimal" type="text" placeholder=""
+			<input id="numPedigreAnimal" type="number" placeholder=""
 				class="form-control input-md">
 
 		</div>

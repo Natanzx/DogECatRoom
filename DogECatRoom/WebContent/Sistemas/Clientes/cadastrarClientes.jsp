@@ -9,7 +9,8 @@
 <jsp:include page="/template/head.jsp" />
 <title>DogECatRoom - Cadastrar Clientes</title>
 
-	<script src="/DogECatRoom/bibliotecas/js/validator.min.js"></script>
+	<script src="/DogECatRoom/bibliotecas/js/jquery.validate.min.js"></script>
+
 	<script>
 		$(document).ready(function(){
 			var countAnimal = 0;
@@ -66,7 +67,7 @@
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
 	
-	<form class="form-horizontal" method="POST" action="/DogECatRoom/ClienteController?acao=cadastrar" data-toggle="validator" role="form">
+	<form class="form-horizontal" id="form-cliente" method="POST" action="/DogECatRoom/ClienteController?acao=cadastrar" data-toggle="validator" role="form">
 		<fieldset>
 
 			<!-- Titulo - Clientes -->
@@ -77,7 +78,8 @@
 				<label class="col-md-3 control-label" for="textinput">Nome</label>
 				<div class="col-md-5">
 					<input id="textinput" name="textNome" type="text"
-						placeholder="Digite o nome" class="form-control input-md" required>
+						placeholder="Digite o nome" class="form-control input-md" pattern="^[a-zA-Z\s]+$" required>
+					<div class="help-block with-errors"></div>	
 				</div>
 			</div>
 
@@ -87,7 +89,8 @@
 				<div class="col-md-2">
 					<input id="textinput" name="textCpf" type="text"
 						placeholder="Ex: 000000000-00" class="form-control input-md"
-						required=""> 
+						required="" maxlength="11" min="11"> 
+					<div class="help-block with-errors"></div>					
 				</div>
 			</div>
 			
@@ -97,14 +100,15 @@
 				<div class="col-md-2">
 					<input id="textinput" name="textTelCelular" type="text"
 						placeholder="(00) XXXX-XXXX" class="form-control input-md"
-						required="">
-
+						required="" pattern="\b\d{4}[-]?\d{4}\b" maxlength="12">
+						<div class="help-block with-errors"></div>
 				</div>
 			<!-- Telefone Fixo-->
 				<label class="col-md-1 control-label" for="textinput">Tel. Fixo</label>
 				<div class="col-md-2">
 					<input id="textinput" name="textTelFixo" type="text"
-						placeholder="(XX) XXXX-XXXX" class="form-control input-md">
+						placeholder="(XX) XXXX-XXXX" class="form-control input-md" pattern="\b\d{4}[-]?\d{4}\b" maxlength="12">
+						<div class="help-block with-errors"></div>
 				</div>
 			</div>
 
@@ -119,8 +123,8 @@
 				<!-- Numero	-->
 				<label class="col-md-1 control-label" for="textinput">Número</label>
 				<div class="col-md-1">
-					<input id="textinput" name="textNumero" type="text" placeholder=""
-						class="form-control input-md">
+					<input id="textinput" name="textNumero" type="number" placeholder=""
+						class="form-control input-md" maxlength="3">
 
 				</div>
 			</div>
@@ -137,7 +141,7 @@
 				<label class="col-md-1 control-label" for="textinput">Bairro</label>
 				<div class="col-md-2">
 					<input id="textinput" name="textBairro" type="text" placeholder=""
-						class="form-control input-md">
+						class="form-control input-md" maxlength="20">
 
 				</div>
 			</div>
@@ -147,21 +151,21 @@
 				<label class="col-md-3 control-label" for="textinput">Cidade</label>
 				<div class="col-md-2">
 					<input id="textinput" name="textCidade" type="text" placeholder=""
-						class="form-control input-md">
+						class="form-control input-md" pattern="^[a-zA-Z\s]+$" maxlength="20">
 
 				</div>
 			<!-- Estado -->
 				<label class="col-md-1 control-label" for="textinput">Estado</label>
 				<div class="col-md-2">
 					<input id="textinput" name="textEstado" type="text" placeholder=""
-						class="form-control input-md">
+						class="form-control input-md" pattern="^[a-zA-Z\s]+$" maxlength="20">
 
 				</div>
 			<!-- CEP -->
 				<label class="col-md-1 control-label" for="textinput">Cep</label>
 				<div class="col-md-2">
 					<input id="textCep" name="textCep" type="text" placeholder=""
-						class="form-control input-md">
+						class="form-control input-md" maxlength="13">
 
 				</div>
 			</div>
@@ -187,14 +191,14 @@
 					<label class="col-md-3 control-label" for="textinput">Nome Pet</label>
 					<div class="col-md-2">
 						<input id="nomeAnimal" type="text" placeholder=""
-							class="form-control input-md">
+							class="form-control input-md" pattern="^[a-zA-Z\s]+$" maxlength="30">
 			
 					</div>
 					
 					<label class="col-md-1 control-label" for="textinput">Tipo</label>
 					<div class="col-md-2">
 						<input id="tipoAnimal" type="text" placeholder=""
-							class="form-control input-md">
+							class="form-control input-md" pattern="^[a-zA-Z\s]+$" maxlength="20">
 			
 					</div>
 				</div>
@@ -203,29 +207,29 @@
 					<label class="col-md-3 control-label" for="textinput">Raca</label>
 					<div class="col-md-2">
 						<input id="racaAnimal" type="text" placeholder=""
-							class="form-control input-md">
+							class="form-control input-md" maxlength="20">
 			
 					</div>
 					
 					<label class="col-md-1 control-label" for="textinput">Cor</label>
 					<div class="col-md-2">
 						<input id="corAnimal" type="text" placeholder=""
-							class="form-control input-md">
+							class="form-control input-md" pattern="^[a-zA-Z\s]+$" maxlength="20">
 			
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-3 control-label" for="textinput">Data Nascimento</label>
 					<div class="col-md-2">
-						<input id="dataNascAnimal" type="text" placeholder=""
+						<input id="dataNascAnimal" type="date" placeholder=""
 							class="form-control input-md">
 			
 					</div>
 					
 					<label class="col-md-1 control-label" for="textinput">Sexo</label>
 					<div class="col-md-2">
-						<input id="sexo" type="text" placeholder=""
-							class="form-control input-md">
+						<input id="sexo" type="text" placeholder="M/F"
+							class="form-control input-md" maxlength="1">
 			
 					</div>
 				</div>
@@ -233,14 +237,14 @@
 					<label class="col-md-3 control-label" for="textinput">Pedigre</label>
 					<div class="col-md-2">
 						<input id="pedigreAnimal" type="text" placeholder=""
-							class="form-control input-md">
+							class="form-control input-md" maxlength="1">
 			
 					</div>
 					
 					<label class="col-md-1 control-label" for="textinput">N° Pedigre</label>
 					<div class="col-md-2">
 						<input id="numPedigreAnimal" type="text" placeholder=""
-							class="form-control input-md">
+							class="form-control input-md" maxlength="8">
 			
 					</div>
 				</div>																	
@@ -273,4 +277,104 @@
 
 	<jsp:include page="/template/rodape_padrao.jsp" />
 </body>
+<script>
+	
+	$(document).ready(function(){
+		$('#form-cliente').formValidation({
+	        icon: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+	        err: {
+	            container: 'tooltip'
+	        },
+			
+	        fields: {
+	            'textNome': {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Este campo é necessário.'
+	                    }
+	                }
+	            },
+	            'textCpf': {
+	                validators: {
+	                	notEmpty: {
+	                        message: 'Este endereço não é valido.'
+	                    }
+	                }
+	            },
+	            'sexo': {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Este campo é necessário.'
+	                    }
+	                }
+	            },
+	            'arquivo': {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Este campo é necessário.'
+	                    }
+	                }
+	            },		
+	            'browsers[]': {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Este campo é necessário.'
+	                    }
+	                }
+	            }
+	        }
+	})
+	        .on('success.form.fv', function(e) {
+	            $(this).submit();
+	        });		
+	/*
+		$('#form-cliente').validate({
+		    rules: {
+		    	textNome: {
+		            minlength: 3,
+		            maxlength: 15,
+		            required: true
+		        },
+		        textCpf: {
+		            minlength: 11,
+		            maxlength: 11,
+		            required: true
+		        },
+		        textTelCelular: {
+		        	minlength: 9,
+		        	maxlength: 12,
+		        	required: true
+		        },
+		        textTelFixo: {},
+		        textEndereco: {
+		        },
+		        textNumero: {
+		        	minlength: 1,
+		        	maxlength: 3
+		        },
+		        textComplemento: {},
+		        textBairro:{},
+		        textCidade:{},
+		        textEstado:{},
+		        textCep:{}
+		    },
+		    messages:{
+		    	textCpf:{
+		    		required:"Por favor, informe seu CPF",
+		    		minlength:"O CPF deve ter haver 11 algarismos",
+		    		maxlength:"O CPF deve ter haver 11 algarismos"
+		    	},
+		    	textTelCelular:{
+		    		required:"Por favor, informe seu telefone",
+                    minlength:"O telefone deve ter pelo menos 9 algarismos"
+		    	}
+		    }
+		});		
+		*/
+	});
+</script>
 </html>
