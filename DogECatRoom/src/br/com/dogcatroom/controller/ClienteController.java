@@ -1,6 +1,7 @@
 package br.com.dogcatroom.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.dogcatroom.Exception.BusinesException;
 import br.com.dogcatroom.bo.AnimalBO;
 import br.com.dogcatroom.bo.ClienteBO;
 import br.com.dogcatroom.dto.AnimalDTO;
@@ -26,10 +28,14 @@ public class ClienteController extends HttpServlet {
 		if(acao!=null && acao.equals("listar")){
 			
 			ClienteBO clienteBO = new ClienteBO();
-			List<ClienteDTO> lista = clienteBO.buscarTodosClientes();
+			List<ClienteDTO> lista;
+			try {
+				lista = clienteBO.buscarTodosClientes();
+				request.setAttribute("lista", lista);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		
-			request.setAttribute("lista", lista);
-			
 			RequestDispatcher saida= request.getRequestDispatcher("Sistemas/Clientes/consultarClientes.jsp");
 			saida.forward(request, response);
 		}
@@ -112,7 +118,13 @@ public class ClienteController extends HttpServlet {
 			cliente.setTelFixo(telFixo);
 						
 			ClienteBO clienteBO = new ClienteBO();
-			clienteBO.cadastarCliente(cliente);
+			try {
+				clienteBO.cadastarCliente(cliente);
+			} catch (BusinesException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			
 			if(session.getAttribute("listAnimalTemp") != null){
 				List<AnimalDTO> listaAnimal = (ArrayList<AnimalDTO>)session.getAttribute("listAnimalTemp");
@@ -165,7 +177,13 @@ public class ClienteController extends HttpServlet {
 		cliente.setAtivo(estadoCliente);
 		
 		ClienteBO clienteBO = new ClienteBO();
-		clienteBO.alterarCliente(cliente);
+		try {
+			clienteBO.alterarCliente(cliente);
+		} catch (BusinesException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		rs.sendRedirect("ClienteController?acao=listar");
 	}

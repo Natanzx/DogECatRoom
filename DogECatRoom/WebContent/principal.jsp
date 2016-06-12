@@ -66,7 +66,7 @@
 			</div>
 		</a>
 		
-		<a href="FuncionarioController?acao=listar">							
+		<a href="/DogECatRoom/FuncionarioController?acao=listar">							
 			<div class="col-xs-12 col-md-6 col-lg-2">
 				<div class="panel panel-blue panel-widget ">
 					<div class="col-sm-3 col-lg-11 widget-left">
@@ -94,6 +94,17 @@
 					<div class="col-sm-3 col-lg-11 widget-left">
 						<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-clipboard-with-paper"></use></svg>
 						<div>Relatórios</div>
+					</div>
+				</div>
+			</div>	
+		</a>
+		
+		<a href="/DogECatRoom/AtendimentoController?acao=listar">
+			<div class="col-xs-12 col-md-6 col-lg-2">
+				<div class="panel panel-blue panel-widget">
+					<div class="col-sm-3 col-lg-11 widget-left">
+						<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-clipboard-with-paper"></use></svg>
+						<div>Atendimento</div>
 					</div>
 				</div>
 			</div>	
