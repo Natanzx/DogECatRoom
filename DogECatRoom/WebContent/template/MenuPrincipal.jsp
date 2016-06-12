@@ -26,6 +26,11 @@
 				<svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg>
 				Relatórios</a>
 			</li>
+			
+			<li><a href="/DogECatRoom/AtendimentoController?acao=listar">
+				<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-clipboard-with-paper"></use></svg>
+				Atendimento</a>
+			</li>
 
 			<!--
 			<li class="dropdown"><a href="#" class="dropdown-toggle"

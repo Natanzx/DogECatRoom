@@ -7,7 +7,7 @@ public class AtendimentoDTO {
 	private String hora;
 	private ClienteDTO cliente;
 	private ServicoDTO servico;
-
+	
 	public String getData() {
 		return data;
 	}

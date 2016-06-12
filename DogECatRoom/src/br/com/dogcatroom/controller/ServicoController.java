@@ -61,8 +61,8 @@ public class ServicoController extends HttpServlet {
 			servicoDTO.setId(Integer.parseInt(id));
 			
 			try {
-				ServicoDTO servico = servicoBO.buscarServicoPorID(servicoDTO);
-				request.setAttribute("servico", servico);
+				servicoDTO = servicoBO.buscarServicoPorID(servicoDTO.getId());
+				request.setAttribute("servico", servicoDTO);
 				RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Servicos/alterarServicos.jsp");
 				saida.forward(request, response);
 			} catch (SQLException e) {

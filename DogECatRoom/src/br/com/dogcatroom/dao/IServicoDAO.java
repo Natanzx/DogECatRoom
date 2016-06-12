@@ -16,6 +16,6 @@ public interface IServicoDAO {
 	
 	void alterarServico(ServicoDTO servicoDTO) throws SQLException;
   	
-	public ServicoDTO buscarPorID(ServicoDTO servicoDTO) throws SQLException;
+	public ServicoDTO buscarPorID(Integer id) throws SQLException;
 	
 }

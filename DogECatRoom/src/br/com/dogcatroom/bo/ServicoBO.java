@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.dogcatroom.Exception.BusinesException;
 import br.com.dogcatroom.dao.IServicoDAO;
 import br.com.dogcatroom.dao.implementacao.ServicoDAO;
+import br.com.dogcatroom.dto.ClienteDTO;
 import br.com.dogcatroom.dto.ServicoDTO;
 
 public class ServicoBO {
@@ -37,11 +38,9 @@ public class ServicoBO {
 		
 	}
 
-	public ServicoDTO buscarServicoPorID(ServicoDTO servicoDTO) throws SQLException {
-		return iServicoDAO.buscarPorID(servicoDTO);
+	public ServicoDTO buscarServicoPorID(Integer id) throws SQLException {
+		return iServicoDAO.buscarPorID(id);
 	}
-
-	
 	
 	
 	

@@ -60,7 +60,7 @@ public class ServicoDAO implements IServicoDAO {
 		while (resultado.next()) {
 			ServicoDTO servico = new ServicoDTO();
 
-			servico.setId(Integer.parseInt(resultado.getString("id")));
+			servico.setId(Integer.parseInt(resultado.getString("idServico")));
 			servico.setNome(resultado.getString("nome"));
 			servico.setDescricao(resultado.getString("descricao"));
 			servico.setValor(resultado.getFloat("valor"));
@@ -75,12 +75,12 @@ public class ServicoDAO implements IServicoDAO {
 
 	}
 
-	public ServicoDTO buscarPorID(ServicoDTO servicoDTO) throws SQLException {
-		String sql = "SELECT * FROM servicos WHERE id = ?";
+	public ServicoDTO buscarPorID(Integer id) throws SQLException {
+		String sql = "SELECT * FROM servicos WHERE idServico=?";
 		ServicoDTO servico = null;
 
 		PreparedStatement pstm = con.prepareStatement(sql);
-		pstm.setInt(1, servicoDTO.getId());
+		pstm.setInt(1, id);
 		ResultSet resultado = pstm.executeQuery();
 
 		if (resultado.next()) {
@@ -89,7 +89,7 @@ public class ServicoDAO implements IServicoDAO {
 			servico.setDescricao(resultado.getString("descricao"));
 			servico.setValor(resultado.getFloat("valor"));
 			servico.setAtivo(Boolean.parseBoolean(resultado.getString("ativo")));
-			servico.setId(resultado.getInt("id"));
+			servico.setId(resultado.getInt("idServico"));
 		}
 
 		pstm.close();

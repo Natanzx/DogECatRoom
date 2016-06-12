@@ -1,5 +1,7 @@
 package br.com.dogcatroom.dto;
 
+import java.util.List;
+
 public class ClienteDTO {
 
 	private int id;
@@ -14,7 +16,7 @@ public class ClienteDTO {
 	private String estado;
 	private String telCelular;
 	private String telFixo;
-	private AnimalDTO animal;
+	private List<AnimalDTO> animal;
 	private int ativo;
 	
 	public int getAtivo() {
@@ -89,16 +91,16 @@ public class ClienteDTO {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public AnimalDTO getAnimal() {
-		return animal;
-	}
-	public void setAnimal(AnimalDTO animal) {
-		this.animal = animal;
-	}
 	public int getId() {
 		return id;
 	}
 	public String getEndereco() {
 		return endereco;
+	}
+	public List<AnimalDTO> getAnimal() {
+		return animal;
+	}
+	public void setAnimal(List<AnimalDTO> animal) {
+		this.animal = animal;
 	}
 }

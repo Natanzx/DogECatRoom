@@ -15,5 +15,7 @@ public interface IClienteDAO {
 	public List<ClienteDTO> buscarTodosClientes();
 	
 	public ClienteDTO buscarClientePorID(Integer id);
+
+	public List<ClienteDTO> buscarClienteAnimais();
 	
 }
