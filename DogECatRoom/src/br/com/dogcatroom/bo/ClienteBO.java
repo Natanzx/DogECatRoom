@@ -47,4 +47,7 @@ public class ClienteBO {
 		iClienteDao.excluirCliente(cliente);
 	}
 	
+	public List<ClienteDTO> buscarClienteAnimais() throws SQLException{
+		return iClienteDao.buscarClienteAnimais();
+	}
 }

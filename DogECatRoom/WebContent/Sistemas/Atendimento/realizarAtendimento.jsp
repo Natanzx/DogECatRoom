@@ -3,6 +3,7 @@
 <%@page import="java.util.List" %>
 <%@page import="br.com.dogcatroom.dto.ClienteDTO" %>
 <%@page import="br.com.dogcatroom.dto.ServicoDTO" %>
+<%@page import="br.com.dogcatroom.dto.AnimalDTO" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,16 +15,13 @@
 	<jsp:include page="/template/cabecalho_padrao.jsp"/>
 
 	<div class="clOpcoesCrud">
-		<a href="/DogECatRoom/ClienteController?acao=cadastrar">
-			<button class="btn btn-primary">Cadastrar</button>
-		</a>
 		<a href="/DogECatRoom/principal.jsp">
 			<button class="btn btn-danger">Voltar</button>
 		</a>		
 	</div>
-	
+
 <form action="AtendimentoController" method="post">
-		<table bgcolor="#e0e0e0" align="center" width="400px" height="250px" style="text-align:center; font-family:"Arial, Helvetica, sans-serif;">
+		<table class="table tblClientes">
 		<tr bgcolor="#2b3e8c" style="color: #FFF;">
 			<td colspan="2">Informe os dados:</td>
 		</tr>
@@ -38,10 +36,17 @@
 					List<ClienteDTO> listaCliente = (List<ClienteDTO>) request.getAttribute("listaCliente");
 					for(ClienteDTO cliente:listaCliente){
 					%>
-					<option width="300px" value="<% out.print(cliente.getId()); %>">
-						<% out.print(cliente.getNome()); %> - 
-						<% out.print(cliente.getAnimal()); %>
-					</option>
+						<% 
+						List<AnimalDTO> animalLista =  cliente.getAnimal();
+						for(AnimalDTO animal : animalLista){
+						%>
+						
+						<option width="300px" value="<% out.print(cliente.getId()); %>">
+							<%
+							out.print(cliente.getNome() +"-"+ animal.getNome() +"-"+ animal.getTipo());
+							%>
+						</option>
+						<% } %>
 					<% } %>
 				</select>
 			</td>
@@ -65,12 +70,9 @@
 		</tr>
 
 		<tr>
-			<td align="center"><a href="Inicio.jsp">Voltar</a></td>
-			<td> <input type="submit" value="Realizar Venda"></td>
+			<td> <input type="submit" value="Realizar Venda" class="btn btn-primary"></td>
 		</tr>
 	</table>
-	
-	
 	
 	
 	<table>

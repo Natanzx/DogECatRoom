@@ -1,7 +1,6 @@
 package br.com.dogcatroom.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,10 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.dogcatroom.Exception.BusinesException;
+import br.com.dogcatroom.bo.AtendimentoBO;
 import br.com.dogcatroom.bo.ClienteBO;
 import br.com.dogcatroom.bo.ServicoBO;
+import br.com.dogcatroom.dao.implementacao.AtendimentoDAO;
 import br.com.dogcatroom.dao.implementacao.ClienteDAO;
 import br.com.dogcatroom.dao.implementacao.ServicoDAO;
+import br.com.dogcatroom.dto.AtendimentoDTO;
 import br.com.dogcatroom.dto.ClienteDTO;
 import br.com.dogcatroom.dto.ServicoDTO;
 
@@ -37,7 +40,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			List<ClienteDTO> listaCliente;
 			
 			try {
-				listaCliente = clienteBO.buscarTodosClientes();
+				listaCliente = clienteBO.buscarClienteAnimais();
 				request.setAttribute("listaCliente", listaCliente);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
@@ -57,22 +60,23 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
 			saida.forward(request, response);
 			
-			response.sendRedirect("OrcamentoController?acao=listar");
+			response.sendRedirect("AtendimentoController?acao=listar");
 			
 			}
 		
 		if(acao!=null && acao.equals("listar")){
-//			//Obter a lista
-//			
-//			List<Orcamento> lista = orcamentodao.buscarTodos();
-//		
-//			//guardar lista  no request (chave,tipo)
-//			request.setAttribute("lista", lista);
-//			
-//			//Enviar para jsp
-//			RequestDispatcher saida = request.getRequestDispatcher("ListaOrcamento.jsp");
-//			//soh aceita enviar um request e response, por isso setamos no request pelo setattribute
-//			saida.forward(request, response);
+			AtendimentoBO atendimentoBo = new AtendimentoBO();
+					
+			List<AtendimentoDTO> listaAtendimento;
+			try {
+				listaAtendimento = atendimentoBo.buscarTodosAtendimentos();
+				request.setAttribute("lista", listaAtendimento);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+			RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Atendimento/listarAtendimentos.jsp");
+			saida.forward(request, response);
 			}
 		
 	}
@@ -80,27 +84,31 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				HttpSession session = request.getSession(true);
-		//Recebe dados da tela jsp
-//				String id_cliente = request.getParameter("id_cliente");
-//				String id_servico = request.getParameter("id_servico");
-//				String usuario = (String)session.getAttribute("usuario");
-//				
-//				//Cria objeto usuario e seta os valores vindo da tela
-//				Orcamento orcamento = new Orcamento();
-//								
-//				orcamento.setId_cliente(Integer.parseInt(id_cliente));
-//				orcamento.setId_servico(Integer.parseInt(id_servico));
-//				orcamento.setUsuario(usuario);
-//				
-//				//Pede para o OrcamentoDAO cadastrar ou atualizar no banco
-//				OrcamentoDAO orcamentodao = new OrcamentoDAO();
-//				
-//				orcamentodao.inserir(orcamento);
-//				//Saida ao navegador
-//				PrintWriter saida = response.getWriter();
-//				saida.println("Orcamento cadastrado com sucesso no Servidor!");
-//				
-//				response.sendRedirect("OrcamentoController?acao=listar");
+				
+				int id_cliente = Integer.parseInt(request.getParameter("id_cliente"));
+				Integer id_servico = Integer.parseInt(request.getParameter("id_servico"));
+			
+				AtendimentoDTO atendimento = new AtendimentoDTO();
+				ClienteBO clienteBO = new ClienteBO();
+				ServicoBO servicoBO = new ServicoBO();
+				
+				atendimento.setCliente(clienteBO.buscarClientePorID(id_cliente));
+				try {
+					atendimento.setServico(servicoBO.buscarServicoPorID(id_servico));
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+							
+			
+				AtendimentoBO atendimentoBo = new AtendimentoBO();
+			
+				try {
+					atendimentoBo.cadastarAtendimento(atendimento);
+				} catch (BusinesException | SQLException e) {
+					e.printStackTrace();
+				}
+				response.sendRedirect("AtendimentoController?acao=listar");
+				
 				}
 	
 	

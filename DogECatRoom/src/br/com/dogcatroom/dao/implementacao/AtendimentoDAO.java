@@ -7,70 +7,68 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.dogcatroom.bo.ClienteBO;
+import br.com.dogcatroom.bo.ServicoBO;
 import br.com.dogcatroom.conexao.ConnectionFactory;
+import br.com.dogcatroom.dao.IAtendimentoDAO;
 import br.com.dogcatroom.dto.AtendimentoDTO;
 
-public class AtendimentoDAO {
+public class AtendimentoDAO implements IAtendimentoDAO {
 	private Connection con = ConnectionFactory.getConnection();
 	
-	public void inserir(AtendimentoDTO atendimento) {
-		// Criar query
-		String sql = "INSERT INTO atendimento(id_cliente,id_servico,data,usuario) values(?,?,NOW(),?)";
-		
-		
-		// Constroi PrepareStatement com sql
-		try {
-			PreparedStatement pstm = con.prepareStatement(sql);
-			pstm.setInt(1, orcamento.getId_cliente());
-			pstm.setInt(2, orcamento.getId_servico());
-			pstm.setString(3, orcamento.getUsuario());
-			pstm.execute();
-			pstm.close();
-			System.out.println("Venda cadastrada com sucesso!");
+	public void cadastrarAtendimento(AtendimentoDTO atendimento){
+			String sql = "INSERT INTO atendimentos(idCliente,idServico,data) values(?,?,NOW())";
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			try {
+				PreparedStatement pstm = con.prepareStatement(sql);
+				pstm.setInt(1, atendimento.getCliente().getId());
+				pstm.setInt(2, atendimento.getServico().getId());
+				pstm.execute();
+				pstm.close();
+				System.out.println("Atendimento cadastrada com sucesso!");
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
-	}
-
-	public List<Orcamento> buscarTodos() {
-		
-		// Criar query
-		String sql = 
-				  "SELECT o.id,id_cliente,c.nome,id_servico,s.tipo,s.valor,o.usuario, o.data "
-				+ "FROM orcamento o "
-				+ "inner join cliente c on c.id = o.id_cliente "
-				+ "inner join servico s on s.id = o.id_servico "
-				+ "order by data";
-		
-		List<Orcamento> lista = new ArrayList<Orcamento>();
-		// Constroi PrepareStatement com sql
-		try {
-			PreparedStatement pstm = con.prepareStatement(sql);
-
-			ResultSet resultado = pstm.executeQuery();
-
-			while (resultado.next()) {
-				Orcamento orac = new Orcamento();
-				orac.setId(resultado.getInt("o.id"));
-				orac.setId_cliente(resultado.getInt("id_cliente"));
-				orac.setNome_cliente(resultado.getString("c.nome"));
-				orac.setId_servico(resultado.getInt("id_servico"));
-				orac.setNome_servico(resultado.getString("s.tipo"));
-				orac.setValor(resultado.getString("s.valor"));
-				orac.setUsuario(resultado.getString("usuario"));
-				orac.setData(resultado.getString("o.data"));
-
-				lista.add(orac);
-
-			}	
-			pstm.close();
-			System.out.println("Buscar todos registros com sucesso!");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}return lista;
-
+	
 	}
 	
+	public List<AtendimentoDTO> buscarTodosAtendimentos() {
+			ClienteBO clienteBo = new ClienteBO();
+			ServicoBO servicoBo = new ServicoBO();
+			String sql = 
+					  " SELECT o.idAtendimento,o.idCliente,c.nome,o.idServico,s.nome,s.valor,o.data "
+					+ "FROM atendimentos o "
+					+ "inner join clientes c on c.idCliente = o.idCliente "
+					+ "inner join servicos s on s.idServico = o.idServico "
+					+ "order by data";
+			
+			List<AtendimentoDTO> lista = new ArrayList<AtendimentoDTO>();
+			// Constroi PrepareStatement com sql
+			try {
+				PreparedStatement pstm = con.prepareStatement(sql);
+	
+				ResultSet resultado = pstm.executeQuery();
+	
+				while (resultado.next()) {
+					AtendimentoDTO atendimento = new AtendimentoDTO();
+					atendimento.setId(resultado.getInt("idAtendimento"));
+					atendimento.setCliente((clienteBo.buscarClientePorID(resultado.getInt("idCliente"))));
+					atendimento.setServico((servicoBo.buscarServicoPorID(resultado.getInt("idServico"))));
+					
+					atendimento.setData(resultado.getString("data").substring(0, 10));
+					atendimento.setHora(resultado.getString("data").substring(10, 16));
+					
+					
+					lista.add(atendimento);
+	
+				}	
+				pstm.close();
+				System.out.println("Buscar todos registros com sucesso!");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}return lista;
+	
+		}
 }

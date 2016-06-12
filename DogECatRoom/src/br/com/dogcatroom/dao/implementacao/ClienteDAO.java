@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.dogcatroom.conexao.ConnectionFactory;
 import br.com.dogcatroom.dao.IClienteDAO;
+import br.com.dogcatroom.dto.AnimalDTO;
 import br.com.dogcatroom.dto.ClienteDTO;
 
 
@@ -137,6 +138,74 @@ public class ClienteDAO implements IClienteDAO {
 			e.printStackTrace();
 		}return lista;
 
+	}
+	
+	public List<ClienteDTO> buscarClienteAnimais() {
+		String sql = "SELECT * FROM clientes where ativo = 1";
+		
+		List<ClienteDTO> lista = new ArrayList<ClienteDTO>();
+		try {
+			PreparedStatement pstm = con.prepareStatement(sql);
+			
+			ResultSet resultado = pstm.executeQuery();
+
+			while (resultado.next()) {
+				ClienteDTO cliente = new ClienteDTO();
+				
+				cliente.setId(Integer.parseInt(resultado.getString("idCliente")));
+				cliente.setNome(resultado.getString("nome"));
+				cliente.setCpf(resultado.getString("cpf"));
+				cliente.setEndereco(resultado.getString("endereco"));
+				cliente.setNumero(resultado.getInt("numero"));
+				cliente.setComplemento(resultado.getString("complemento"));
+				cliente.setBairro(resultado.getString("bairro"));
+				cliente.setCidade(resultado.getString("cidade"));
+				cliente.setEstado(resultado.getString("estado"));
+				cliente.setTelCelular(resultado.getString("telCelular"));
+				cliente.setTelFixo(resultado.getString("telFixo"));
+				cliente.setCep(resultado.getString("cep"));
+				cliente.setAnimal(buscarAnimalPorCliente(cliente));
+				lista.add(cliente);
+
+			}
+
+			pstm.close();
+			System.out.println("Buscar todos clientes com sucesso!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}return lista;
+
+	}
+	
+	public List<AnimalDTO> buscarAnimalPorCliente(ClienteDTO cliente){
+		String sql = "SELECT a.* FROM clientes c inner join animais a on a.idCliente = c.idCliente and c.idCliente = ? where c.ativo = 1";
+		List<AnimalDTO> listaAnimal = new ArrayList<AnimalDTO>();
+		
+		try {
+			PreparedStatement pstm = con.prepareStatement(sql);
+			pstm.setInt(1, cliente.getId());
+			
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				AnimalDTO a = new AnimalDTO();
+				
+				//a.setIdAnimal(rs.getInt("idAnimal"));
+				//a.setIdCliente(rs.getInt("idCliente"));
+				a.setNome(rs.getString("nome"));
+				a.setTipo(rs.getString("tipo"));
+				//a.setRaca(rs.getString("raca"));
+				//a.setCor(rs.getString("cor"));
+				//a.setDataNasc(rs.getString("dataNasc"));
+				//a.setSexo(rs.getString("sexo"));
+				//a.setPedigre(rs.getInt("pedigre"));
+				//a.setNumPedigre(rs.getInt("numPedigre"));
+				
+				listaAnimal.add(a);
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}return listaAnimal;
 	}
 
 	public ClienteDTO buscarClientePorID(Integer id) {
