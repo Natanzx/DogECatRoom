@@ -21,7 +21,7 @@
 				<label class="col-md-3 control-label" for="textinput">Nome</label>
 				<div class="col-md-4">
 					<input id="textinput" name="nomeFuncionario" type="text"
-						placeholder="Digite o nome" class="form-control input-md">
+						placeholder="Digite o nome" class="form-control input-md" pattern="^[a-zA-Z\s]+$">
 
 				</div>
 				<!-- CPF	-->
@@ -62,7 +62,7 @@
 				<!-- Numero -->
 				<label class="col-md-1 control-label" for="textinput">Número</label>
 				<div class="col-md-1">
-					<input id="textinput" name="numeroFuncionario" type="text"
+					<input id="textinput" name="numeroFuncionario" type="number"
 						placeholder="" class="form-control input-md">
 				</div>
 			</div>
@@ -88,14 +88,14 @@
 				<label class="col-md-3 control-label" for="textinput">Cidade</label>
 				<div class="col-md-3">
 					<input id="textinput" name="cidadeFuncionario" type="text"
-						placeholder="" class="form-control input-md">
+						placeholder="" class="form-control input-md" pattern="^[a-zA-Z\s]+$">
 
 				</div>
 				<!-- Estado	-->
-				<label class="col-md-2 control-label" for="textinput">Estado</label>
+				<label class="col-md-2 control-label" for="textinput" >Estado</label>
 				<div class="col-md-2">
 					<input id="textinput" name="estadoFuncionario" type="text"
-						placeholder="" class="form-control input-md">
+						placeholder="" class="form-control input-md" pattern="^[a-zA-Z\s]+$">
 
 				</div>
 			</div>
@@ -119,12 +119,12 @@
 			<div class="form-group">
 				<label class="col-md-3 control-label" for="textinput">Salário</label>
 				<div class="col-md-2">
-					<input id="textinput" name="salarioFuncionario" type="text"
+					<input id="textinput" name="salarioFuncionario" type="number"
 						placeholder="" class="form-control input-md">
 				</div>
 				<label class="col-md-3 control-label" for="textinput">Matrícula</label>
 				<div class="col-md-2">
-					<input id="textinput" name="matriculaFuncionario" type="text"
+					<input id="textinput" name="matriculaFuncionario" type="number"
 						placeholder="" class="form-control input-md">
 				</div>
 			</div>
