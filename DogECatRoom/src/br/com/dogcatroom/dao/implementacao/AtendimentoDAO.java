@@ -16,6 +16,24 @@ import br.com.dogcatroom.dto.AtendimentoDTO;
 public class AtendimentoDAO implements IAtendimentoDAO {
 	private Connection con = ConnectionFactory.getConnection();
 	
+	public void cadastrarAtendimento(AtendimentoDTO atendimento){
+			String sql = "INSERT INTO atendimentos(idCliente,idServico,data) values(?,?,NOW())";
+			
+			try {
+				PreparedStatement pstm = con.prepareStatement(sql);
+				pstm.setInt(1, atendimento.getCliente().getId());
+				pstm.setInt(2, atendimento.getServico().getId());
+				pstm.execute();
+				pstm.close();
+				System.out.println("Atendimento cadastrada com sucesso!");
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+	
+	}
+	
 	public List<AtendimentoDTO> buscarTodosAtendimentos() {
 			ClienteBO clienteBo = new ClienteBO();
 			ServicoBO servicoBo = new ServicoBO();
@@ -42,6 +60,8 @@ public class AtendimentoDAO implements IAtendimentoDAO {
 					atendimento.setData(resultado.getString("data").substring(0, 10));
 					atendimento.setHora(resultado.getString("data").substring(10, 16));
 					
+					//System.out.println(resultado.getString("o.data").substring(1, 10));
+					//System.out.println((resultado.getString("o.data").substring(10, 16)));
 					
 					lista.add(atendimento);
 	
@@ -53,10 +73,4 @@ public class AtendimentoDAO implements IAtendimentoDAO {
 			}return lista;
 	
 		}
-
-	@Override
-	public void cadastrarAtendimento(AtendimentoDTO atendimento) {
-		// TODO Auto-generated method stub
-		
-	}
 }
