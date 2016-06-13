@@ -43,7 +43,7 @@
 	-->
 	
 	<div class="row">
-		
+		<!-- 
 		<a href="Sistemas/Agenda/consultarAgenda.jsp">	
 			<div class="col-xs-12 col-md-6 col-lg-2">
 				<div class="panel panel-orange panel-widget">
@@ -54,7 +54,8 @@
 				</div>
 			</div>
 		</a>
-
+		 -->
+		 
 		<a href="/DogECatRoom/ClienteController?acao=listar">
 			<div class="col-xs-12 col-md-6 col-lg-2">
 				<div class="panel panel-teal panel-widget">
