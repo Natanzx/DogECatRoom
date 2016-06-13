@@ -99,7 +99,7 @@ public class ServicoDAO implements IServicoDAO {
 
 	@Override
 	public void excluirServico(ServicoDTO servico) throws SQLException {
-		String sql = "update servicos set ativo = 0 where idCliente = ?";
+		String sql = "update servicos set ativo = 0 where idServico = ?";
 
 			PreparedStatement pstm = con.prepareStatement(sql);
 			pstm.setInt(1, servico.getId());
