@@ -32,7 +32,6 @@
 			<td colspan="2">
 				<select style="width: 300px;" name="id_cliente">
 					<% 
-					//retorna object tem que fazer cast pois nois sabe que é uma lista
 					List<ClienteDTO> listaCliente = (List<ClienteDTO>) request.getAttribute("listaCliente");
 					for(ClienteDTO cliente:listaCliente){
 					%>
@@ -74,37 +73,6 @@
 		<tr>
 			<td> <input type="submit" value="Realizar Venda" class="btn btn-primary"></td>
 		</tr>
-	</table>
-	
-	
-	<table>
-		<tr>
-			<td>
-			
-			</td>
-		
-		</tr>
-		<tr>
-			<td>
-			
-			</td>
-		
-		</tr>
-		<tr>
-			<td>
-			
-			</td>
-		
-		</tr>
-		<tr>
-			<td>
-			
-			</td>
-		
-		</tr>
-	
-	
-	
 	</table>
 	</form>
 
