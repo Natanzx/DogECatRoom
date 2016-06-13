@@ -32,9 +32,6 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		
 		String acao = request.getParameter("acao");
 		
-		ClienteDAO clienteDao = new ClienteDAO();
-		ServicoDAO servicoDao = new ServicoDAO();
-		
 		if(acao!=null && acao.equals("atendimento")){
 			ClienteBO clienteBO = new ClienteBO();
 			List<ClienteDTO> listaCliente;
@@ -83,11 +80,9 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				HttpSession session = request.getSession(true);
 				
 				int id_cliente = Integer.parseInt(request.getParameter("id_cliente"));
 				Integer id_servico = Integer.parseInt(request.getParameter("id_servico"));
-				String animal = request.getParameter("animal");
 				
 				AtendimentoDTO atendimento = new AtendimentoDTO();
 				ClienteBO clienteBO = new ClienteBO();
