@@ -45,7 +45,9 @@
 							<%
 							out.print(cliente.getNome() +"-"+ animal.getNome() +"-"+ animal.getTipo());
 							%>
+							
 						</option>
+						
 						<% } %>
 					<% } %>
 				</select>

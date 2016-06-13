@@ -87,7 +87,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 				
 				int id_cliente = Integer.parseInt(request.getParameter("id_cliente"));
 				Integer id_servico = Integer.parseInt(request.getParameter("id_servico"));
-			
+				String animal = request.getParameter("animal");
+				
 				AtendimentoDTO atendimento = new AtendimentoDTO();
 				ClienteBO clienteBO = new ClienteBO();
 				ServicoBO servicoBO = new ServicoBO();
