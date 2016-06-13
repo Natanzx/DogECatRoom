@@ -23,32 +23,38 @@
 			<button class="btn btn-danger">Voltar</button>
 		</a>		
 	</div>
-<table class="table tblClientes">
-<tr bgcolor="#2b3e8c" style="color: #FFF;">
-			<td>Nº da Venda</td>
-			<td>Cliente</td>
-			<td>Servico</td>
-			<td>Valor</td>
-			<td>Data da venda</td>
-			<td>Hora da venda</td>
-		</tr>
+	<table class="table tblClientes">
+		<thead>
+			<tr>
+				<td>Nº da Venda</td>
+				<td>Cliente</td>
+				<td>Servico</td>
+				<td>Valor</td>
+				<td>Data da venda</td>
+				<td>Hora da venda</td>
+			</tr>
+		</thead>
+		
+		<tbody>
 	<%
 		List<AtendimentoDTO> lista = (List<AtendimentoDTO>) request.getAttribute("lista");	
 		for(AtendimentoDTO atendimento:lista){
 	%>
-		<tr>
-			<td align="center"><% out.print(atendimento.getId()); %></td>
-			<td><% out.print(atendimento.getCliente().getNome()); %></td>
-			<td><% out.print(atendimento.getServico().getNome()); %></td>
-			<td align="center"><% out.print(atendimento.getServico().getValor()); %></td>
-			<td align="center"><% out.print(atendimento.getData()); %></td>
-			<td align="center"><% out.print(atendimento.getHora()); %></td>
-		</tr>
+			<tr>
+				<td align="center"><% out.print(atendimento.getId()); %></td>
+				<td><% out.print(atendimento.getCliente().getNome()); %></td>
+				<td><% out.print(atendimento.getServico().getNome()); %></td>
+				<td align="center"><% out.print(atendimento.getServico().getValor()); %></td>
+				<td align="center"><% out.print(atendimento.getData()); %></td>
+				<td align="center"><% out.print(atendimento.getHora()); %></td>
+			</tr>
 <% } %>
-	<tr>
-		<td align="center" colspan=7><a href="Inicio.jsp">Voltar</a></td>
-	</tr>	
-<table/>
+			<tr>
+				<td align="center" colspan=7><a href="Inicio.jsp">Voltar</a></td>
+			</tr>
+		</tbody>
+	</table>
+	
 	<jsp:include page="/template/rodape_padrao.jsp"/>
 </body>
 </html>
