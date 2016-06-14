@@ -1,9 +1,9 @@
 package br.com.dogcatroom.dto;
 
 
-public class loguinDTO {
+public class LoginDTO {
 	private int id;
-	private ClienteDTO cliente;
+	private FuncionarioDTO funcionario;
 	private String usuario;
 	private String senha;
 	
@@ -13,11 +13,12 @@ public class loguinDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public ClienteDTO getCliente() {
-		return cliente;
+	
+	public FuncionarioDTO getFuncionario() {
+		return funcionario;
 	}
-	public void setCliente(ClienteDTO cliente) {
-		this.cliente = cliente;
+	public void setFuncionario(FuncionarioDTO funcionario) {
+		this.funcionario = funcionario;
 	}
 	public String getUsuario() {
 		return usuario;
