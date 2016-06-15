@@ -44,5 +44,12 @@ public class FuncionarioBO {
 		return iFuncionarioDAO.buscarFuncionarioPorID(funcionarioDTO);
 		
 	}
+	
+	public FuncionarioDTO autenticarLogin(FuncionarioDTO func){
+		return iFuncionarioDAO.validaLogin(func);
+	}
 
+	public FuncionarioDTO recuperarSenha(FuncionarioDTO func){
+		return iFuncionarioDAO.recuperarSenha(func);
+	}
 }

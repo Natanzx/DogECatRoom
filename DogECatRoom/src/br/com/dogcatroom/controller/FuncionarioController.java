@@ -10,10 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import br.com.dogcatroom.bo.ClienteBO;
 import br.com.dogcatroom.bo.FuncionarioBO;
-import br.com.dogcatroom.dto.ClienteDTO;
 import br.com.dogcatroom.dto.FuncionarioDTO;
 
 @WebServlet("/FuncionarioController")
@@ -26,8 +25,7 @@ public class FuncionarioController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-
+		
 		String acao = request.getParameter("acao");
 
 		if (acao != null && acao.equals("listar")) {
@@ -58,7 +56,11 @@ public class FuncionarioController extends HttpServlet {
 			}
 		}
 		
-		
+		if (acao != null && acao.equals("logout")) {
+			HttpSession session = request.getSession(true);
+			session.invalidate();
+			response.sendRedirect("login.jsp");
+		}		
 		
 
 	}
@@ -167,6 +169,48 @@ public class FuncionarioController extends HttpServlet {
 			}
 
 		}
+		
+		if (acao != null && acao.equals("autenticar")) {
+			
+			
+			String login = request.getParameter("login");
+			String senha = request.getParameter("senha");
+			
+			FuncionarioDTO f = new FuncionarioDTO();
+			f.setLogin(login);
+			f.setSenha(senha);
+			
+			FuncionarioBO funcBO = new FuncionarioBO();
+			FuncionarioDTO retorno = funcBO.autenticarLogin(f);
+			
+			if(retorno.getNome() != null){
+				HttpSession session = request.getSession(true);
+				session.setAttribute("UsuarioLogado", retorno.getNome());
+				response.sendRedirect("principal.jsp");
+			}else{
+				response.sendRedirect("login.jsp");
+			}
+		}
+		
+		if (acao != null && acao.equals("recuperaSenha")) {
+			String FuncionarioCPF = request.getParameter("FuncionarioCPF");
+			String FuncionarioLogin = request.getParameter("FuncionarioLogin");
+			FuncionarioDTO func = new FuncionarioDTO();
+			func.setCpf(FuncionarioCPF);
+			func.setLogin(FuncionarioLogin);
+			
+			FuncionarioBO funcionarioBO = new FuncionarioBO();
+			FuncionarioDTO funcionarioDTO = funcionarioBO.recuperarSenha(func);
+
+			if(funcionarioDTO.getNome() != null){
+				request.setAttribute("funcionario", funcionarioDTO);
+				RequestDispatcher saida = request.getRequestDispatcher("Recuperado.jsp");
+				saida.forward(request, response);
+			}else{
+				response.sendRedirect("EsqueceuSenha.jsp");
+			}
+		}		
+		
 	}
 
 }

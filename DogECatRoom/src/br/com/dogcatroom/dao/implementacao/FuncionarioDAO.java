@@ -10,7 +10,6 @@ import java.util.List;
 import br.com.dogcatroom.conexao.ConnectionFactory;
 import br.com.dogcatroom.dao.IFuncionarioDAO;
 import br.com.dogcatroom.dto.FuncionarioDTO;
-import br.com.dogcatroom.dto.ServicoDTO;
 
 public class FuncionarioDAO implements IFuncionarioDAO {
 
@@ -164,5 +163,45 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 		
 		return funcionarioDTO;
 	}
+	
+	public FuncionarioDTO validaLogin(FuncionarioDTO func){
+		String sql = "SELECT * FROM funcionarios WHERE login = ? and senha = ?";
+		try {
+			PreparedStatement pstm = con.prepareStatement(sql);
+			pstm.setString(1,func.getLogin());
+			pstm.setString(2,func.getSenha());
+			ResultSet resultado = pstm.executeQuery();
+			
+			if(resultado.next()){
+				func.setId(resultado.getInt("idFuncionario"));
+				func.setNome(resultado.getString("nome"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return func;
+	}
+
+	@Override
+	public FuncionarioDTO recuperarSenha(FuncionarioDTO func) {
+		String sql = "SELECT * FROM funcionarios WHERE cpf = ? and login = ?";
+		try {
+			PreparedStatement pstm = con.prepareStatement(sql);
+			pstm.setString(1,func.getCpf());
+			pstm.setString(2,func.getLogin());
+			ResultSet resultado = pstm.executeQuery();
+			
+			if(resultado.next()){
+				func.setId(resultado.getInt("idFuncionario"));
+				func.setNome(resultado.getString("nome"));
+				func.setSenha(resultado.getString("senha"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return func;
+	}	
 
 }

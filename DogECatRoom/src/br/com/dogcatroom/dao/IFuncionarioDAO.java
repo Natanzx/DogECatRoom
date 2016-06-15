@@ -7,8 +7,10 @@ import br.com.dogcatroom.dto.FuncionarioDTO;
 
 public interface IFuncionarioDAO {
 	
-	void cadastrarFuncionario(FuncionarioDTO funcionarioDTO);
-    void alterarFuncionario(FuncionarioDTO funcionarioDTO);
-    List<FuncionarioDTO> buscarTodosFuncionariosAtivo();
-    FuncionarioDTO buscarFuncionarioPorID(FuncionarioDTO funcionarioDTO) throws SQLException;
+	public void cadastrarFuncionario(FuncionarioDTO funcionarioDTO);
+	public void alterarFuncionario(FuncionarioDTO funcionarioDTO);
+    public List<FuncionarioDTO> buscarTodosFuncionariosAtivo();
+    public FuncionarioDTO buscarFuncionarioPorID(FuncionarioDTO funcionarioDTO) throws SQLException;
+    public FuncionarioDTO validaLogin(FuncionarioDTO func);
+    public FuncionarioDTO recuperarSenha(FuncionarioDTO func);
 }

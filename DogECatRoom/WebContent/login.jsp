@@ -17,14 +17,14 @@
 	
 	<div class="divContent">
 	
-	<form class="form-horizontal" action="principal.jsp" method="post">
+	<form class="form-horizontal" action="/DogECatRoom/FuncionarioController?acao=autenticar" method="POST">
 		<fieldset>
 		
 			<!-- Text input-->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="textinput">Login</label>
 				<div class="col-md-4">
-					<input id="textinput" name="textinput" type="text" placeholder=""
+					<input id="textinput" name="login" type="text" placeholder=""
 						class="form-control input-sm" required="">
 
 				</div>
@@ -34,7 +34,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="passwordinput">Senha</label>
 				<div class="col-md-4">
-					<input id="passwordinput" name="passwordinput" type="password"
+					<input id="passwordinput" name="senha" type="password"
 						placeholder="" class="form-control input-md" required="">
 
 				</div>
