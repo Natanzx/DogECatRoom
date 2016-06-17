@@ -50,8 +50,7 @@ public class FuncionarioController extends HttpServlet {
 				RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Funcionarios/alterarFuncionario.jsp");
 				saida.forward(request,response);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				erroValidacao(request, response, e);
 			}
 		}
 		
@@ -62,6 +61,13 @@ public class FuncionarioController extends HttpServlet {
 		}		
 		
 
+	}
+
+	private void erroValidacao(HttpServletRequest request, HttpServletResponse response, SQLException e)
+			throws ServletException, IOException {
+		request.setAttribute("error", e.getMessage());
+		RequestDispatcher saida = request.getRequestDispatcher("Error.jsp");
+		saida.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -115,7 +121,7 @@ public class FuncionarioController extends HttpServlet {
 				funcionarioBO.salvarFuncionario(funcionarioDTO);
 				response.sendRedirect("FuncionarioController?acao=listar");
 			} catch (Exception e) {
-				e.getMessage();
+				erroValidacao(request, response, e);
 			}
 
 		}
@@ -164,7 +170,7 @@ public class FuncionarioController extends HttpServlet {
 				funcionarioBO.salvarFuncionario(funcionarioDTO);
 				response.sendRedirect("FuncionarioController?acao=listar");
 			} catch (Exception e) {
-				e.getMessage();
+				erroValidacao(request, response, e);
 			}
 
 		}
@@ -211,6 +217,13 @@ public class FuncionarioController extends HttpServlet {
 			}
 		}		
 		
+	}
+
+	private void erroValidacao(HttpServletRequest request, HttpServletResponse response, Exception e)
+			throws ServletException, IOException {
+		request.setAttribute("error", e.getMessage());
+		RequestDispatcher saida = request.getRequestDispatcher("Error.jsp");
+		saida.forward(request, response);
 	}
 
 }

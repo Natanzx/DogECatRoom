@@ -31,8 +31,8 @@ public class ServicoController extends HttpServlet {
 				request.setAttribute("lista", lista);
 				RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Servicos/consultarServicos.jsp");
 				saida.forward(request, response);
-			} catch (SQLException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				erroValidacao(request, response, e);
 			}
 
 		}
@@ -47,8 +47,8 @@ public class ServicoController extends HttpServlet {
 			try {
 				servicoBO.excluirServico(servico);
 				response.sendRedirect("ServicoController?acao=listar");
-			} catch (SQLException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				erroValidacao(request, response, e);
 			}
 
 		}
@@ -65,12 +65,19 @@ public class ServicoController extends HttpServlet {
 				request.setAttribute("servico", servicoDTO);
 				RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Servicos/alterarServicos.jsp");
 				saida.forward(request, response);
-			} catch (SQLException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				erroValidacao(request, response, e);
 			}
 
 
 		}
+	}
+
+	private void erroValidacao(HttpServletRequest request, HttpServletResponse response, SQLException e)
+			throws ServletException, IOException {
+		request.setAttribute("error", e.getMessage());
+		RequestDispatcher saida = request.getRequestDispatcher("Error.jsp");
+		saida.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -97,8 +104,8 @@ public class ServicoController extends HttpServlet {
 				}
 				servicoBO.salvarServico(servico);
 				response.sendRedirect("ServicoController?acao=listar");
-			} catch (BusinesException | SQLException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				erroValidacao(request, response, e);
 			}
 
 		}
@@ -120,12 +127,19 @@ public class ServicoController extends HttpServlet {
 			ServicoBO servicoBO = new ServicoBO();
 			try{
 			servicoBO.salvarServico(servico);
-			}catch(BusinesException | SQLException e){
-				e.printStackTrace();
+			response.sendRedirect("ServicoController?acao=listar");
+			}catch(Exception e){
+				erroValidacao(request, response, e);
 			}
 
-			response.sendRedirect("ServicoController?acao=listar");
 		}
+	}
+
+	private void erroValidacao(HttpServletRequest request, HttpServletResponse response, Exception e)
+			throws ServletException, IOException {
+		request.setAttribute("error", e.getMessage());
+		RequestDispatcher saida = request.getRequestDispatcher("Error.jsp");
+		saida.forward(request, response);
 	}
 
 }
