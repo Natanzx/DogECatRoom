@@ -236,7 +236,7 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label" for="textinput">Pedigre</label>
 					<div class="col-md-2">
-						<input id="pedigreAnimal" type="text" placeholder=""
+						<input id="pedigreAnimal" type="checkbox" placeholder=""
 							class="form-control input-md" maxlength="1">
 			
 					</div>
