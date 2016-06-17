@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.dogcatroom.bo.ClienteBO;
 import br.com.dogcatroom.conexao.ConnectionFactory;
 import br.com.dogcatroom.dao.IClienteDAO;
 import br.com.dogcatroom.dto.AnimalDTO;
@@ -184,21 +185,21 @@ public class ClienteDAO implements IClienteDAO {
 		try {
 			PreparedStatement pstm = con.prepareStatement(sql);
 			pstm.setInt(1, cliente.getId());
-			
+			ClienteBO clienteBO = new ClienteBO();
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
 				AnimalDTO a = new AnimalDTO();
 				
-				//a.setIdAnimal(rs.getInt("idAnimal"));
-				//a.setIdCliente(rs.getInt("idCliente"));
+				a.setIdAnimal(rs.getInt("idAnimal"));
+				a.setCliente(clienteBO.buscarClientePorID(rs.getInt("idCliente")));
 				a.setNome(rs.getString("nome"));
 				a.setTipo(rs.getString("tipo"));
-				//a.setRaca(rs.getString("raca"));
-				//a.setCor(rs.getString("cor"));
-				//a.setDataNasc(rs.getString("dataNasc"));
-				//a.setSexo(rs.getString("sexo"));
-				//a.setPedigre(rs.getInt("pedigre"));
-				//a.setNumPedigre(rs.getInt("numPedigre"));
+				a.setRaca(rs.getString("raca"));
+				a.setCor(rs.getString("cor"));
+				a.setDataNasc(rs.getString("dataNasc"));
+				a.setSexo(rs.getString("sexo"));
+				a.setPedigre(rs.getInt("pedigre"));
+				a.setNumPedigre(rs.getInt("numPedigre"));
 				
 				listaAnimal.add(a);
 			}

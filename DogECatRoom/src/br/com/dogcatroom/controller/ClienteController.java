@@ -131,7 +131,7 @@ public class ClienteController extends HttpServlet {
 				AnimalBO animalBO = new AnimalBO();
 				
 				for (AnimalDTO animal : listaAnimal) {
-					animal.setIdCliente(cliente.getId());
+					animal.setCliente(cliente);
 					animalBO.cadastrar(animal);
 				}
 			}			
