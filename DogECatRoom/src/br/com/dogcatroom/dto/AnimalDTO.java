@@ -3,7 +3,7 @@ package br.com.dogcatroom.dto;
 public class AnimalDTO {
 
 	private int idAnimal;
-	private int idCliente;
+	private ClienteDTO Cliente;
 	private String nome;
 	private String tipo;
 	private String raca;
@@ -14,17 +14,17 @@ public class AnimalDTO {
 	private int numPedigre;
 	private int ativo;
 	
+	public ClienteDTO getCliente() {
+		return Cliente;
+	}
+	public void setCliente(ClienteDTO cliente) {
+		Cliente = cliente;
+	}	
 	public int getIdAnimal() {
 		return idAnimal;
 	}
 	public void setIdAnimal(int idAnimal) {
 		this.idAnimal = idAnimal;
-	}
-	public int getIdCliente() {
-		return idCliente;
-	}
-	public void setIdCliente(int idCliente) {
-		this.idCliente = idCliente;
 	}
 	public String getNome() {
 		return nome;

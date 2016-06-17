@@ -27,15 +27,22 @@ public class AnimalController extends HttpServlet {
 		
 		if(acao!=null && acao.equals("listar")){
 			int idCliente = Integer.parseInt(rq.getParameter("idCliente"));
+			String page = rq.getParameter("page");
 			
 			AnimalBO animalBO = new AnimalBO();
 			List<AnimalDTO> lista = animalBO.buscarPeloidCliente(idCliente);
 		
 			rq.setAttribute("listaAnimal", lista);
+			RequestDispatcher saida = null;
 			
-			RequestDispatcher saida= rq.getRequestDispatcher("Sistemas/Clientes/consultarAnimal.jsp");
+			if(page != null && page.equals("cadastroAtendimento")){
+				saida = rq.getRequestDispatcher("Sistemas/Atendimento/listaAnimais.jsp");
+			}else{
+				saida= rq.getRequestDispatcher("Sistemas/Clientes/consultarAnimal.jsp");
+			}
+			
 			saida.forward(rq, rs);
-		}
+		}	
 		
 		if(acao!=null && acao.equals("cadastro")){
 			int idCliente = Integer.parseInt(rq.getParameter("idCliente"));
@@ -98,7 +105,7 @@ public class AnimalController extends HttpServlet {
 		String acao = rq.getParameter("acao");
 		
 		HttpSession session = rq.getSession(true);
-		
+		ClienteBO clienteBO = new ClienteBO();
 		if(acao!=null && acao.equals("cadastrar")){
 			
 			int idCliente = Integer.parseInt(rq.getParameter("idCliente"));
@@ -112,7 +119,7 @@ public class AnimalController extends HttpServlet {
 			int numPedigre = Integer.parseInt(rq.getParameter("numPedigre"));
 
 			AnimalDTO a = new AnimalDTO();
-			a.setIdCliente(idCliente);
+			a.setCliente(clienteBO.buscarClientePorID(idCliente));
 			a.setNome(nome);
 			a.setTipo(tipo);
 			a.setRaca(raca);
@@ -168,7 +175,7 @@ public class AnimalController extends HttpServlet {
 			int numPedigre = Integer.parseInt(rq.getParameter("numPedigre"));
 
 			AnimalDTO a = new AnimalDTO();
-			a.setIdCliente(idCliente);
+			a.setCliente(clienteBO.buscarClientePorID(idCliente));
 			a.setNome(nome);
 			a.setTipo(tipo);
 			a.setRaca(raca);
