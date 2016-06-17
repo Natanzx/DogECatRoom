@@ -5,9 +5,27 @@ public class AtendimentoDTO {
 	private int id;
 	private String data;
 	private String hora;
-	private ClienteDTO cliente;
+	private AnimalDTO animal;
 	private ServicoDTO servico;
+	private FuncionarioDTO funcionario;
 	
+	
+	public AnimalDTO getAnimal() {
+		return animal;
+	}
+
+	public void setAnimal(AnimalDTO animal) {
+		this.animal = animal;
+	}
+
+	public FuncionarioDTO getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(FuncionarioDTO funcionario) {
+		this.funcionario = funcionario;
+	}
+
 	public String getData() {
 		return data;
 	}
@@ -22,14 +40,6 @@ public class AtendimentoDTO {
 
 	public void setHora(String hora) {
 		this.hora = hora;
-	}
-
-	public ClienteDTO getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(ClienteDTO cliente) {
-		this.cliente = cliente;
 	}
 
 	public ServicoDTO getServico() {

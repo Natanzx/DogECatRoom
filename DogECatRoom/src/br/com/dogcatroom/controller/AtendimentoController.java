@@ -13,16 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.dogcatroom.Exception.BusinesException;
+import br.com.dogcatroom.bo.AnimalBO;
 import br.com.dogcatroom.bo.AtendimentoBO;
 import br.com.dogcatroom.bo.ClienteBO;
+import br.com.dogcatroom.bo.FuncionarioBO;
 import br.com.dogcatroom.bo.ServicoBO;
-import br.com.dogcatroom.dao.implementacao.AtendimentoDAO;
-import br.com.dogcatroom.dao.implementacao.ClienteDAO;
-import br.com.dogcatroom.dao.implementacao.ServicoDAO;
+import br.com.dogcatroom.dto.AnimalDTO;
 import br.com.dogcatroom.dto.AtendimentoDTO;
 import br.com.dogcatroom.dto.ClienteDTO;
 import br.com.dogcatroom.dto.ServicoDTO;
-
 
 
 @WebServlet("/AtendimentoController")
@@ -33,36 +32,31 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		String acao = request.getParameter("acao");
 		
 		if(acao!=null && acao.equals("atendimento")){
+			AnimalBO animalBO = new AnimalBO();
 			ClienteBO clienteBO = new ClienteBO();
+			ServicoBO servicoBO = new ServicoBO();
+			
 			List<ClienteDTO> listaCliente;
+			List<ServicoDTO> listaServico;
 			
 			try {
 				listaCliente = clienteBO.buscarClienteAnimais();
+				listaServico = servicoBO.BuscarServicos();
+				
 				request.setAttribute("listaCliente", listaCliente);
+				request.setAttribute("listaServico", listaServico);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-			
-			ServicoBO servicoBO = new ServicoBO();
-			List<ServicoDTO> listaServico;
-			try {
-				listaServico = servicoBO.BuscarServicos();
-				request.setAttribute("listaServico", listaServico);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		
-			
 			RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Atendimento/realizarAtendimento.jsp");
-
 			saida.forward(request, response);
-			
 			response.sendRedirect("AtendimentoController?acao=listar");
-			
-			}
+		}
 		
 		if(acao!=null && acao.equals("listar")){
 			AtendimentoBO atendimentoBo = new AtendimentoBO();
+			AnimalBO animalBO = new AnimalBO();
 					
 			List<AtendimentoDTO> listaAtendimento;
 			try {
@@ -81,31 +75,29 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
-				int id_cliente = Integer.parseInt(request.getParameter("id_cliente"));
-				Integer id_servico = Integer.parseInt(request.getParameter("id_servico"));
-				
-				AtendimentoDTO atendimento = new AtendimentoDTO();
-				ClienteBO clienteBO = new ClienteBO();
-				ServicoBO servicoBO = new ServicoBO();
-				
-				atendimento.setCliente(clienteBO.buscarClientePorID(id_cliente));
-				try {
-					atendimento.setServico(servicoBO.buscarServicoPorID(id_servico));
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-							
+		HttpSession session = request.getSession();
+		int idAnimal = Integer.parseInt(request.getParameter("idAnimal"));
+		int idServico = Integer.parseInt(request.getParameter("idServico"));
+		int idFuncionario =  (int)session.getAttribute("idFuncionario");
+		
+		AnimalBO animalBO = new AnimalBO();
+		ServicoBO servicoBO = new ServicoBO();
+		FuncionarioBO funcionarioBO = new FuncionarioBO();
+		AtendimentoBO atendimentoBo = new AtendimentoBO();
+		
+		AtendimentoDTO atendimento = new AtendimentoDTO();
+		
+		try {
+			atendimento.setAnimal(animalBO.buscaAnimalPorID(idAnimal));
+			atendimento.setServico(servicoBO.buscarServicoPorID(idServico));
+			atendimento.setFuncionario(funcionarioBO.buscarFuncionarioPorID(idFuncionario));
 			
-				AtendimentoBO atendimentoBo = new AtendimentoBO();
-			
-				try {
-					atendimentoBo.cadastarAtendimento(atendimento);
-				} catch (BusinesException | SQLException e) {
-					e.printStackTrace();
-				}
-				response.sendRedirect("AtendimentoController?acao=listar");
-				
-				}
-	
+			atendimentoBo.cadastarAtendimento(atendimento);
+		} catch (BusinesException | SQLException e) {
+			e.printStackTrace();
+		}
+
+		response.sendRedirect("AtendimentoController?acao=listar");			
+	}
 	
 }
