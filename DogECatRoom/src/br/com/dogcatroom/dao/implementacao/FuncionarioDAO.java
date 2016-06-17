@@ -131,37 +131,38 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 	}
 
 	@Override
-	public FuncionarioDTO buscarFuncionarioPorID(FuncionarioDTO funcionarioDTO) throws SQLException {
+	public FuncionarioDTO buscarFuncionarioPorID(int idFuncionario) throws SQLException {
 		String sql = "SELECT * FROM funcionarios WHERE idFuncionario = ? ";
 
 		PreparedStatement pstm = con.prepareStatement(sql);
-		pstm.setInt(1, funcionarioDTO.getId());
+		pstm.setInt(1, idFuncionario);
 		ResultSet resultado = pstm.executeQuery();
-
-		if (resultado.next()) {
-			FuncionarioDTO funcionario = new FuncionarioDTO();
-			
-			funcionarioDTO.setNome(resultado.getString("nome"));
-			funcionarioDTO.setCpf(resultado.getString("cpf"));
-			funcionarioDTO.setMatricula(Integer.parseInt(resultado.getString("matricula")));
-			funcionarioDTO.setEndereco(resultado.getString("endereco"));
-			funcionarioDTO.setNumero(resultado.getString("numero"));
-			funcionarioDTO.setComplemento(resultado.getString("complemento"));
-			funcionarioDTO.setBairro(resultado.getString("bairro"));
-			funcionarioDTO.setCidade(resultado.getString("cidade"));
-			funcionarioDTO.setEstado(resultado.getString("estado"));
-			funcionarioDTO.setTelCelular(resultado.getString("telCelular"));
-			funcionarioDTO.setTelFixo(resultado.getString("telFixo"));
-			funcionarioDTO.setEscolaridade(resultado.getString("escolaridade"));
-			funcionarioDTO.setOcupacao(resultado.getString("ocupacao"));
-			funcionarioDTO.setSalario(Double.parseDouble(resultado.getString("salario")));
-			funcionarioDTO.setAtivo(Boolean.parseBoolean(resultado.getString("ativo")));
-			funcionarioDTO.setLogin(resultado.getString("login"));
+		
+		FuncionarioDTO funcionario = new FuncionarioDTO();
+		
+		if (resultado.next()) {	
+			funcionario.setId(idFuncionario);
+			funcionario.setNome(resultado.getString("nome"));
+			funcionario.setCpf(resultado.getString("cpf"));
+			funcionario.setMatricula(Integer.parseInt(resultado.getString("matricula")));
+			funcionario.setEndereco(resultado.getString("endereco"));
+			funcionario.setNumero(resultado.getString("numero"));
+			funcionario.setComplemento(resultado.getString("complemento"));
+			funcionario.setBairro(resultado.getString("bairro"));
+			funcionario.setCidade(resultado.getString("cidade"));
+			funcionario.setEstado(resultado.getString("estado"));
+			funcionario.setTelCelular(resultado.getString("telCelular"));
+			funcionario.setTelFixo(resultado.getString("telFixo"));
+			funcionario.setEscolaridade(resultado.getString("escolaridade"));
+			funcionario.setOcupacao(resultado.getString("ocupacao"));
+			funcionario.setSalario(Double.parseDouble(resultado.getString("salario")));
+			funcionario.setAtivo(Boolean.parseBoolean(resultado.getString("ativo")));
+			funcionario.setLogin(resultado.getString("login"));
 		}
 
 		pstm.close();
 		
-		return funcionarioDTO;
+		return funcionario;
 	}
 	
 	public FuncionarioDTO validaLogin(FuncionarioDTO func){

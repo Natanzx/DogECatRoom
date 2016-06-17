@@ -40,13 +40,12 @@ public class FuncionarioController extends HttpServlet {
 		}
 		
 		if (acao != null && acao.equals("alterar")) {
-            FuncionarioDTO funcionarioAlterar = new FuncionarioDTO();
-            funcionarioAlterar.setId(Integer.parseInt(request.getParameter("id")));
+            int idFuncionario = Integer.parseInt(request.getParameter("id"));
 			
             FuncionarioBO funcionarioBO = new FuncionarioBO();
             FuncionarioDTO funcionarioDTO;
 			try {
-				funcionarioDTO = funcionarioBO.buscarFuncionarioPorID(funcionarioAlterar);
+				funcionarioDTO = funcionarioBO.buscarFuncionarioPorID(idFuncionario);
 				request.setAttribute("funcionario", funcionarioDTO);
 				RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Funcionarios/alterarFuncionario.jsp");
 				saida.forward(request,response);
@@ -186,6 +185,7 @@ public class FuncionarioController extends HttpServlet {
 			if(retorno.getNome() != null){
 				HttpSession session = request.getSession(true);
 				session.setAttribute("UsuarioLogado", retorno.getNome());
+				session.setAttribute("idFuncionario", retorno.getId());
 				response.sendRedirect("principal.jsp");
 			}else{
 				response.sendRedirect("login.jsp");

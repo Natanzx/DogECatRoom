@@ -10,7 +10,7 @@ public interface IFuncionarioDAO {
 	public void cadastrarFuncionario(FuncionarioDTO funcionarioDTO);
 	public void alterarFuncionario(FuncionarioDTO funcionarioDTO);
     public List<FuncionarioDTO> buscarTodosFuncionariosAtivo();
-    public FuncionarioDTO buscarFuncionarioPorID(FuncionarioDTO funcionarioDTO) throws SQLException;
+    public FuncionarioDTO buscarFuncionarioPorID(int idFuncionario) throws SQLException;
     public FuncionarioDTO validaLogin(FuncionarioDTO func);
     public FuncionarioDTO recuperarSenha(FuncionarioDTO func);
 }

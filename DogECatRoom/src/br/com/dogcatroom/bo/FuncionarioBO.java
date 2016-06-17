@@ -40,8 +40,8 @@ public class FuncionarioBO {
 	}
 	
 	
-	public FuncionarioDTO buscarFuncionarioPorID(FuncionarioDTO funcionarioDTO) throws SQLException{
-		return iFuncionarioDAO.buscarFuncionarioPorID(funcionarioDTO);
+	public FuncionarioDTO buscarFuncionarioPorID(int idFuncionario) throws SQLException{
+		return iFuncionarioDAO.buscarFuncionarioPorID(idFuncionario);
 		
 	}
 	
