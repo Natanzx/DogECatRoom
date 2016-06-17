@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<% session.setAttribute("page", "Relatorios");%>
+<%@page import="br.com.dogcatroom.dto.RelatoriosDTO" %>
+<%@page import="java.sql.ResultSet" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="/template/head.jsp" />
 <title>DogECatRoom - Relatórios</title>
+<%
+	RelatoriosDTO rel = (RelatoriosDTO) request.getAttribute("relatorios");
+	ResultSet rsAtendimetoHora; //= req request.getAttribute("AtendimentosHora");
+%>
 <style>
 	.divContent{
 		padding: 0px;
@@ -16,12 +23,58 @@
 		margin-left: 0px;
 	}
 	
-</style>
+</style><!-- 
 	<script src="/DogECatRoom/bibliotecas/js/chart.min.js"></script>
 	<script src="/DogECatRoom/bibliotecas/js/chart-data.js"></script>
 	
 	<script src="/DogECatRoom/bibliotecas/js/easypiechart.js"></script>
 	<script src="/DogECatRoom/bibliotecas/js/easypiechart-data.js"></script>
+	 -->
+	<script src="/DogECatRoom/bibliotecas/js/charts.js"></script>
+	<script>
+		$(document).ready(function(){
+			
+			//var ctx = $("#myChart");
+			var ctx = document.getElementById("myChart");
+			var myChart = new Chart(ctx, {
+			    type: 'line',
+			    data: {
+			        labels: ["08:00", "12:00", "16:00", "18:00", "22:00"],
+			        datasets: [{
+			            label: 'Atendimentos',
+			            data: [12, 19, 3, 5, 2, 3],
+			            backgroundColor: [
+			                'rgba(255, 99, 132, 0.2)',
+			                'rgba(54, 162, 235, 0.2)',
+			                'rgba(255, 206, 86, 0.2)',
+			                'rgba(75, 192, 192, 0.2)',
+			                'rgba(153, 102, 255, 0.2)'
+			            ],
+			            borderColor: [
+			                'rgba(255,99,132,1)',
+			                'rgba(54, 162, 235, 1)',
+			                'rgba(255, 206, 86, 1)',
+			                'rgba(75, 192, 192, 1)',
+			                'rgba(153, 102, 255, 1)'
+			            ],
+			            borderWidth: 1
+			        }]
+			    },
+			    options: {
+			        scales: {
+			            yAxes: [{
+			                ticks: {
+			                    beginAtZero:true
+			                }
+			            }]
+			        }
+			    }
+			});			
+			
+		});
+		
+		
+	</script>
 </head>
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
@@ -33,37 +86,66 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li class="active"><a href="index.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
-			Relatórios</a></li>
-			<li><a href="/DogECatRoom/Sistemas/Clientes/widgets.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-male-user"></use></svg>
-			 Clientes</a></li>
-			<li><a href="/DogECatRoom/Sistemas/Clientes/charts.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-clipboard-with-paper"></use></svg>
-			 Serviços</a></li>
-			<li><a href="/DogECatRoom/Sistemas/Clientes/tables.html"><svg class="glyph stroked dashboard dial"><use xlink:href="#stroked-dashboard-dial"/></svg>
-			 Funcionários</a></li>
+			<li id="RelPrincipal" class="active">
+				<a href="#">
+					<svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
+					Relatórios
+				</a>
+			</li>
+			
+			<li id="RelClientes">
+				<a href="#">
+					<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-male-user"></use></svg>
+			 		Clientes
+			 	</a>
+			 </li>
+			 
+			<li id="RelServicos">
+				<a href="#">
+					<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-clipboard-with-paper"></use></svg>
+			 		Serviços
+			 	</a>
+			 </li>
+			 
+			<li id="RelFuncionarios">
+				<a href="#">
+					<svg class="glyph stroked dashboard dial"><use xlink:href="#stroked-dashboard-dial"/></svg>
+			 		Funcionários
+			 	</a>
+			 </li>
+			 
+			<li id="RelAtendimentos">
+				<a href="#">
+					<svg class="glyph stroked dashboard dial"><use xlink:href="#stroked-dashboard-dial"/></svg>
+			 		Atendimentos
+			 	</a>
+			 </li>
 			<li role="presentation" class="divider"></li>
-			<li><a href="/DogECatRoom/login.jsp"><svg
-						class="glyph stroked male-user">
-					<use xlink:href="#stroked-male-user"></use></svg> Efetuar Login</a></li>
 		</ul>
 
 	</div>
 	<!--/.sidebar-->
 	
+	<div class="content">
+	
+		<!-- Grafico	-->
 		<div class="row">
 			<div class="col-lg-9">
 				<div class="panel panel-default">
 					<div class="panel-heading">Relatórios de Vendas</div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">
-							<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
+							<!-- <canvas class="main-chart" id="line-chart" height="200" width="600"></canvas> -->
+							<canvas class="main-chart" id="myChart" height="200" width="600"></canvas>
+							
 						</div>
 					</div>
 				</div>
 			</div>
 		</div><!--/.row-->	
 
-<div class="row">
+		<!-- Lista Procentagem	
+		<div class="row">
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
@@ -100,8 +182,11 @@
 					</div>
 				</div>
 			</div>
-		</div><!--/.row-->
+		</div>
+		-->
 		
+		
+		<!-- Lista quadrados Numeros	-->
 		<div class="row">
 			<div class="col-xs-12 col-md-6 col-lg-3">
 				<div class="panel panel-blue panel-widget ">
@@ -110,8 +195,8 @@
 							<svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">120</div>
-							<div class="text-muted">New Orders</div>
+							<div class="large"><%=rel.getCountClientes() %></div>
+							<div class="text-muted">Clientes</div>
 						</div>
 					</div>
 				</div>
@@ -123,8 +208,8 @@
 							<svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">52</div>
-							<div class="text-muted">Comments</div>
+							<div class="large"><%=rel.getCountServicos() %></div>
+							<div class="text-muted">Servicos</div>
 						</div>
 					</div>
 				</div>
@@ -136,8 +221,8 @@
 							<svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">24</div>
-							<div class="text-muted">New Users</div>
+							<div class="large"><%=rel.getCountFuncionarios() %></div>
+							<div class="text-muted">Funcionarios</div>
 						</div>
 					</div>
 				</div>
@@ -149,13 +234,14 @@
 							<svg class="glyph stroked app-window-with-content"><use xlink:href="#stroked-app-window-with-content"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">25.2k</div>
-							<div class="text-muted">Page Views</div>
+							<div class="large"><%=rel.getCountAtendimentos() %></div>
+							<div class="text-muted">Atendimentos</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div><!--/.row-->
+	</div><!--/.content-->
 
 	<jsp:include page="/template/rodape_padrao.jsp" />
 </body>
