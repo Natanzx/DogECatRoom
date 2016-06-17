@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.List"%>
 <%@ page import="br.com.dogcatroom.dto.FuncionarioDTO"%>
+<% session.setAttribute("page", "Funcionarios");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,8 +15,11 @@
 
 	<div class="clOpcoesCrud">
 		<a href="Sistemas/Funcionarios/cadastrarFuncionarios.jsp">
-			<button class="btn btn-default">Cadastrar</button>
+			<button class="btn btn-primary">Cadastrar</button>
 		</a>
+		<a href="/DogECatRoom/principal.jsp">
+			<button class="btn btn-danger">Voltar</button>
+		</a>	
 	</div>
 
 	<table class="table">
