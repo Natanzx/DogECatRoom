@@ -3,13 +3,41 @@
 <%@page import="java.util.List" %>
 <%@page import="br.com.dogcatroom.dto.ClienteDTO" %>
 <%@page import="br.com.dogcatroom.dto.ServicoDTO" %>
-<%@page import="br.com.dogcatroom.dto.AnimalDTO" %>
+
+<% session.setAttribute("page", "Atendimentos");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<jsp:include page="/template/head.jsp"/>
 <title>DogECatRoom - Clientes</title>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("#slcCliente").change(function(){
+			var idCliente = $("#slcCliente").val();
+			if(idCliente == 0){
+				$("#divResultado").hide();
+			}else{
+				$("#divResultado").show("slow");
+			}
+			$.ajax({	            
+	            url: "/DogECatRoom/AnimalController",
+	            data: {
+	            	'acao': 'listar',
+	            	'page': 'cadastroAtendimento',
+	            	'idCliente': idCliente
+	            },
+	            type: 'GET',
+	            success: function(result){
+	                $("#divResultado").html(result);
+	            }
+	    	});			
+		})	
+		
+	});
+
+</script>
 </head>
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp"/>
@@ -30,33 +58,32 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<select style="width: 300px;" name="id_cliente">
+				<select style="width: 300px;" id="slcCliente">
+					<option value="0">--</option>
 					<% 
 					List<ClienteDTO> listaCliente = (List<ClienteDTO>) request.getAttribute("listaCliente");
 					for(ClienteDTO cliente:listaCliente){
 					%>
-						<% 
-						List<AnimalDTO> animalLista =  cliente.getAnimal();
-						for(AnimalDTO animal : animalLista){
-						%>
-						
-						<option width="300px" value="<% out.print(cliente.getId()); %>">
+						<option width="300px" value="<%=cliente.getId()%>">
 							<%
-							out.print(cliente.getNome() +"-"+ animal.getNome() +"-"+ animal.getTipo());
+							out.print(cliente.getNome());
 							%>
 							
 						</option>
-						
-						<% } %>
 					<% } %>
 				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div id="divResultado"></div>
 			</td>
 		</tr>
 		<tr >
 			<td colspan="2">Selecione o tipo de Servico:</td>
 		<tr>
 			<td colspan="2">
-				<select style="width: 300px;" name="id_servico">
+				<select style="width: 300px;" name="idServico">
 				<%	
 					List<ServicoDTO> listaServico = (List<ServicoDTO>) request.getAttribute("listaServico");
 					for(ServicoDTO servico:listaServico){

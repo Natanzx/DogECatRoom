@@ -5,6 +5,7 @@
 <%@page import="br.com.dogcatroom.dto.ServicoDTO" %>
 <%@page import="br.com.dogcatroom.dto.AnimalDTO" %>
 <%@page import="br.com.dogcatroom.dto.AtendimentoDTO" %>
+<% session.setAttribute("page", "Atendimentos");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,6 +29,7 @@
 			<tr>
 				<td>Nº da Venda</td>
 				<td>Cliente</td>
+				<td>Animal</td>
 				<td>Servico</td>
 				<td>Valor</td>
 				<td>Data da venda</td>
@@ -42,16 +44,14 @@
 	%>
 			<tr>
 				<td align="center"><% out.print(atendimento.getId()); %></td>
-				<td><% out.print(atendimento.getCliente().getNome()); %></td>
+				<td><% out.print(atendimento.getAnimal().getCliente().getNome()); %></td>
+				<td><% out.print(atendimento.getAnimal().getNome()); %></td>
 				<td><% out.print(atendimento.getServico().getNome()); %></td>
 				<td align="center"><% out.print(atendimento.getServico().getValor()); %></td>
 				<td align="center"><% out.print(atendimento.getData()); %></td>
 				<td align="center"><% out.print(atendimento.getHora()); %></td>
 			</tr>
 <% } %>
-			<tr>
-				<td align="center" colspan=7><a href="Inicio.jsp">Voltar</a></td>
-			</tr>
 		</tbody>
 	</table>
 	
