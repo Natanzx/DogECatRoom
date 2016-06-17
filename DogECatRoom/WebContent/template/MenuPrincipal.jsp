@@ -1,33 +1,68 @@
-
+<%
+	String PagePrincipal = "";
+	String PageClientes = "";
+	String PageServicos = "";
+	String PageFuncionarios = "";
+	String PageRelatorios = "";
+	String PageAtendimentos = "";
+	String PagePerfil = "";
+	String Page = (String)session.getAttribute("page");
+	
+	if(Page != null){
+		switch(Page){
+			case "Principal":
+				PagePrincipal = "active";
+				break;
+			case "Clientes":
+				PageClientes = "active";
+				break;		
+			case "Servicos":
+				PageServicos = "active";
+				break;
+			case "Funcionarios":
+				PageFuncionarios = "active";
+				break;
+			case "Relatorios":
+				PageRelatorios = "active";
+				break;
+			case "Atendimentos":
+				PageAtendimentos = "active";
+				break;
+			case "Perfil":
+				PagePerfil = "active";
+				break;
+		};
+	};
+	%>
 <div>
 	<nav class="navbar navbar-inverse clMenuNav">
 		<ul class="nav navbar-nav clMenuPrincipal user-menu">
-			<li class="active"><a href="/DogECatRoom/principal.jsp">
+			<li class="<%=PagePrincipal%>"><a href="/DogECatRoom/principal.jsp">
 				<svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg>
 				Principal </a>
 			</li>
 
-			<li><a href="/DogECatRoom/ClienteController?acao=listar">
+			<li class="<%=PageClientes%>"><a href="/DogECatRoom/ClienteController?acao=listar">
 				<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-male-user"></use></svg>
 				Clientes
 			</a></li>
 			
-			<li><a href="/DogECatRoom/ServicoController?acao=listar">
+			<li class="<%=PageServicos%>"><a href="/DogECatRoom/ServicoController?acao=listar">
 				<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-clipboard-with-paper"></use></svg>
 				Serviços</a>
 			</li>
 			
-			<li><a href="/DogECatRoom/FuncionarioController?acao=listar">
+			<li class="<%=PageFuncionarios%>"><a href="/DogECatRoom/FuncionarioController?acao=listar">
 				<svg class="glyph stroked dashboard dial"><use xlink:href="#stroked-dashboard-dial"/></svg>
 				Funcionarios</a>
 			</li>
 			
-			<li><a href="/DogECatRoom/Sistemas/Relatorios/Relatorios.jsp">
+			<li class="<%=PageRelatorios%>"><a href="/DogECatRoom/RelatoriosController?acao=listar">
 				<svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg>
 				Relatórios</a>
 			</li>
 			
-			<li><a href="/DogECatRoom/AtendimentoController?acao=listar">
+			<li class="<%=PageAtendimentos%>"><a href="/DogECatRoom/AtendimentoController?acao=listar">
 				<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-clipboard-with-paper"></use></svg>
 				Atendimento</a>
 			</li>
@@ -47,7 +82,7 @@
 				</ul>
 			</li>
 			-->
-			<li class="dropdown pull-right">
+			<li class="dropdown pull-right <%=PagePerfil%>">
 			<a href="#"	class="dropdown-toggle" data-toggle="dropdown">
 			<svg class="glyph stroked male-user">
 				<use xlink:href="#stroked-male-user"></use></svg> 
