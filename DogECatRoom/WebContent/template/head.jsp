@@ -21,3 +21,13 @@
 	<script src="/DogECatRoom/bibliotecas/js/bootstrap.min.js"></script>
 	<script src="/DogECatRoom/bibliotecas/js/lumino.glyphs.js"></script>
 	
+	<script>
+		function deletar(){
+			if(confirm("Deseja realmente excluir o registro?")){
+				return true;
+			}else{
+				return false;
+			}	
+		}
+	</script>
+	
