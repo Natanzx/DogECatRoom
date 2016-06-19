@@ -22,7 +22,7 @@
 				<label class="col-md-4 control-label" for="textinput">Nome</label>
 				<div class="col-md-4">
 					<input id="textinput" name="textNome" type="text"
-						placeholder="Digite o nome" class="form-control input-md" pattern="^[a-zA-Z\s]+$">
+						placeholder="Digite o nome" class="form-control input-md" pattern="^[a-zA-Z\s]+$" required="" maxlength="25">
 
 				</div>
 			</div>
@@ -32,7 +32,7 @@
 				<label class="col-md-4 control-label" for="textinput">Descrição</label>
 				<div class="col-md-4">
 					<input id="textinput" name="textDescricao" type="text"
-						placeholder="Informe a descrição" class="form-control input-md">
+						placeholder="Informe a descrição" class="form-control input-md" maxlength="30">
 				</div>
 			</div>
 
@@ -41,7 +41,7 @@
 				<label class="col-md-4 control-label" for="textinput">Valor</label>
 				<div class="col-md-4">
 					<input id="textinput" name="textValor" type="number" placeholder=""
-						class="form-control input-md">
+						class="form-control input-md" required="" maxlength="20">
 
 				</div>
 			</div>

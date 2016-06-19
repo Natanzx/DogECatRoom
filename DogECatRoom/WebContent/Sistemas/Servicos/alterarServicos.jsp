@@ -53,7 +53,7 @@
 				<label class="col-md-4 control-label" for="button1id"></label>
 				<div class="col-md-8">
 					<button id="button1id" name="button1id" class="btn btn-success">Enviar</button>
-					<button id="" name="" class="btn btn-danger">Limpar</button>
+					<button id="" name="" class="btn btn-warning">Voltar</button>
 				</div>
 			</div>
 

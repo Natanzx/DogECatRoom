@@ -42,7 +42,7 @@
 		<td><% out.print(servico.getDescricao()); %></td> 
 		<td><% out.print(servico.getValor()); %></td>
 		<td>
-			<a href="ServicoController?acao=excluir&id=<%out.print(servico.getId());%>">
+			<a href="ServicoController?acao=excluir&id=<%out.print(servico.getId());%>" onclick="return deletar();">
 				<button class="btn btn-danger btn-xs">X</button>
 			</a>
 			<a href="ServicoController?acao=alterar&id=<%out.print(servico.getId());%>">
