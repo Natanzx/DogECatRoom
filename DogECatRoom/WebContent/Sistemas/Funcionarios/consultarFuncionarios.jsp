@@ -53,7 +53,7 @@
 			<td><% out.print(funcionario.getLogin()); %></td>
 			<td><% out.print(funcionario.isAtivo()? "Inativo" : "Ativo"); %></td>
 			<td>
-				<a href="FuncionarioController?acao=excluir&id=<%out.print(funcionario.getId());%>">
+				<a href="FuncionarioController?acao=excluir&id=<%out.print(funcionario.getId());%>" onclick="return deletar();">
 					<button class="btn btn-danger btn-xs">X</button>
 				</a>			
 				<a href="FuncionarioController?acao=alterar&id=<%out.print(funcionario.getId());%>">
