@@ -96,8 +96,8 @@
 				<ul class="dropdown-menu" role="menu">
 					<li><a href="/DogECatRoom/perfil.jsp"><svg class="glyph stroked male-user">
 								<use xlink:href="#stroked-male-user"></use></svg> Perfil</a></li>
-					<li><a href="/DogECatRoom/config.jsp"><svg class="glyph stroked gear">
-								<use xlink:href="#stroked-gear"></use></svg> Configurações</a></li>
+<!-- 					<li><a href="/DogECatRoom/config.jsp"><svg class="glyph stroked gear"> -->
+<!-- 								<use xlink:href="#stroked-gear"></use></svg> Configurações</a></li> -->
 					<li><a href="/DogECatRoom/FuncionarioController?acao=logout"><svg class="glyph stroked cancel">
 								<use xlink:href="#stroked-cancel"></use></svg> Sair</a></li>
 				</ul>

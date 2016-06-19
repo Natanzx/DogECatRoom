@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <% session.setAttribute("page", "Relatorios");%>
@@ -11,7 +13,7 @@
 <title>DogECatRoom - Relatórios</title>
 <%
 	RelatoriosDTO rel = (RelatoriosDTO) request.getAttribute("relatorios");
-	ResultSet rsAtendimetoHora; //= req request.getAttribute("AtendimentosHora");
+	List<RelatoriosDTO> atendHor = (List<RelatoriosDTO>) request.getAttribute("horarios");
 %>
 <style>
 	.divContent{
@@ -21,6 +23,11 @@
 	.row{
 		margin-right: 0px;
 		margin-left: 0px;
+	}
+	#divResultado{
+		max-height: 300px !important;
+   		overflow: auto;
+   		display: none;
 	}
 	
 </style><!-- 
@@ -36,27 +43,34 @@
 			
 			//var ctx = $("#myChart");
 			var ctx = document.getElementById("myChart");
+			var labels = [];
+			var data = [];
+			$("[name=horarios]").each(function(index){
+				labels[index] = $(this).attr('horario').substring(0,5);
+				data[index] = $(this).val();
+			});
+			
 			var myChart = new Chart(ctx, {
 			    type: 'line',
 			    data: {
-			        labels: ["08:00", "12:00", "16:00", "18:00", "22:00"],
+			        labels: labels,
 			        datasets: [{
 			            label: 'Atendimentos',
-			            data: [12, 19, 3, 5, 2, 3],
-			            backgroundColor: [
-			                'rgba(255, 99, 132, 0.2)',
-			                'rgba(54, 162, 235, 0.2)',
-			                'rgba(255, 206, 86, 0.2)',
-			                'rgba(75, 192, 192, 0.2)',
-			                'rgba(153, 102, 255, 0.2)'
-			            ],
-			            borderColor: [
-			                'rgba(255,99,132,1)',
-			                'rgba(54, 162, 235, 1)',
-			                'rgba(255, 206, 86, 1)',
-			                'rgba(75, 192, 192, 1)',
-			                'rgba(153, 102, 255, 1)'
-			            ],
+			            data: data,
+// 			            backgroundColor: [
+// 			                'rgba(255, 99, 132, 0.2)',
+// 			                'rgba(54, 162, 235, 0.2)',
+// 			                'rgba(255, 206, 86, 0.2)',
+// 			                'rgba(75, 192, 192, 0.2)',
+// 			                'rgba(153, 102, 255, 0.2)'
+// 			            ],
+// 			            borderColor: [
+// 			                'rgba(255,99,132,1)',
+// 			                'rgba(54, 162, 235, 1)',
+// 			                'rgba(255, 206, 86, 1)',
+// 			                'rgba(75, 192, 192, 1)',
+// 			                'rgba(153, 102, 255, 1)'
+// 			            ],
 			            borderWidth: 1
 			        }]
 			    },
@@ -69,12 +83,88 @@
 			            }]
 			        }
 			    }
-			});			
+			});	
 			
+			function resetActive(elem){
+				$('#RelClientes, #RelServicos, #RelFuncionarios, #RelAtendimentos, #RelPrincipal').removeClass('active');
+				$(elem).toggleClass('active');
+			}
+			
+			$("#RelClientes").click(function(){
+		        $.ajax({	            
+		        	url: "/DogECatRoom/ClienteController",
+		            data: {
+		            	'acao': 'listar',
+		            	'relatorios': '1'
+		            },
+		            type: 'GET',
+		            success: function(result){
+		            	resetActive($("#RelClientes"));
+		            	$("#divGraficoRelatorio").hide();
+		            	$("#divResultado").show('slow');
+		            	$("#divResultado").html(result);
+		            }
+	        	});
+			});
+			
+			$("#RelServicos").click(function(){
+		        $.ajax({	            
+		        	url: "/DogECatRoom/ServicoController",
+		            data: {
+		            	'acao': 'listar',
+		            	'relatorios': '1'
+		            },
+		            type: 'GET',
+		            success: function(result){
+		            	resetActive($("#RelServicos"));
+		            	$("#divGraficoRelatorio").hide();
+		            	$("#divResultado").show('slow');
+		            	$("#divResultado").html(result);
+		            }
+	        	});				
+			});
+			$("#RelFuncionarios").click(function(){
+		        $.ajax({	            
+		        	url: "/DogECatRoom/FuncionarioController",
+		            data: {
+		            	'acao': 'listar',
+		            	'relatorios': '1'
+		            },
+		            type: 'GET',
+		            success: function(result){
+		            	resetActive($("#RelFuncionarios"));
+		            	$("#divGraficoRelatorio").hide();
+		            	$("#divResultado").show('slow');
+		            	$("#divResultado").html(result);
+		            }
+	        	});
+			});
+			$("#RelAtendimentos").click(function(){
+		        $.ajax({	            
+		        	url: "/DogECatRoom/AtendimentoController",
+		            data: {
+		            	'acao': 'listar',
+		            	'relatorios': '1'
+		            },
+		            type: 'GET',
+		            success: function(result){
+		            	resetActive($("#RelAtendimentos"));
+		            	$("#divGraficoRelatorio").hide();
+		            	$("#divResultado").show('slow');
+		            	$("#divResultado").html(result);
+		            }
+	        	});
+			});
+			$("#RelPrincipal").click(function(){
+				resetActive($("#RelPrincipal"));
+	        	$("#divGraficoRelatorio").show('slow');
+	        	$("#divResultado").hide();	
+			});
 		});
 		
 		
 	</script>
+
 </head>
 <body>
 	<jsp:include page="/template/cabecalho_padrao.jsp" />
@@ -82,40 +172,40 @@
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<form role="search">
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search">
+				
 			</div>
 		</form>
 		<ul class="nav menu">
 			<li id="RelPrincipal" class="active">
-				<a href="#">
+				<a href="#divResultado" target="_parent">
 					<svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> 
 					Relatórios
 				</a>
 			</li>
 			
 			<li id="RelClientes">
-				<a href="#">
+				<a href="#divResultado" target="_parent">
 					<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-male-user"></use></svg>
 			 		Clientes
 			 	</a>
 			 </li>
 			 
 			<li id="RelServicos">
-				<a href="#">
+				<a href="#divResultado" target="_parent">
 					<svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-clipboard-with-paper"></use></svg>
 			 		Serviços
 			 	</a>
 			 </li>
 			 
 			<li id="RelFuncionarios">
-				<a href="#">
+				<a href="#divResultado" target="_parent">
 					<svg class="glyph stroked dashboard dial"><use xlink:href="#stroked-dashboard-dial"/></svg>
 			 		Funcionários
 			 	</a>
 			 </li>
 			 
 			<li id="RelAtendimentos">
-				<a href="#">
+				<a href="#divResultado" target="_parent">
 					<svg class="glyph stroked dashboard dial"><use xlink:href="#stroked-dashboard-dial"/></svg>
 			 		Atendimentos
 			 	</a>
@@ -134,11 +224,12 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Relatórios de Vendas</div>
 					<div class="panel-body">
-						<div class="canvas-wrapper">
+						<div id="divGraficoRelatorio" class="canvas-wrapper">
 							<!-- <canvas class="main-chart" id="line-chart" height="200" width="600"></canvas> -->
 							<canvas class="main-chart" id="myChart" height="200" width="600"></canvas>
 							
 						</div>
+						<div id="divResultado"></div>
 					</div>
 				</div>
 			</div>
@@ -188,6 +279,8 @@
 		
 		<!-- Lista quadrados Numeros	-->
 		<div class="row">
+			<div class="panel-heading">Relatório Quantitativo</div>
+			
 			<div class="col-xs-12 col-md-6 col-lg-3">
 				<div class="panel panel-blue panel-widget ">
 					<div class="row no-padding">
@@ -242,6 +335,16 @@
 			</div>
 		</div><!--/.row-->
 	</div><!--/.content-->
+
+	<%
+	int i = 1;
+	for(RelatoriosDTO h : atendHor){
+	%>
+		<input type="hidden" name="horarios" horario="<%=h.getHorarios()%>" value="<%=h.getCountHorarios()%>">
+	<%
+		i++;
+	};
+	%>
 
 	<jsp:include page="/template/rodape_padrao.jsp" />
 </body>
