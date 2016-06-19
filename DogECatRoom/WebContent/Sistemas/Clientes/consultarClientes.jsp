@@ -57,7 +57,7 @@
 		<td><% out.print(cliente.getTelCelular()); %></td>
 		<td><% out.print(cliente.getTelFixo()); %></td>
 		<td nowrap>
-			<a href="ClienteController?acao=excluir&id=<%out.print(cliente.getId());%>">
+			<a href="ClienteController?acao=excluir&id=<%out.print(cliente.getId());%>" onclick="return deletar();">
 				<button id="btnDeleteAnimalTemp" class="btn btn-danger btn-xs">X</button>
 			</a>
 			

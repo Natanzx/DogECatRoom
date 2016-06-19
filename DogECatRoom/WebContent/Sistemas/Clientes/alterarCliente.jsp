@@ -136,7 +136,7 @@
 				<button id="btnAddAnimal" type="button" class="btn btn-xs btn-warning">Adicionar</button>
 			</legend>
 			
-			<div id="divResultadoAnimal" style="padding: 0px 0px 40px">
+			<div id="divConsultaAnimal" style="padding: 0px 0px 40px">
 			</div>		
 																	
 			<!-- Button (Double) -->
@@ -155,41 +155,43 @@
 </body>
 <script>	
 	
-		$(document).ready(function(){
+	function listaAnimaisCliente(){
+		$.ajax({	            
+	        url: "/DogECatRoom/AnimalController",
+	        data: {
+	        	'acao': 'listar',
+	        	'idCliente': $("#idCliente").val()
+	        },
+	        type: 'GET',
+	        success: function(result){
+	            $("#divConsultaAnimal").html(result);
+	            $("#divConsultaAnimal").show();
+	        }
+		});	
+	}
+
+	$(document).ready(function(){
+	
+		//var idCliente = $("#idCliente").val();
 		
-			var idCliente = $("#idCliente").val();
-			
-			listaAnimaisCliente();
-			
-			function listaAnimaisCliente(){
-				$.ajax({	            
-		            url: "/DogECatRoom/AnimalController",
-		            data: {
-		            	'acao': 'listar',
-		            	'idCliente': idCliente
-		            },
-		            type: 'GET',
-		            success: function(result){
-		                $("#divResultadoAnimal").html(result);
-		            }
-	        	});	
-			}
-	        
-	        $("#btnAddAnimal").click(function(){
-		        $.ajax({	            
-		        	url: "/DogECatRoom/AnimalController",
-		            data: {
-		            	'acao': 'cadastro',
-		            	'idCliente': idCliente
-		            },
-		            type: 'GET',
-		            success: function(result){
-		                $("#divResultadoAnimal").html(result);
-		            }
-	        	});	        	
-	        	
-	        });
-	        
+		listaAnimaisCliente();
+        
+        $("#btnAddAnimal").click(function(){
+	        $.ajax({	            
+	        	url: "/DogECatRoom/AnimalController",
+	            data: {
+	            	'acao': 'cadastro',
+	            	'idCliente': $("#idCliente").val()
+	            },
+	            type: 'GET',
+	            success: function(result){
+	                $("#divConsultaAnimal").html(result);
+	                $("#divConsultaAnimal").show();
+	            }
+        	});	        	
+        	
         });
+        
+       });
 	</script>	
 </html>

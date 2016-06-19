@@ -1,34 +1,52 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List" %>
 <%@page import="br.com.dogcatroom.dto.AnimalDTO" %>
 <%
 	AnimalDTO a = (AnimalDTO) request.getAttribute("Animal");
+
+	int Temporario;	
+	List<AnimalDTO> listaAnimalTemp = new ArrayList<AnimalDTO>();	
+	if(session.getAttribute("listAnimalTemp") != null){
+		listaAnimalTemp = (List<AnimalDTO>) session.getAttribute("listAnimalTemp");
+	}
+	
+	if(listaAnimalTemp.size() > 0){
+		//List<AnimalDTO> listaAnimalTemp = (List<AnimalDTO>)session.getAttribute("listAnimalTemp");
+		Temporario = 1;
+	}else{
+		Temporario = 0;
+	}
 %>
+<input type="hidden" id="Temporario" value="<%=Temporario %>">
 <script>
+	var Temporario = $("#Temporario").val();
 
 	$(document).ready(function(){
-		var idCliente = $("#idCliente").val();
+		//var idCliente = $("#idCliente").val(); 
 		
-		function listaAnimaisCliente(){
-			$.ajax({	            
-	            url: "/DogECatRoom/AnimalController",
-	            data: {
-	            	'acao': 'listar',
-	            	'idCliente': idCliente
-	            },
-	            type: 'GET',
-	            success: function(result){
-	                $("#divResultadoAnimal").html(result);
-	            }
-        	});	
-		}
-		
+      	$("#btnCancelarCadAnimal").click(function(){
+      		listaAnimaisCliente();
+      	});
+
 		$("#btnAlterarAnimal").click(function(){
-			
+			if(Temporario == true){
+				acao = "updateTemp";
+			}else{
+				acao = "update";
+			}
+
+			var pedigreAnimal;
+			if($("#pedigreAnimal").is(':checked')){
+				pedigreAnimal = 1;
+			}else{
+				pedigreAnimal = 0;
+			}
+
 			var idAnimal = $("#idAnimal").val();
 		    $.ajax({	            
 		        url: "/DogECatRoom/AnimalController",
 		        data: {
-		    		'acao': 'update',
+		    		'acao': acao,
 		    		'idAnimal': idAnimal,
 		    		'nome': $("#nomeAnimal").val(),
 		    		'tipo': $("#tipoAnimal").val(),
@@ -36,7 +54,7 @@
 		    		'cor': $("#corAnimal").val(),
 		    		'dataNasc': $("#dataNascAnimal").val(),
 		    		'sexo': $("#sexoAnimal").val(),
-		    		'pedigre': $("#pedigreAnimal").val(),
+		    		'pedigre': pedigreAnimal,
 		    		'numPedigre': $("#numPedigreAnimal").val()
 		        },
 		        type: 'POST',
@@ -100,7 +118,7 @@
 	<div class="form-group">
 		<label class="col-md-3 control-label" for="textinput">Pedigre</label>
 		<div class="col-md-2">
-			<input id="pedigreAnimal" type="text" placeholder=""
+			<input id="pedigreAnimal" type="checkbox" placeholder=""
 				class="form-control input-md" value="<%= a.getPedigre() %>"  >
 
 		</div>
@@ -119,6 +137,9 @@
 			<button type="button" type="button" id="btnAlterarAnimal" name="button1id" class="btn btn-success">
 				Atualizar Pet
 			</button>
+			<button type="button" type="button" id="btnCancelarCadAnimal" name="button1id" class="btn btn-warning">
+				Cancelar
+			</button>			
 			<input type="hidden" id="idAnimal" value="<%=a.getIdAnimal() %>">
 		</div>
 	</div>

@@ -12,23 +12,33 @@
 	<script src="/DogECatRoom/bibliotecas/js/jquery.validate.min.js"></script>
 
 	<script>
+	
+		function listaAnimaisCliente(){
+	
+	        $.ajax({	            
+	            url: "/DogECatRoom/AnimalController?acao=listAnimaisTemp",
+	            type: 'GET',
+	            success: function(result){
+	            	$("#divConsultaAnimal").html(result);	
+	            }
+	    	});				
+		}
+		
 		$(document).ready(function(){
 			var countAnimal = 0;
 			
-			function listaAnimaisCliente(){
-
-		        $.ajax({	            
-		            url: "/DogECatRoom/AnimalController?acao=listAnimaisTemp",
-		            type: 'GET',
-		            success: function(result){
-		            	$("#divConsultaAnimal").html(result);	
-		            }
-	        	});				
-			}
-	       
-	      
+	      	$("#btnCancelarCadAnimal").click(function(){
+	      		$("#divCadastraAnimal").hide();
+	      	});
+	      	
 	        $("#btnCadastrarAnimal").click(function(){
 	        	++countAnimal;
+	        	var pedigreAnimal;
+				if($("#pedigreAnimal").is(':checked')){
+					pedigreAnimal = 1;
+				}else{
+					pedigreAnimal = 0;
+				}
 
 		        $.ajax({	            
 		            url: "/DogECatRoom/AnimalController?acao=cadastrarTemp",
@@ -40,7 +50,7 @@
 		            	'cor': $("#corAnimal").val(),
 		            	'dataNasc': $("#dataNascAnimal").val(),
 		            	'sexo': $("#sexo").val(),
-		            	'pedigre': $("#pedigreAnimal").val(),
+		            	'pedigre': pedigreAnimal,
 		            	'numPedigre': $("#numPedigreAnimal").val()
 		            },
 		            type: 'POST',
@@ -52,10 +62,23 @@
 	        });		
 	        
 			$("#btnDeleteAnimalTemp").click(function(){
-				listaAnimaisCliente();
+				//listaAnimaisClienteTemp();
+				
+				$.ajax({	            
+			    	url: "/DogECatRoom/AnimalController",
+			        data: {
+			        	'acao':'deletarAnimalTemp',
+			        	'idAnimal': idAnimal
+			        },
+			        type: 'GET',
+			        success: function(result){
+			        	listaAnimaisCliente();
+			        }
+				});
 			});
 	        
-	        $("#btnAddAnimal").click(function(){	        	
+	        $("#btnAddAnimal").click(function(){
+	        	$('#form-cliente')[0].reset();
 	        	$("#divCadastraAnimal").show();
 	        });
 			
@@ -117,7 +140,7 @@
 				<label class="col-md-3 control-label" for="textinput">Endereço</label>
 				<div class="col-md-3">
 					<input id="textinput" name="textEndereco" type="text"
-						placeholder="Digite o endereço" class="form-control input-md">
+						placeholder="Digite o endereço" class="form-control input-md" maxlength="30">
 
 				</div>
 				<!-- Numero	-->
@@ -134,7 +157,7 @@
 				<label class="col-md-3 control-label" for="textinput">Complemento</label>
 				<div class="col-md-2">
 					<input id="textinput" name="textComplemento" type="text" placeholder=""
-						class="form-control input-md">
+						class="form-control input-md" maxlength="40">
 
 				</div>
 			<!-- Bairro	-->
@@ -165,7 +188,7 @@
 				<label class="col-md-1 control-label" for="textinput">Cep</label>
 				<div class="col-md-2">
 					<input id="textCep" name="textCep" type="text" placeholder=""
-						class="form-control input-md" maxlength="13">
+						class="form-control input-md" maxlength="9">
 
 				</div>
 			</div>
@@ -222,7 +245,7 @@
 					<label class="col-md-3 control-label" for="textinput">Data Nascimento</label>
 					<div class="col-md-2">
 						<input id="dataNascAnimal" type="date" placeholder=""
-							class="form-control input-md">
+							class="form-control input-md" maxlength="8">
 			
 					</div>
 					
@@ -255,6 +278,9 @@
 						<button type="button" type="button" id="btnCadastrarAnimal" name="button1id" class="btn btn-success">
 							Adicionar Pet
 						</button>
+						<button type="button" type="button" id="btnCancelarCadAnimal" name="button1id" class="btn btn-danger">
+							Cancelar
+						</button>						
 					</div>
 				</div>
 			
@@ -270,111 +296,12 @@
 		<label class="col-md-4 control-label" for="button1id"></label>
 		<div class="col-md-8">
 			<button id="button1id" type="submit" name="button1id" class="btn btn-primary">Enviar</button>
-			<button id="" name="" type="reset" class="btn btn-danger">Limpar</button>
+			<button id="" name="" type="reset" class="btn btn-warning">Limpar</button>
 		</div>
 	</div>	
 	</form>
 
 	<jsp:include page="/template/rodape_padrao.jsp" />
 </body>
-<script>
-	
-	$(document).ready(function(){
-		$('#form-cliente').formValidation({
-	        icon: {
-	            valid: 'glyphicon glyphicon-ok',
-	            invalid: 'glyphicon glyphicon-remove',
-	            validating: 'glyphicon glyphicon-refresh'
-	        },
-	        err: {
-	            container: 'tooltip'
-	        },
-			
-	        fields: {
-	            'textNome': {
-	                validators: {
-	                    notEmpty: {
-	                        message: 'Este campo é necessário.'
-	                    }
-	                }
-	            },
-	            'textCpf': {
-	                validators: {
-	                	notEmpty: {
-	                        message: 'Este endereço não é valido.'
-	                    }
-	                }
-	            },
-	            'sexo': {
-	                validators: {
-	                    notEmpty: {
-	                        message: 'Este campo é necessário.'
-	                    }
-	                }
-	            },
-	            'arquivo': {
-	                validators: {
-	                    notEmpty: {
-	                        message: 'Este campo é necessário.'
-	                    }
-	                }
-	            },		
-	            'browsers[]': {
-	                validators: {
-	                    notEmpty: {
-	                        message: 'Este campo é necessário.'
-	                    }
-	                }
-	            }
-	        }
-	})
-	        .on('success.form.fv', function(e) {
-	            $(this).submit();
-	        });		
-	/*
-		$('#form-cliente').validate({
-		    rules: {
-		    	textNome: {
-		            minlength: 3,
-		            maxlength: 15,
-		            required: true
-		        },
-		        textCpf: {
-		            minlength: 11,
-		            maxlength: 11,
-		            required: true
-		        },
-		        textTelCelular: {
-		        	minlength: 9,
-		        	maxlength: 12,
-		        	required: true
-		        },
-		        textTelFixo: {},
-		        textEndereco: {
-		        },
-		        textNumero: {
-		        	minlength: 1,
-		        	maxlength: 3
-		        },
-		        textComplemento: {},
-		        textBairro:{},
-		        textCidade:{},
-		        textEstado:{},
-		        textCep:{}
-		    },
-		    messages:{
-		    	textCpf:{
-		    		required:"Por favor, informe seu CPF",
-		    		minlength:"O CPF deve ter haver 11 algarismos",
-		    		maxlength:"O CPF deve ter haver 11 algarismos"
-		    	},
-		    	textTelCelular:{
-		    		required:"Por favor, informe seu telefone",
-                    minlength:"O telefone deve ter pelo menos 9 algarismos"
-		    	}
-		    }
-		});		
-		*/
-	});
-</script>
+
 </html>

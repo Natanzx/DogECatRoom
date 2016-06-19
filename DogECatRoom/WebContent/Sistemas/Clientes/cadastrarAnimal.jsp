@@ -1,49 +1,4 @@
 
-<script>
-
-	$(document).ready(function(){
-		var idCliente = $("#idCliente").val();
-		
-		function listaAnimaisCliente(){
-			$.ajax({	            
-	            url: "/DogECatRoom/AnimalController",
-	            data: {
-	            	'acao': 'listar',
-	            	'idCliente': idCliente
-	            },
-	            type: 'GET',
-	            success: function(result){
-	                $("#divResultadoAnimal").html(result);
-	            }
-        	});	
-		}
-		
-		$("#btnCadastrarAnimal").click(function(){
-			
-		    $.ajax({	            
-		        url: "/DogECatRoom/AnimalController",
-		        data: {
-		    		'acao': 'cadastrar',
-		    		'idCliente': idCliente,
-		    		'nome': $("#nomeAnimal").val(),
-		    		'tipo': $("#tipoAnimal").val(),
-		    		'raca': $("#racaAnimal").val(),
-		    		'cor': $("#corAnimal").val(),
-		    		'dataNasc': $("#dataNascAnimal").val(),
-		    		'sexo': $("#sexoAnimal").val(),
-		    		'pedigre': $("#pedigreAnimal").val(),
-		    		'numPedigre': $("#numPedigreAnimal").val()
-		        },
-		        type: 'POST',
-		        success: function(result){
-		        	listaAnimaisCliente();
-		        }
-			});	        	
-			
-		});
-	});		
-		
-</script>
 
 	<!-- Text input-->
 	<div class="form-group">
@@ -114,5 +69,51 @@
 			<button type="button" type="button" id="btnCadastrarAnimal" name="button1id" class="btn btn-success">
 				Adicionar Pet
 			</button>
+			<button type="button" type="button" id="btnCancelar" name="button1id" class="btn btn-danger">
+				Cancelar
+			</button>
 		</div>
 	</div>
+
+	
+<script>
+
+	$(document).ready(function(){
+		//var idCliente = $("#idCliente").val();
+		
+		$("#btnCancelar").click(function(){
+			listaAnimaisCliente();
+		});
+
+		$("#btnCadastrarAnimal").click(function(){
+			var pedigreAnimal;
+			if($("#pedigreAnimal").is(':checked')){
+				pedigreAnimal = 1;
+			}else{
+				pedigreAnimal = 0;
+			}
+			
+		    $.ajax({	            
+		        url: "/DogECatRoom/AnimalController",
+		        data: {
+		    		'acao': 'cadastrar',
+		    		'idCliente': $("#idCliente").val(),
+		    		'nome': $("#nomeAnimal").val(),
+		    		'tipo': $("#tipoAnimal").val(),
+		    		'raca': $("#racaAnimal").val(),
+		    		'cor': $("#corAnimal").val(),
+		    		'dataNasc': $("#dataNascAnimal").val(),
+		    		'sexo': $("#sexoAnimal").val(),
+		    		'pedigre': pedigreAnimal,
+		    		'numPedigre': $("#numPedigreAnimal").val()
+		        },
+		        type: 'POST',
+		        success: function(result){
+		        	listaAnimaisCliente();
+		        }
+			});	        	
+			
+		});
+	});		
+		
+</script>
