@@ -34,7 +34,7 @@ public class ServicoDAO implements IServicoDAO {
 	@Override
 	public void alterarServico(ServicoDTO servico) throws SQLException {
 
-		String sql = "update servicos set nome=?, descricao=?,valor=?" + " where idCliente = ?";
+		String sql = "update servicos set nome=?, descricao=?,valor=? where idServico = ?";
 
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setString(1, servico.getNome());
