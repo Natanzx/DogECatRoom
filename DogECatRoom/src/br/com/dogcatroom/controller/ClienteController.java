@@ -35,8 +35,14 @@ public class ClienteController extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		
-			RequestDispatcher saida= request.getRequestDispatcher("Sistemas/Clientes/consultarClientes.jsp");
+			String page = request.getParameter("relatorios");
+			
+			RequestDispatcher saida;
+			if(page != null && page.equals("1")){
+				saida = request.getRequestDispatcher("Sistemas/Relatorios/relClientes.jsp");
+			}else{
+				saida = request.getRequestDispatcher("Sistemas/Clientes/consultarClientes.jsp");
+			}
 			saida.forward(request, response);
 		}
 

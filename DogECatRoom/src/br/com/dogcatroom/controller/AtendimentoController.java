@@ -48,7 +48,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-		
+			
 			RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Atendimento/realizarAtendimento.jsp");
 			saida.forward(request, response);
 			response.sendRedirect("AtendimentoController?acao=listar");
@@ -65,10 +65,17 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		
-			RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Atendimento/listarAtendimentos.jsp");
-			saida.forward(request, response);
+			
+			String page = request.getParameter("relatorios");
+			
+			RequestDispatcher saida;
+			if(page != null && page.equals("1")){			
+				saida = request.getRequestDispatcher("Sistemas/Relatorios/relAtendimentos.jsp");
+			}else{
+				saida = request.getRequestDispatcher("Sistemas/Atendimento/listarAtendimentos.jsp");
 			}
+			saida.forward(request, response);
+		}
 		
 	}
 

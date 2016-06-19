@@ -8,6 +8,7 @@ import br.com.dogcatroom.dao.IAtendimentoDAO;
 import br.com.dogcatroom.dao.implementacao.AtendimentoDAO;
 import br.com.dogcatroom.dto.AtendimentoDTO;
 import br.com.dogcatroom.dto.ClienteDTO;
+import br.com.dogcatroom.dto.RelatoriosDTO;
 
 public class AtendimentoBO {
 	
@@ -26,4 +27,5 @@ public class AtendimentoBO {
 	public List<AtendimentoDTO> buscarTodosAtendimentos() throws SQLException{
 		return iAtendimentoDao.buscarTodosAtendimentos();
 	}
+	
 }

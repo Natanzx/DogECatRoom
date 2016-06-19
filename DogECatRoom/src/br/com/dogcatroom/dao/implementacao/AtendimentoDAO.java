@@ -13,6 +13,7 @@ import br.com.dogcatroom.bo.ServicoBO;
 import br.com.dogcatroom.conexao.ConnectionFactory;
 import br.com.dogcatroom.dao.IAtendimentoDAO;
 import br.com.dogcatroom.dto.AtendimentoDTO;
+import br.com.dogcatroom.dto.RelatoriosDTO;
 
 public class AtendimentoDAO implements IAtendimentoDAO {
 	private Connection con = ConnectionFactory.getConnection();
@@ -75,4 +76,5 @@ public class AtendimentoDAO implements IAtendimentoDAO {
 			}return lista;
 	
 		}
+	
 }

@@ -14,8 +14,22 @@ public class RelatoriosDTO {
 	public Integer countFuncionarios;
 	public Integer countAnimais;
 	public Integer countAtendimentos;
-	public ArrayList<String> HoraAtendimento;
+	public String horarios;
+	public String countHorarios;
+
 	
+	public String getHorarios() {
+		return horarios;
+	}
+	public void setHorarios(String horarios) {
+		this.horarios = horarios;
+	}
+	public String getCountHorarios() {
+		return countHorarios;
+	}
+	public void setCountHorarios(String countHorarios) {
+		this.countHorarios = countHorarios;
+	}
 	public ClienteDTO getCliente() {
 		return cliente;
 	}

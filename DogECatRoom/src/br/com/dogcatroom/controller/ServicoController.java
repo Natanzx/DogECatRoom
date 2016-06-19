@@ -29,7 +29,15 @@ public class ServicoController extends HttpServlet {
 			try {
 				List<ServicoDTO> lista = servicoBO.BuscarServicos();
 				request.setAttribute("lista", lista);
-				RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Servicos/consultarServicos.jsp");
+				
+				String page = request.getParameter("relatorios");
+				
+				RequestDispatcher saida;
+				if(page != null && page.equals("1")){
+					saida = request.getRequestDispatcher("Sistemas/Relatorios/relServicos.jsp");
+				}else{
+					saida = request.getRequestDispatcher("Sistemas/Servicos/consultarServicos.jsp");
+				}
 				saida.forward(request, response);
 			} catch (Exception e) {
 				erroValidacao(request, response, e);

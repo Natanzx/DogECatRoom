@@ -1,6 +1,6 @@
 package br.com.dogcatroom.bo;
 
-import java.sql.ResultSet;
+import java.util.List;
 
 import br.com.dogcatroom.dao.IRelatoriosDAO;
 import br.com.dogcatroom.dao.implementacao.RelatoriosDAO;
@@ -27,7 +27,7 @@ public class RelatoriosBO {
 		iRelatoriosDAO.RelatorioQuantitativoAtendimentos(rel);
 	}
 	
-	public void RelatorioAtendimentosPorHorario(RelatoriosDTO rel){
-		iRelatoriosDAO.RelatorioAtendimentosPorHorario(rel);
+	public List<RelatoriosDTO> RelatorioAtendimentosPorHorario(){
+		return iRelatoriosDAO.RelatorioAtendimentosPorHorario();
 	}
 }

@@ -31,7 +31,14 @@ public class FuncionarioController extends HttpServlet {
 
 			request.setAttribute("lista", funcionarioDTOs);
 
-			RequestDispatcher saida = request.getRequestDispatcher("Sistemas/Funcionarios/consultarFuncionarios.jsp");
+			String page = request.getParameter("relatorios");
+			
+			RequestDispatcher saida;
+			if(page != null && page.equals("1")){			
+				saida = request.getRequestDispatcher("Sistemas/Relatorios/relFuncionarios.jsp");
+			}else{
+				saida = request.getRequestDispatcher("Sistemas/Funcionarios/consultarFuncionarios.jsp");
+			}
 			saida.forward(request, response);
 		}
 		

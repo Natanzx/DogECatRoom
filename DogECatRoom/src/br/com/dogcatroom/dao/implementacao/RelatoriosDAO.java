@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.dogcatroom.conexao.ConnectionFactory;
 import br.com.dogcatroom.dao.IRelatoriosDAO;
@@ -83,39 +84,32 @@ public class RelatoriosDAO implements IRelatoriosDAO{
 	}
 
 	@Override
-	public void RelatorioAtendimentosPorHorario(RelatoriosDTO rel) {
-		String sql = ""
-				+ "SELECT "
-				+ "		c.nome, "
-				+ "    	ani.nome as Animal, "
-				+ "    	s.descricao, "
-				+ "    	f.nome as Funcionario, "
-				+ "		date_format(data,'%H:%i') as data "
-				+ "from atendimentos a "
-				+ "		inner join animais ani on ani.idAnimal = a.idAnimal "
-				+ "    	inner join clientes c on c.idCliente = ani.idCliente "
-				+ "    	inner join servicos s on s.idServico = a.idServico "
-				+ "    	inner join funcionarios f on f.idFuncionario = a.idFuncionario "
-				+ "where "
-				+ "		day(data) = day(now()) and month(data) = month(now()) and year(data) = year(now());";
-		
-		ResultSet rs = null;
-		try{
-			PreparedStatement pstm = con.prepareStatement(sql);
-			rs = pstm.executeQuery();
-			ArrayList<String> RelHorario = new ArrayList<String>();
+		public List<RelatoriosDTO> RelatorioAtendimentosPorHorario() {
+			String sql = 
+					  	" SELECT h.horarios, count(a.idAtendimento) as contHorarios "
+					  + "	from horarios h "
+					  + "		left join atendimentos a on date_format(a.data,'%H') = date_format(h.horarios,'%H') "
+					  + "	group by h.horarios order by 1 ";
 			
-			while(rs.next()){
-				String HoraAtendimento = rs.getString("data");
-				RelHorario.add(HoraAtendimento);
-			}
-			rel.HoraAtendimento = RelHorario;
+			List<RelatoriosDTO> lista = new ArrayList<RelatoriosDTO>();
+			// Constroi PrepareStatement com sql
+			try {
+				PreparedStatement pstm = con.prepareStatement(sql);
+				ResultSet resultado = pstm.executeQuery();
+
+				while (resultado.next()) {
+					RelatoriosDTO Horarios = new RelatoriosDTO();
+					Horarios.setHorarios(resultado.getString("horarios"));
+					Horarios.setCountHorarios(resultado.getString("contHorarios"));
+					
+					lista.add(Horarios);
+				}	
+				pstm.close();
+				System.out.println("Buscar todos registros com sucesso!");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}return lista;
 			
-		}catch (SQLException e) {
-			System.out.println("Operação não concluída.");
-			e.printStackTrace();
 		}
-		
-	}
 
 }
