@@ -41,6 +41,7 @@ public class ClienteController extends HttpServlet {
 		}
 
 		if(acao!=null && acao.equals("alterar")){
+			//session.removeAttribute("listAnimalTemp");
 			int idCliente = Integer.parseInt(request.getParameter("id"));
 			
 			ClienteBO clienteBO = new ClienteBO();

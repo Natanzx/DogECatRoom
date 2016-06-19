@@ -42,7 +42,7 @@ public class AnimalController extends HttpServlet {
 			}
 			
 			saida.forward(rq, rs);
-		}	
+		}		
 		
 		if(acao!=null && acao.equals("cadastro")){
 			int idCliente = Integer.parseInt(rq.getParameter("idCliente"));
@@ -61,8 +61,8 @@ public class AnimalController extends HttpServlet {
 			
 			RequestDispatcher saida= rq.getRequestDispatcher("Sistemas/Clientes/alterarAnimal.jsp");
 			saida.forward(rq, rs);
-		}			
-		
+		}		
+				
 		if(acao!=null && acao.equals("excluir")){
 			int idAnimal = Integer.parseInt(rq.getParameter("idAnimal"));
 			
@@ -79,10 +79,33 @@ public class AnimalController extends HttpServlet {
 			}
 			
 			rq.setAttribute("listaAnimal", listA);
-			
+			System.out.println(listA.size());
 			RequestDispatcher saida= rq.getRequestDispatcher("Sistemas/Clientes/consultarAnimal.jsp");
 			saida.forward(rq, rs);
 		}		
+		
+		if(acao!=null && acao.equals("alterarTemp")){
+			int idAnimal = Integer.parseInt(rq.getParameter("idAnimal"));
+			List<AnimalDTO> listA = new ArrayList<AnimalDTO>();
+			
+			if(session.getAttribute("listAnimalTemp") != null){
+				listA = (ArrayList<AnimalDTO>)session.getAttribute("listAnimalTemp");
+			}
+			
+			AnimalDTO a = null;
+			
+			for(int i = 0; i < listA.size(); i++){
+				if(listA.get(i).getIdAnimal() == idAnimal){
+					a = listA.get(i);
+					break;
+				}
+			}
+			
+			rq.setAttribute("Animal", a);
+			
+			RequestDispatcher saida= rq.getRequestDispatcher("Sistemas/Clientes/alterarAnimal.jsp");
+			saida.forward(rq, rs);
+		}	
 		
 		if(acao!=null && acao.equals("deletarAnimalTemp")){
 			List<AnimalDTO> listA = new ArrayList<AnimalDTO>();
@@ -94,7 +117,12 @@ public class AnimalController extends HttpServlet {
 			AnimalDTO a = new AnimalDTO();
 			a.setIdAnimal(idAnimal);
 			
-			listA.remove(a);
+			for(int i = 0; i < listA.size(); i++){
+				if(listA.get(i).getIdAnimal() == idAnimal){
+					listA.remove(i);
+					break;
+				}
+			}
 			
 			session.setAttribute("listAnimalTemp", listA);
 		}		
@@ -164,7 +192,7 @@ public class AnimalController extends HttpServlet {
 			
 			List<AnimalDTO> listAnimal = new ArrayList<AnimalDTO>();
 			
-			int idCliente = 0;
+			int idAnimal = Integer.parseInt(rq.getParameter("id"));
 			String nome = rq.getParameter("nome");
 			String tipo = rq.getParameter("tipo");
 			String raca = rq.getParameter("raca");
@@ -175,7 +203,7 @@ public class AnimalController extends HttpServlet {
 			int numPedigre = Integer.parseInt(rq.getParameter("numPedigre"));
 
 			AnimalDTO a = new AnimalDTO();
-			a.setCliente(clienteBO.buscarClientePorID(idCliente));
+			a.setIdAnimal(idAnimal);
 			a.setNome(nome);
 			a.setTipo(tipo);
 			a.setRaca(raca);
@@ -185,17 +213,52 @@ public class AnimalController extends HttpServlet {
 			a.setPedigre(pedigre);
 			a.setNumPedigre(numPedigre);
 
-			//AnimalBO animalBO = new AnimalBO();
-			//animalBO.cadastrar(a);
 			if (session.getAttribute("listAnimalTemp") != null){
 				listAnimal = (ArrayList<AnimalDTO>)session.getAttribute("listAnimalTemp");
 			}
-			
 			listAnimal.add(a);
 			
 			session.setAttribute("listAnimalTemp", listAnimal);
 		}
 		
+		if(acao!=null && acao.equals("updateTemp")){
+			
+			List<AnimalDTO> listAnimal = new ArrayList<AnimalDTO>();
+			
+			int idAnimal = Integer.parseInt(rq.getParameter("idAnimal"));
+			String nome = rq.getParameter("nome");
+			String tipo = rq.getParameter("tipo");
+			String raca = rq.getParameter("raca");
+			String cor = rq.getParameter("cor");
+			String dataNasc = rq.getParameter("dataNasc");
+			String sexo = rq.getParameter("sexo");
+			int pedigre = Integer.parseInt(rq.getParameter("pedigre"));
+			int numPedigre = Integer.parseInt(rq.getParameter("numPedigre"));
+
+			AnimalDTO a = new AnimalDTO();
+			a.setIdAnimal(idAnimal);
+			a.setNome(nome);
+			a.setTipo(tipo);
+			a.setRaca(raca);
+			a.setCor(cor);
+			a.setDataNasc(dataNasc);
+			a.setSexo(sexo);
+			a.setPedigre(pedigre);
+			a.setNumPedigre(numPedigre);
+
+			if (session.getAttribute("listAnimalTemp") != null){
+				listAnimal = (ArrayList<AnimalDTO>)session.getAttribute("listAnimalTemp");
+			}
+			
+			for(int i = 0; i < listAnimal.size(); i++){
+				if(listAnimal.get(i).getIdAnimal() == idAnimal){
+					listAnimal.set(i, a);
+					break;
+				}
+			}
+
+			session.setAttribute("listAnimalTemp", listAnimal);
+		}				
 	}
 
 }
