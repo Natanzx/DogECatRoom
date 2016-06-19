@@ -49,6 +49,10 @@ public class FuncionarioBO {
 		return iFuncionarioDAO.validaLogin(func);
 	}
 
+	public void excluirFuncionario(int idFuncionario){
+		iFuncionarioDAO.excluirFuncionario(idFuncionario);
+	}	
+	
 	public FuncionarioDTO recuperarSenha(FuncionarioDTO func){
 		return iFuncionarioDAO.recuperarSenha(func);
 	}

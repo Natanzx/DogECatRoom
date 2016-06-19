@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.dogcatroom.conexao.ConnectionFactory;
 import br.com.dogcatroom.dao.IFuncionarioDAO;
+import br.com.dogcatroom.dto.ClienteDTO;
 import br.com.dogcatroom.dto.FuncionarioDTO;
 
 public class FuncionarioDAO implements IFuncionarioDAO {
@@ -87,6 +88,20 @@ public class FuncionarioDAO implements IFuncionarioDAO {
 
 	}
 
+	public void excluirFuncionario(int idFuncuncionario) {
+		String sql = "update funcionarios set ativo = 0 where idfuncionario = ?";
+
+		try {
+			PreparedStatement pstm = con.prepareStatement(sql);
+			pstm.setInt(1, idFuncuncionario);
+			pstm.execute();
+			pstm.close();
+			System.out.println("Funcionario excluido com sucesso!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public List<FuncionarioDTO> buscarTodosFuncionariosAtivo() {
 		String sql = "SELECT * FROM funcionarios where ativo = 1";

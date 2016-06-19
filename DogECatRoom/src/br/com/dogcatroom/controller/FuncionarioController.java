@@ -12,16 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.dogcatroom.bo.ClienteBO;
 import br.com.dogcatroom.bo.FuncionarioBO;
 import br.com.dogcatroom.dto.FuncionarioDTO;
 
 @WebServlet("/FuncionarioController")
 public class FuncionarioController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	public FuncionarioController() {
-		super();
-	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -52,6 +48,15 @@ public class FuncionarioController extends HttpServlet {
 			} catch (SQLException e) {
 				erroValidacao(request, response, e);
 			}
+		}
+		
+		if(acao!=null && acao.equals("excluir")){
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			FuncionarioBO funcBO = new FuncionarioBO();
+			funcBO.excluirFuncionario(id);
+			
+			response.sendRedirect("FuncionarioController?acao=listar");
 		}
 		
 		if (acao != null && acao.equals("logout")) {
