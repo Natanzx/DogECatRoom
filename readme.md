@@ -1,4 +1,6 @@
-Projeto Integrado II
 
+DogECatRoom - Sistema de gerenciamento personalizado para loja de animais de estimação.
+============================================
 
-DogECatRoom
+Projeto Integrado II - Faculdade UPIS
+
